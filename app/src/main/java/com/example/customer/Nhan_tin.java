@@ -1,14 +1,13 @@
 package com.example.customer;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
+public class Nhan_tin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.nhan_tin);
     }
 }
