@@ -120,7 +120,7 @@
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="000"
+            android:text="1 000 000"
             android:textColor="@color/red"
             android:textSize="20dp" />
     </LinearLayout>
