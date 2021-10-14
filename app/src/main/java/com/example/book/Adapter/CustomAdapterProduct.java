@@ -1,4 +1,4 @@
-package com.example.customer.Adapter;
+package com.example.book.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.customer.Object.Product;
-import com.example.customer.R;
+import com.example.book.Object.Product;
+import com.example.book.R;
 
 import java.util.ArrayList;
 

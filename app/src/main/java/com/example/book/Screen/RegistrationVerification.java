@@ -1,4 +1,4 @@
-package com.example.customer.Screen;
+package com.example.book.Screen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.customer.R;
+import com.example.book.R;
 
 public class RegistrationVerification extends AppCompatActivity {
 

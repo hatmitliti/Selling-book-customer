@@ -1,4 +1,4 @@
-package com.example.customer.Screen;
+package com.example.book.Screen;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,14 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.customer.R;
+import com.example.book.R;
 
-public class Cart extends Fragment {
+public class Me extends Fragment {
 
-    @Nullable
-    @Override
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.gio_hang, container, false);
+        View view = inflater.inflate(R.layout.nguoi_dung, container, false);
 
 
         return view;

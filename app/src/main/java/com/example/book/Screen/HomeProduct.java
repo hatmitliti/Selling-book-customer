@@ -1,4 +1,4 @@
-package com.example.customer.Screen;
+package com.example.book.Screen;
 
 
 import android.os.Bundle;
@@ -6,24 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.customer.Adapter.CustomAdapterProduct;
-import com.example.customer.Adapter.MyRecyclerViewAdapterProductHome;
-import com.example.customer.Object.Product;
-import com.example.customer.R;
+import com.example.book.Adapter.CustomAdapterProduct;
+import com.example.book.Object.Product;
+import com.example.book.R;
 
 import java.util.ArrayList;
 

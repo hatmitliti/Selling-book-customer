@@ -1,4 +1,4 @@
-package com.example.customer.Screen;
+package com.example.book.Screen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.customer.MainActivity;
-import com.example.customer.R;
-import com.example.customer.Screen.Register;
+import com.example.book.MainActivity;
+import com.example.book.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Login extends AppCompatActivity {
@@ -21,6 +22,11 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setControl();
         setAction();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+        myRef.setValue("Hello, World!");
+
     }
 
     private void setAction() {

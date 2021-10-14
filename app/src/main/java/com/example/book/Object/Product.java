@@ -1,6 +1,4 @@
-package com.example.customer.Object;
-
-import android.media.Image;
+package com.example.book.Object;
 
 public class Product {
 

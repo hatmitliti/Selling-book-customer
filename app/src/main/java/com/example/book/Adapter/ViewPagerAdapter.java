@@ -1,14 +1,14 @@
-package com.example.customer.Adapter;
+package com.example.book.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.customer.Screen.Cart;
-import com.example.customer.Screen.HomeProduct;
-import com.example.customer.Screen.Me;
-import com.example.customer.Screen.MessageUser;
+import com.example.book.Screen.Cart;
+import com.example.book.Screen.HomeProduct;
+import com.example.book.Screen.Me;
+import com.example.book.Screen.MessageUser;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {

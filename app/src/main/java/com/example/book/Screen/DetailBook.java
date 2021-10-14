@@ -1,37 +1,36 @@
-package com.example.customer.Screen;
+package com.example.book.Screen;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.customer.R;
+import com.example.book.R;
 
-public class Register extends AppCompatActivity {
-
-    Button btnDangKy1;
+public class DetailBook extends AppCompatActivity {
+    ImageView imgMessageInbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dang_ky_tai_khoan);
+        setContentView(R.layout.chi_tiet_sach);
         setControl();
         setAction();
     }
 
     private void setAction() {
-        btnDangKy1.setOnClickListener(new View.OnClickListener() {
+        imgMessageInbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), RegistrationVerification.class));
+                startActivity(new Intent(getApplicationContext(), MessageUserScreen.class));
+
             }
         });
     }
 
     private void setControl() {
-        btnDangKy1 = findViewById(R.id.btnDangKy1);
+        imgMessageInbox = findViewById(R.id.imgMessageInbox);
     }
-
 }

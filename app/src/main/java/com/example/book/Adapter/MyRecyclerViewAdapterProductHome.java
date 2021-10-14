@@ -1,4 +1,4 @@
-package com.example.customer.Adapter;
+package com.example.book.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.customer.Object.Product;
-import com.example.customer.R;
+import com.example.book.Object.Product;
+import com.example.book.R;
 
 import java.util.ArrayList;
 

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1016332279720",
+    "firebase_url": "https://selling-books-ba602-default-rtdb.firebaseio.com",
+    "project_id": "selling-books-ba602",
+    "storage_bucket": "selling-books-ba602.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016332279720:android:adba81e42320988146879d",
+        "android_client_info": {
+          "package_name": "com.example.book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1016332279720-nnhk1qv0i37aamo5u74e4q00fc80n4rb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASQDh8_5gjIV8CdM0k4bGi8mOsduxcS1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1016332279720-nnhk1qv0i37aamo5u74e4q00fc80n4rb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.example.customer;
+package com.example.book;
 
 import org.junit.Test;
 

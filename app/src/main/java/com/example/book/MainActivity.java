@@ -1,4 +1,4 @@
-package com.example.customer;
+package com.example.book;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,9 +7,11 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.customer.Adapter.ViewPagerAdapter;
+import com.example.book.Adapter.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -21,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.home);
         setControl();
         setEvent();
+
+
+
 
     }
 
