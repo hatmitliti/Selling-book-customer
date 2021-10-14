@@ -10,7 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Customer">
         <activity
-            android:name=".MainActivity"
+            android:name=".Screen.RegistrationVerification"
+            android:exported="true" />
+        <activity
+            android:name=".Screen.DetailBook"
+            android:exported="true" />
+        <activity
+            android:name=".Screen.Register"
+            android:exported="true" />
+        <activity
+            android:name=".Screen.MessageUserScreen"
+            android:exported="true" />
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <activity
+            android:name=".Screen.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
