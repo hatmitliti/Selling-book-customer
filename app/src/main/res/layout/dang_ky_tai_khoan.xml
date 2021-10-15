@@ -20,14 +20,16 @@
             android:src="@drawable/logo" />
 
         <EditText
+            android:id="@+id/edtEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="15"
-            android:hint="Số điện thoại"
+            android:hint="Email"
             android:textSize="20dp" />
 
         <EditText
+            android:id="@+id/edtPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -37,11 +39,12 @@
             android:textSize="20dp" />
 
         <EditText
+            android:id="@+id/edtRe_enterPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="15"
-            android:hint="Repassword"
+            android:hint="Re-enter password"
             android:inputType="textPassword"
             android:textSize="20dp" />
 
