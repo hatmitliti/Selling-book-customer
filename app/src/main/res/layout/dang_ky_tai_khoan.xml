@@ -19,6 +19,7 @@
             android:src="@drawable/logo" />
 
         <EditText
+            android:id="@+id/txtHoVaTen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -27,14 +28,26 @@
             android:textSize="20dp" />
 
         <EditText
+            android:id="@+id/txtMail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="15"
-            android:hint="Số điện thoại"
+            android:hint="Địa chỉ mail"
             android:textSize="20dp" />
 
         <EditText
+            android:id="@+id/txtNgaySinh"
+            android:inputType="date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="15"
+            android:hint="Ngày sinh"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/txtPasswordRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -44,6 +57,7 @@
             android:textSize="20dp" />
 
         <EditText
+            android:id="@+id/txtRePasswordRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -53,7 +67,7 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/btnDangKy1"
+            android:id="@+id/btnDangKyTaiKhoan"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="#8BC34A"

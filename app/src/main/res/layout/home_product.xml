@@ -15,7 +15,7 @@
         android:layout_height="wrap_content" />
 
     <Spinner
-        android:id="@+id/spGiaTien"
+        android:id="@+id/spLocSauLoai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
