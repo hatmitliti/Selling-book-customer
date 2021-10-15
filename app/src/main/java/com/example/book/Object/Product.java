@@ -2,10 +2,10 @@ package com.example.book.Object;
 
 public class Product {
 
-    private int hinhAnh;
+    private String hinhAnh;
     private String id;
     private String tenSanPham;
-    private String giaTien;
+    private int giaTien;
     private String category;
     private double star;
     private int stock;
@@ -13,7 +13,11 @@ public class Product {
     private String description;
     private String author;
 
-    public Product(int hinhAnh, String id, String tenSanPham, String giaTien, String category, double star, int stock, int sold, String description, String author) {
+    public Product() {
+
+    }
+
+    public Product(String hinhAnh, String id, String tenSanPham, int giaTien, String category, double star, int stock, int sold, String description, String author) {
         this.hinhAnh = hinhAnh;
         this.id = id;
         this.tenSanPham = tenSanPham;
@@ -26,11 +30,11 @@ public class Product {
         this.author = author;
     }
 
-    public int getHinhAnh() {
+    public String getHinhAnh() {
         return hinhAnh;
     }
 
-    public void setHinhAnh(int hinhAnh) {
+    public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
     }
 
@@ -50,11 +54,11 @@ public class Product {
         this.tenSanPham = tenSanPham;
     }
 
-    public String getGiaTien() {
+    public int getGiaTien() {
         return giaTien;
     }
 
-    public void setGiaTien(String giaTien) {
+    public void setGiaTien(int giaTien) {
         this.giaTien = giaTien;
     }
 
