@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.book.Adapter.CustomAdapterProduct;
+import com.example.book.Object.FirebaseConnect;
 import com.example.book.Object.Product;
 import com.example.book.R;
 
@@ -30,9 +31,9 @@ public class HomeProduct extends Fragment {
         View view = inflater.inflate(R.layout.home_product, container, false);
 
 
-        listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
-        listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
-        listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
+       // listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
+       // listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
+       // listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
 
         adapterProduct = new CustomAdapterProduct(getContext(), R.layout.item_product_listview, listProduct);
         GridView grProduct = view.findViewById(R.id.grProduct);
@@ -45,7 +46,14 @@ public class HomeProduct extends Fragment {
                 Toast.makeText(getContext(), "123", Toast.LENGTH_SHORT).show();
             }
         });
-        
+        FirebaseConnect.getAllProduct();
+        // lấy mảng product
+       // Toast.makeText(getContext(), FirebaseConnect.getAllProduct(), Toast.LENGTH_SHORT).show();
+
+
+
+
+
         return view;
     }
 

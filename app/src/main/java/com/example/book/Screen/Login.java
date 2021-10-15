@@ -23,9 +23,9 @@ public class Login extends AppCompatActivity {
         setControl();
         setAction();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Hello, World!");
+      //  FirebaseDatabase database = FirebaseDatabase.getInstance();
+       // DatabaseReference myRef = database.getReference("message");
+      //  myRef.setValue("Hello, World!");
 
     }
 
