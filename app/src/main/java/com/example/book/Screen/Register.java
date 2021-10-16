@@ -24,7 +24,7 @@ public class Register extends AppCompatActivity {
 
     Button btnDangKyTaiKhoan;
     TextView txtHoVaTen, txtMail, txtNgaySinh, txtPasswordRegister, txtRePasswordRegister;
-    private static String TAG = "RegisterDEbug";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,25 @@ public class Register extends AppCompatActivity {
 
                 } else {
                     // đăng ký tk vào firebase
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
+                    auth.createUserWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+//                        auth.sendSignInLinkToEmail(username,actionCodeSettings).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if(task.isSuccessful()){
+//                                    Toast.makeText(getApplicationContext(), "Đã gửi xác thực đến email của bạn, Vui lòng xác thực!", Toast.LENGTH_LONG).show();
+//                                }
+//                            }
+//                        });
+                                startActivity(new Intent(getApplicationContext(), Login.class));
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Đăng kí không thành công!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
 
                 }

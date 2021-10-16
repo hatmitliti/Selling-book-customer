@@ -1,6 +1,7 @@
 package com.example.book.Screen;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class HomeProduct extends Fragment {
     ArrayList<Product> listProduct = new ArrayList<>();
     CustomAdapterProduct adapterProduct;
     DatabaseReference dataProduct;
-
+    ArrayList<String> mKey = new ArrayList<>();
 
     @Nullable
     @Override
@@ -55,7 +56,17 @@ public class HomeProduct extends Fragment {
         grProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), DetailBook.class);
 
+                intent.putExtra("imgProduct", listProduct.get(i).getHinhAnh());
+                intent.putExtra("nameProduct", listProduct.get(i).getTenSanPham());
+                intent.putExtra("priceProduct", listProduct.get(i).getGiaTien() + "");
+                intent.putExtra("descriptionProduct", listProduct.get(i).getDescription());
+                intent.putExtra("stockProduct", listProduct.get(i).getStock() + "");
+                intent.putExtra("categoryProduct", listProduct.get(i).getCategory());
+                intent.putExtra("authorProduct", listProduct.get(i).getAuthor());
+
+                startActivity(intent);
             }
         });
 
@@ -66,12 +77,20 @@ public class HomeProduct extends Fragment {
                 Product pd = snapshot.getValue(Product.class);
                 listProduct.add(pd);
                 adapterProduct.notifyDataSetChanged();
+                // lấy id của các sản phẩm
+                String key = snapshot.getKey();
+                mKey.add(key);
 
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                // lấy địa chỉ id của đối tượng vừa bị thay đổi bên trong mảng mkey
+                String key = snapshot.getKey();
+                int index = mKey.indexOf(key);
+                // thay đổi dữ liệu trong gridview giống với dữ liệu trên firebase
+                listProduct.set(index, snapshot.getValue(Product.class));
+                adapterProduct.notifyDataSetChanged();
             }
 
             @Override
