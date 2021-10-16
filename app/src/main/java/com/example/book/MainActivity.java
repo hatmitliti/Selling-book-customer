@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.home);
         setControl();
         setEvent();
+
+
+
+
     }
 
     private void setEvent() {

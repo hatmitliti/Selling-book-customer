@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -20,16 +19,35 @@
             android:src="@drawable/logo" />
 
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/txtHoVaTen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="15"
-            android:hint="Email"
+            android:hint="Nhập họ tên"
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/edtPassword"
+            android:id="@+id/txtMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="15"
+            android:hint="Địa chỉ mail"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/txtNgaySinh"
+            android:inputType="date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="15"
+            android:hint="Ngày sinh"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/txtPasswordRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -39,17 +57,17 @@
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/edtRe_enterPassword"
+            android:id="@+id/txtRePasswordRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="15"
-            android:hint="Re-enter password"
+            android:hint="Repassword"
             android:inputType="textPassword"
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/btnDangKy1"
+            android:id="@+id/btnDangKyTaiKhoan"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="#8BC34A"
