@@ -1,12 +1,14 @@
 package com.example.book.Screen;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,50 +39,58 @@ public class HomeProduct extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        dataProduct = FirebaseDatabase.getInstance().getReference();
         View view = inflater.inflate(R.layout.home_product, container, false);
 
-
+        // Hiển thị danh sách sản phẩm
+        dataProduct = FirebaseDatabase.getInstance().getReference();
         adapterProduct = new CustomAdapterProduct(getContext(), R.layout.item_product_listview, listProduct);
         GridView grProduct = view.findViewById(R.id.grProduct);
         grProduct.setAdapter(adapterProduct);
 
+        // Hiển thị lọc spinner:
+        Spinner spLoaiSanPham = view.findViewById(R.id.spLoaiSanPham);
+        Spinner spLocSauLoai = view.findViewById(R.id.spLocSauLoai);
 
+
+        // click vào sản phẩm đến trang chi tiết
         grProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), "123", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DetailBook.class);
+
+                intent.putExtra("imgProduct", listProduct.get(i).getHinhAnh());
+                intent.putExtra("nameProduct", listProduct.get(i).getTenSanPham());
+                intent.putExtra("priceProduct", listProduct.get(i).getGiaTien() + "");
+                intent.putExtra("descriptionProduct", listProduct.get(i).getDescription());
+                intent.putExtra("stockProduct", listProduct.get(i).getStock() + "");
+                intent.putExtra("categoryProduct", listProduct.get(i).getCategory());
+                intent.putExtra("authorProduct", listProduct.get(i).getAuthor());
+
+                startActivity(intent);
             }
         });
-//        FirebaseConnect.getAllProduct();
-        // lấy mảng product
-        // Toast.makeText(getContext(), FirebaseConnect.getAllProduct(), Toast.LENGTH_SHORT).show();\
 
-//        Product pd = new Product("https://firebasestorage.googleapis.com/v0/b/selling-books-ba602.appspot.com/o/rungnauy.jpg?alt=media&token=46131688-7f09-4fd9-92f4-3361605e8076","s2","Rừng Nauy",200000,"Tiểu Thuyết",4.5,0,0,"Sách XYZ","Murakami Haruki");
-//
-//        dataProduct.child("products").push().setValue(pd);
-
+        // lấy dữ liệu product từ firebase
         dataProduct.child("products").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //đổ dữ liệu vào gridview
                 Product pd = snapshot.getValue(Product.class);
                 listProduct.add(pd);
                 adapterProduct.notifyDataSetChanged();
-
                 // lấy id của các sản phẩm
                 String key = snapshot.getKey();
                 mKey.add(key);
+
             }
+
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 // lấy địa chỉ id của đối tượng vừa bị thay đổi bên trong mảng mkey
                 String key = snapshot.getKey();
                 int index = mKey.indexOf(key);
                 // thay đổi dữ liệu trong gridview giống với dữ liệu trên firebase
-                listProduct.set(index,snapshot.getValue(Product.class));
+                listProduct.set(index, snapshot.getValue(Product.class));
                 adapterProduct.notifyDataSetChanged();
-
             }
 
             @Override

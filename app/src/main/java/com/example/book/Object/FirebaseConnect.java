@@ -4,6 +4,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.book.R;
 import com.google.firebase.database.ChildEventListener;
@@ -21,35 +22,11 @@ import java.util.List;
 public class FirebaseConnect {
 
     public static ArrayList<Product> getAllProduct() {
-        ArrayList<Product> list = new ArrayList<>();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("products");
+        ArrayList<Product> list = new ArrayList<Product>();
 
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-
-                Object object = snapshot.getValue();
-
-
-
-                System.out.println(snapshot.getValue().toString());
-
-              //  list.add(new Product(R.drawable.toan12, "", "", "", "", "", "", "", "", ""));
-
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         return list;
     }
+
+
 }
