@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -47,9 +49,66 @@ public class HomeProduct extends Fragment {
         GridView grProduct = view.findViewById(R.id.grProduct);
         grProduct.setAdapter(adapterProduct);
 
-        // Hiển thị lọc spinner:
-        Spinner spLoaiSanPham = view.findViewById(R.id.spLoaiSanPham);
+
+        // Hiển thị lọc loại sản phẩm:
+        Spinner spLoaiSanPham = view.findViewById(R.id.spLoaiSanPhamLoc);
+        ArrayList<String> listCateory = new ArrayList<String>();
+        listCateory.add("Tất cả");
+        ArrayAdapter adapterCategory = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, listCateory);
+        spLoaiSanPham.setAdapter(adapterCategory);
+        // lọc
+        spLoaiSanPham.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String locCategory = spLoaiSanPham.getSelectedItem().toString();
+
+                for (int j = 0; j < listProduct.size(); j++) {
+                    if (listProduct.get(j).getCategory().equals(locCategory)) {
+                        listProduct.remove(j);
+                        adapterProduct.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                String locCategory = spLoaiSanPham.getSelectedItem().toString();
+                Toast.makeText(getContext(), locCategory, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        // Hiển thị lọc giá tiền
         Spinner spLocSauLoai = view.findViewById(R.id.spLocSauLoai);
+        ArrayList<String> listFillMoney = new ArrayList<String>();
+        listFillMoney.add("Không lọc");
+        listFillMoney.add("Lọc theo giá từ cao xuống thấp");
+        listFillMoney.add("Lọc theo giá từ thấp xuống cao");
+        ArrayAdapter adapterFillMoney = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, listFillMoney);
+        spLocSauLoai.setAdapter(adapterFillMoney);
+        //loc
+        spLocSauLoai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String locSauLoai = spLocSauLoai.getSelectedItem().toString();
+                if (locSauLoai.equals("Lọc theo giá từ cao xuống thấp")) {
+
+                    
+
+
+                } else if (locSauLoai.equals("Lọc theo giá từ thấp xuống cao")) {
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        // Search sản phẩm
+        EditText txtSearchProductInHome = view.findViewById(R.id.txtSearchProductInHome);
 
 
         // click vào sản phẩm đến trang chi tiết
@@ -76,6 +135,12 @@ public class HomeProduct extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Product pd = snapshot.getValue(Product.class);
                 listProduct.add(pd);
+
+                // Lấy loại sp bỏ vào list spinner lọc
+                if (!listCateory.contains(pd.getCategory())) {
+                    listCateory.add(pd.getCategory());
+                }
+
                 adapterProduct.notifyDataSetChanged();
                 // lấy id của các sản phẩm
                 String key = snapshot.getKey();
@@ -95,7 +160,10 @@ public class HomeProduct extends Fragment {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                String key = snapshot.getKey();
+                int index = mKey.indexOf(key);
+                listProduct.remove(index);
+                adapterProduct.notifyDataSetChanged();
             }
 
             @Override
@@ -112,6 +180,5 @@ public class HomeProduct extends Fragment {
 
         return view;
     }
-
 
 }
