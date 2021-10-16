@@ -70,6 +70,9 @@ public class HomeProduct extends Fragment {
             }
         });
 
+        Product pd = new Product("https://firebasestorage.googleapis.com/v0/b/selling-books-ba602.appspot.com/o/rungnauy.jpg?alt=media&token=46131688-7f09-4fd9-92f4-3361605e8076",
+                "s3","Sách Thử Nghiệm",100,"Thử Nghiệm",0,0,0,"Sách Này Là Sách Thử Nghiệm","Trần Ngọc Nam");
+        dataProduct.child("products").push().setValue(pd);
         // lấy dữ liệu product từ firebase
         dataProduct.child("products").addChildEventListener(new ChildEventListener() {
             @Override
@@ -95,7 +98,10 @@ public class HomeProduct extends Fragment {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                String key = snapshot.getKey();
+                int index = mKey.indexOf(key);
+                listProduct.remove(index);
+                adapterProduct.notifyDataSetChanged();
             }
 
             @Override
