@@ -32,7 +32,7 @@ public class HomeProduct extends Fragment {
     ArrayList<Product> listProduct = new ArrayList<>();
     CustomAdapterProduct adapterProduct;
     DatabaseReference dataProduct;
-//    ArrayList<String> mKey = new ArrayList<>();
+    ArrayList<String> mKey = new ArrayList<>();
 
     @Nullable
     @Override
@@ -63,75 +63,23 @@ public class HomeProduct extends Fragment {
         dataProduct.child("products").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                //đổ dữ liệu vào gridview
                 Product pd = snapshot.getValue(Product.class);
                 listProduct.add(pd);
                 adapterProduct.notifyDataSetChanged();
 
-//                String key = snapshot.getKey();
-//                mKey.add(key);
+                // lấy id của các sản phẩm
+                String key = snapshot.getKey();
+                mKey.add(key);
             }
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                String key = snapshot.getKey();
-//                int index = mKey.indexOf(key);
-//                Toast.makeText(getContext(), index, Toast.LENGTH_SHORT).show();
-//                if (snapshot.getKey().equals("hinhAnh") || snapshot.getKey().equals("author") || snapshot.getKey().equals("category") || snapshot.getKey().equals("id")
-//                        || snapshot.getKey().equals("tenSanPham") ||snapshot.getKey().equals("description")) {
-//
-//                    String value = snapshot.getValue(String.class);
-//
-//                    switch (snapshot.getKey()) {
-//                        case "hinhAnh":
-//                            listProduct.get(index).setHinhAnh(value);
-//
-//                            break;
-//                        case "author":
-//                            listProduct.get(index).setAuthor(value);
-//
-//                            break;
-//                        case "category":
-//                            listProduct.get(index).setCategory(value);
-//
-//                            break;
-//                        case "id":
-//                            listProduct.get(index).setId(value);
-//
-//                            break;
-//                        case "tenSanPham":
-//                            listProduct.get(index).setTenSanPham(value);
-//
-//                            break;
-//                        case "description":
-//                            listProduct.get(index).setDescription(value);
-//
-//                            break;
-//                    }
-//                    adapterProduct.notifyDataSetChanged();
-//                }
-//                else if (snapshot.getKey().equals("star"))
-//                {
-//                    double data = (double) snapshot.getValue();
-//                    listProduct.get(index).setStar(data);
-//                    adapterProduct.notifyDataSetChanged();
-//                }
-//                else {
-//                    int data = (int) snapshot.getValue();
-//                    switch (snapshot.getKey()) {
-//                        case "sold":
-//                            listProduct.get(index).setSold(data);
-//
-//                            break;
-//                        case "stock":
-//                            listProduct.get(index).setStock(data);
-//
-//                            break;
-//                        case "giaTien":
-//                            listProduct.get(index).setGiaTien(data);
-//
-//                            break;
-//                    }
-//                    adapterProduct.notifyDataSetChanged();
-//                }
+                // lấy địa chỉ id của đối tượng vừa bị thay đổi bên trong mảng mkey
+                String key = snapshot.getKey();
+                int index = mKey.indexOf(key);
+                // thay đổi dữ liệu trong gridview giống với dữ liệu trên firebase
+                listProduct.set(index,snapshot.getValue(Product.class));
+                adapterProduct.notifyDataSetChanged();
 
             }
 
