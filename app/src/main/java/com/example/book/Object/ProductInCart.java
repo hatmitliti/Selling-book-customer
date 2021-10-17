@@ -7,6 +7,7 @@ public class ProductInCart {
     private String tenSanPham;
     private int giaTien;
     private int numberCart;
+    private boolean chkbox;
 
     public ProductInCart() {
     }
@@ -17,6 +18,15 @@ public class ProductInCart {
         this.tenSanPham = tenSanPham;
         this.giaTien = giaTien;
         this.numberCart = numberCart;
+        this.chkbox = false;
+    }
+
+    public boolean isChkbox() {
+        return chkbox;
+    }
+
+    public void setChkbox(boolean chkbox) {
+        this.chkbox = chkbox;
     }
 
     public int getNumberCart() {

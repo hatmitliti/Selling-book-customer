@@ -49,5 +49,31 @@ public class FirebaseConnect {
         });
     }
 
+    public static void setCheckedProductInCart(ProductInCart productInCart) {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("carts");
+        mDatabase.child(MainActivity.usernameApp).child(productInCart.
+                getId()).child("chkbox").setValue(productInCart.isChkbox());
+    }
+
+    public static void setQualytyLow(ProductInCart productInCart) {
+        if (!(productInCart.getNumberCart() == 0)) {
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("carts");
+            mDatabase.child(MainActivity.usernameApp).child(productInCart.
+                    getId()).child("numberCart").setValue(productInCart.getNumberCart() - 1);
+        }
+
+    }
+
+    public static void setQualytyHigh(ProductInCart productInCart) {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("carts");
+        mDatabase.child(MainActivity.usernameApp).child(productInCart.
+                getId()).child("numberCart").setValue(productInCart.getNumberCart() + 1);
+    }
+
+    public static void deleteProductInCart(ProductInCart productInCart) {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("carts");
+        mDatabase.child(MainActivity.usernameApp).child(productInCart.
+                getId()).removeValue();
+    }
 
 }

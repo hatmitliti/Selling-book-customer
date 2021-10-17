@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -73,6 +74,7 @@ public class DetailBook extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseConnect.addProductInCart(MainActivity.usernameApp, product);
+                Toast.makeText(getApplicationContext(), "Đã thểm vào giỏ hàng !", Toast.LENGTH_SHORT).show();
             }
         });
 

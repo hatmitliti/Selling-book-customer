@@ -208,7 +208,6 @@ public class HomeProduct extends Fragment {
                     listCateory.add(pd.getCategory());
                 }
 
-
                 adapterProduct.notifyDataSetChanged();
                 // lấy id của các sản phẩm
                 String key = snapshot.getKey();
@@ -246,17 +245,6 @@ public class HomeProduct extends Fragment {
 
         });
 
-    }
-
-    private void sapXep(ArrayList<Product> list) {
-        for (int j = 0; j < list.size(); j++) {
-            for (int k = j + 1; k < list.size(); k++) {
-                if (list.get(j).getGiaTien() > list.get(k).getGiaTien()) {
-                    Product temp = list.get(0);
-
-                }
-            }
-        }
     }
 
 }
