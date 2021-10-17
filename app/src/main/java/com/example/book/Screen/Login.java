@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        MainActivity.usernameApp = username;
+                        MainActivity.usernameApp = auth.getUid();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }else {
                         Toast.makeText(getApplicationContext(), "Sai tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show();

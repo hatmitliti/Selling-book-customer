@@ -1,8 +1,15 @@
 package com.example.book.Screen;
 
 
+import static com.example.book.Object.Product.ProductComparatorGiaTienHightoLow;
+import static com.example.book.Object.Product.ProductComparatorGiaTienLowtoHigh;
+import static com.example.book.Object.Product.ProductComparatorStarHightoLow;
+import static com.example.book.Object.Product.ProductComparatorStarLowtoHigh;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +37,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.security.cert.PKIXRevocationChecker;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class HomeProduct extends Fragment {
 
@@ -37,6 +47,7 @@ public class HomeProduct extends Fragment {
     CustomAdapterProduct adapterProduct;
     DatabaseReference dataProduct;
     ArrayList<String> mKey = new ArrayList<>();
+    ArrayList<String> listCateory;
 
     @Nullable
     @Override
@@ -52,7 +63,7 @@ public class HomeProduct extends Fragment {
 
         // Hiển thị lọc loại sản phẩm:
         Spinner spLoaiSanPham = view.findViewById(R.id.spLoaiSanPhamLoc);
-        ArrayList<String> listCateory = new ArrayList<String>();
+        listCateory = new ArrayList<String>();
         listCateory.add("Tất cả");
         ArrayAdapter adapterCategory = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, listCateory);
         spLoaiSanPham.setAdapter(adapterCategory);
@@ -61,13 +72,17 @@ public class HomeProduct extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String locCategory = spLoaiSanPham.getSelectedItem().toString();
-
                 for (int j = 0; j < listProduct.size(); j++) {
                     if (listProduct.get(j).getCategory().equals(locCategory)) {
                         listProduct.remove(j);
                         adapterProduct.notifyDataSetChanged();
                     }
                 }
+                if (locCategory.equals("Tất cả")) {
+                    listProduct.clear();
+                    getDatafirebaseProduct();
+                }
+
             }
 
             @Override
@@ -77,13 +92,14 @@ public class HomeProduct extends Fragment {
             }
         });
 
-
-        // Hiển thị lọc giá tiền
+        // Hiển thị lọc giá tiền và số sao
         Spinner spLocSauLoai = view.findViewById(R.id.spLocSauLoai);
         ArrayList<String> listFillMoney = new ArrayList<String>();
         listFillMoney.add("Không lọc");
         listFillMoney.add("Lọc theo giá từ cao xuống thấp");
         listFillMoney.add("Lọc theo giá từ thấp xuống cao");
+        listFillMoney.add("Lọc theo đánh giá cao");
+        listFillMoney.add("Lọc theo đánh giá thấp");
         ArrayAdapter adapterFillMoney = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, listFillMoney);
         spLocSauLoai.setAdapter(adapterFillMoney);
         //loc
@@ -93,11 +109,27 @@ public class HomeProduct extends Fragment {
                 String locSauLoai = spLocSauLoai.getSelectedItem().toString();
                 if (locSauLoai.equals("Lọc theo giá từ cao xuống thấp")) {
 
-                    
-
+                    Collections.sort(listProduct, ProductComparatorGiaTienHightoLow);
+                    adapterProduct.notifyDataSetChanged();
 
                 } else if (locSauLoai.equals("Lọc theo giá từ thấp xuống cao")) {
 
+                    Collections.sort(listProduct, ProductComparatorGiaTienLowtoHigh);
+                    adapterProduct.notifyDataSetChanged();
+
+                } else if (locSauLoai.equals("Lọc theo đánh giá cao")) {
+
+                    Collections.sort(listProduct, ProductComparatorStarHightoLow);
+                    adapterProduct.notifyDataSetChanged();
+
+                } else if (locSauLoai.equals("Lọc theo đánh giá thấp")) {
+
+                    Collections.sort(listProduct, ProductComparatorStarLowtoHigh);
+                    adapterProduct.notifyDataSetChanged();
+
+                } else {
+                    Collections.shuffle(listProduct);
+                    adapterProduct.notifyDataSetChanged();
                 }
             }
 
@@ -107,8 +139,37 @@ public class HomeProduct extends Fragment {
             }
         });
 
+
         // Search sản phẩm
         EditText txtSearchProductInHome = view.findViewById(R.id.txtSearchProductInHome);
+        txtSearchProductInHome.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String text = txtSearchProductInHome.getText().toString();
+                if (text.equals("")) {
+                    listProduct.clear();
+                    getDatafirebaseProduct();
+                } else {
+                    for (int j = 0; j < listProduct.size(); j++) {
+                        if (!listProduct.get(j).getTenSanPham().equals(text)) {
+                            listProduct.remove(j);
+
+                        }
+                    }
+                }
+                adapterProduct.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
 
         // click vào sản phẩm đến trang chi tiết
@@ -118,6 +179,7 @@ public class HomeProduct extends Fragment {
                 Intent intent = new Intent(getActivity(), DetailBook.class);
 
                 intent.putExtra("imgProduct", listProduct.get(i).getHinhAnh());
+                intent.putExtra("idProduct", listProduct.get(i).getId());
                 intent.putExtra("nameProduct", listProduct.get(i).getTenSanPham());
                 intent.putExtra("priceProduct", listProduct.get(i).getGiaTien() + "");
                 intent.putExtra("descriptionProduct", listProduct.get(i).getDescription());
@@ -129,17 +191,23 @@ public class HomeProduct extends Fragment {
             }
         });
 
+        return view;
+    }
+
+    private void getDatafirebaseProduct() {
         // lấy dữ liệu product từ firebase
         dataProduct.child("products").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Product pd = snapshot.getValue(Product.class);
+                pd.setId(snapshot.getKey());
                 listProduct.add(pd);
 
                 // Lấy loại sp bỏ vào list spinner lọc
                 if (!listCateory.contains(pd.getCategory())) {
                     listCateory.add(pd.getCategory());
                 }
+
 
                 adapterProduct.notifyDataSetChanged();
                 // lấy id của các sản phẩm
@@ -178,7 +246,17 @@ public class HomeProduct extends Fragment {
 
         });
 
-        return view;
+    }
+
+    private void sapXep(ArrayList<Product> list) {
+        for (int j = 0; j < list.size(); j++) {
+            for (int k = j + 1; k < list.size(); k++) {
+                if (list.get(j).getGiaTien() > list.get(k).getGiaTien()) {
+                    Product temp = list.get(0);
+
+                }
+            }
+        }
     }
 
 }
