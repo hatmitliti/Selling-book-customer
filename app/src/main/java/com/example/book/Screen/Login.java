@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Login extends AppCompatActivity {
-    Button btnDangKyTaiKhoan, btnDangNhap;
+    Button btnDangKyTaiKhoanLogin, btnDangNhap;
     EditText edtUsername, edtPassword;
     FirebaseAuth auth;
     FirebaseUser user;
@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity {
 
     private void setAction() {
         // bấm đăng ký
-        btnDangKyTaiKhoan.setOnClickListener(new View.OnClickListener() {
+        btnDangKyTaiKhoanLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), Register.class));
@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void setControl() {
-        btnDangKyTaiKhoan = findViewById(R.id.btnDangKyTaiKhoan);
+        btnDangKyTaiKhoanLogin = findViewById(R.id.btnDangKyTaiKhoanLogin);
         btnDangNhap = findViewById(R.id.btnDangNhap);
         edtUsername = findViewById(R.id.edtUsername);
         edtPassword = findViewById(R.id.edtPassword);

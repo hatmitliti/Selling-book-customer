@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.example.book.Object.Product;
 import com.example.book.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,7 @@ public class CustomAdapterProduct extends ArrayAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
 
-        ViewHolder viewHolder = null;
+        ViewHolder viewHolder;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(resource, null);
@@ -49,7 +50,6 @@ public class CustomAdapterProduct extends ArrayAdapter {
             viewHolder.giaTien = convertView.findViewById(R.id.txtGiaSach1);
             viewHolder.tenSach = convertView.findViewById(R.id.txtTenSach1);
             viewHolder.imgHinhAnh = convertView.findViewById(R.id.imgHinhAnhSach1);
-
             convertView.setTag(viewHolder);
 
 
@@ -57,9 +57,9 @@ public class CustomAdapterProduct extends ArrayAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Product pc = data.get(position);
-        viewHolder.giaTien.setText(pc.getGiaTien());
+        viewHolder.giaTien.setText(pc.getGiaTien() + "VNĐ");
         viewHolder.tenSach.setText(pc.getTenSanPham());
-        viewHolder.imgHinhAnh.setImageResource(pc.getHinhAnh());
+        Picasso.get().load(pc.getHinhAnh().toString()).into(viewHolder.imgHinhAnh);
         return convertView;
     }
 
@@ -68,6 +68,5 @@ public class CustomAdapterProduct extends ArrayAdapter {
         TextView giaTien;
         TextView tenSach;
         ImageView imgHinhAnh;
-
     }
 }

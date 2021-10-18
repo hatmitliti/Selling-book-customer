@@ -38,7 +38,7 @@ public class MyRecyclerViewAdapterProductHome extends RecyclerView.Adapter<MyRec
     @Override
     public void onBindViewHolder(@NonNull MyHolderViewProductHome holder, int position) {
         Product product = arrayListProduct.get(position);
-        holder.imgHinhAnhSach.setImageResource(product.getHinhAnh());
+//        holder.imgHinhAnhSach.setImageResource(product.getHinhAnh());
         holder.txtGiaSach.setText(product.getGiaTien());
         holder.txtTenSach.setText(product.getTenSanPham());
 
