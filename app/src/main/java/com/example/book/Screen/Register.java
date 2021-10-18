@@ -22,23 +22,10 @@ import com.google.firebase.auth.FirebaseUser;
 public class Register extends AppCompatActivity {
 
     Button btnDangKy1;
-    TextView edtEmail,edtPassword,edtRe_enterPassword;
+    TextView edtEmail, edtPassword, edtRe_enterPassword;
     FirebaseAuth auth;
-//    FirebaseUser user;
-//    String url = "http://www.example.com/verify?uid=" + user.getUid();
-//    ActionCodeSettings actionCodeSettings =
-//            ActionCodeSettings.newBuilder()
-//                    // URL you want to redirect back to. The domain (www.example.com) for this
-//                    // URL must be whitelisted in the Firebase Console.
-//                    .setUrl(url)
-//                    // This must be true
-//                    .setHandleCodeInApp(true)
-//                    .setIOSBundleId("com.example.ios")
-//                    .setAndroidPackageName(
-//                            "com.example.book",
-//                            false, /* installIfNotAvailable */
-//                            null    /* minimumVersion */)
-//                    .build();
+    FirebaseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +33,7 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.dang_ky_tai_khoan);
         setControl();
         auth = FirebaseAuth.getInstance();
-//        user = auth.getCurrentUser();
+        user = auth.getCurrentUser();
         setAction();
     }
 
@@ -58,10 +45,11 @@ public class Register extends AppCompatActivity {
             }
         });
     }
-    private void register(){
-        String username = edtEmail.getText().toString();
-        String password = edtPassword.getText().toString();
-        String repass = edtRe_enterPassword.getText().toString();
+
+    private void register() {
+        String username = edtEmail.getText().toString().trim();
+        String password = edtPassword.getText().toString().trim();
+        String repass = edtRe_enterPassword.getText().toString().trim();
         if (username.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
         } else if (password.isEmpty()) {
@@ -69,22 +57,15 @@ public class Register extends AppCompatActivity {
         } else if (repass.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Vui lòng nhập lại mật khẩu!", Toast.LENGTH_SHORT).show();
         } else if (!repass.equals(password)) {
-            Toast.makeText(getApplicationContext(), "Vui lòng nhập lại mật khẩu!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Vui lòng xác nhận mật khẩu!", Toast.LENGTH_SHORT).show();
         } else {
-            auth.createUserWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            auth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-//                        auth.sendSignInLinkToEmail(username,actionCodeSettings).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if(task.isSuccessful()){
-//                                    Toast.makeText(getApplicationContext(), "Đã gửi xác thực đến email của bạn, Vui lòng xác thực!", Toast.LENGTH_LONG).show();
-//                                }
-//                            }
-//                        });
+                    if (task.isSuccessful()) {
                         startActivity(new Intent(getApplicationContext(), Login.class));
-                    }else {
+                        auth.signOut();
+                    } else {
                         Toast.makeText(getApplicationContext(), "Đăng kí không thành công!", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -94,11 +75,8 @@ public class Register extends AppCompatActivity {
 
     private void setControl() {
         btnDangKy1 = findViewById(R.id.btnDangKy1);
-        edtEmail=findViewById(R.id.edtEmail);
-        edtPassword=findViewById(R.id.edtPassword);
-        edtRe_enterPassword=findViewById(R.id.edtRe_enterPassword);
+        edtEmail = findViewById(R.id.edtEmail);
+        edtPassword = findViewById(R.id.edtPassword);
+        edtRe_enterPassword = findViewById(R.id.edtRe_enterPassword);
     }
-
-
-
 }

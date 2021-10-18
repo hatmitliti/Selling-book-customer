@@ -95,14 +95,29 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="#8BC34A"
             android:gravity="center"
             android:text="Trạng thái đơn hàng"
             android:textColor="#fff"
             android:textSize="16dp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            android:layout_margin="10sp" />
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#8BC34A"
+            android:gravity="center"
+            android:text="Đăng xuất"
+            android:textColor="#fff"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="10sp"
+            android:layout_marginLeft="10sp"/>
     </LinearLayout>
 
 
