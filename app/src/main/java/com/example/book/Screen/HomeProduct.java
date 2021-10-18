@@ -36,6 +36,7 @@ public class HomeProduct extends Fragment {
     DatabaseReference dataProduct;
     ArrayList<String> mKey = new ArrayList<>();
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,7 +68,40 @@ public class HomeProduct extends Fragment {
                 intent.putExtra("authorProduct", listProduct.get(i).getAuthor());
 
                 startActivity(intent);
+
             }
+        });
+
+        // lấy dữ liệu product từ firebase
+        dataProduct.child("products").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Product pd = snapshot.getValue(Product.class);
+                listProduct.add(pd);
+                adapterProduct.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
         });
 
         // lấy dữ liệu product từ firebase
@@ -109,7 +143,6 @@ public class HomeProduct extends Fragment {
             }
 
         });
-
         return view;
     }
 

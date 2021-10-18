@@ -27,6 +27,8 @@ public class Register extends AppCompatActivity {
     Button btnDangKyTaiKhoan;
     TextView txtHoVaTen, txtMail, txtNgaySinh, txtPasswordRegister, txtRePasswordRegister;
 
+    private static String TAG = "RegisterDEbug";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class Register extends AppCompatActivity {
 
                 } else {
                     // đăng ký tk vào firebase
+
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     auth.createUserWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -76,8 +79,6 @@ public class Register extends AppCompatActivity {
                             }
                         }
                     });
-
-
                 }
 
                 //  startActivity(new Intent(getApplicationContext(), RegistrationVerification.class));

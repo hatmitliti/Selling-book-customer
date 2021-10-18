@@ -27,6 +27,9 @@ public class FirebaseConnect {
 
         return list;
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
 }
