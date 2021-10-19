@@ -22,9 +22,7 @@
         <activity
             android:name=".Screen.MessageUserScreen"
             android:exported="true" />
-        <activity
-            android:name=".Screen.ListVoucher"
-            android:exported="true" />
+
         <activity android:name=".MainActivity">
 
         </activity>

@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,6 +25,7 @@ public class Login extends AppCompatActivity {
     Button btnDangKyTaiKhoanLogin, btnDangNhap;
     EditText edtUsername, edtPassword;
     FirebaseAuth auth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,15 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setControl();
         auth = FirebaseAuth.getInstance();
+        remember();
         setAction();
+    }
+
+    private void remember() {
+        user = auth.getCurrentUser();
+        if (user != null) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
     }
 
     private void setAction() {
@@ -59,13 +69,13 @@ public class Login extends AppCompatActivity {
         } else if (password.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Vui lòng nhập mật khẩu!", Toast.LENGTH_SHORT).show();
         } else {
-            auth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         MainActivity.usernameApp = auth.getUid();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    }else {
+                    } else {
                         Toast.makeText(getApplicationContext(), "Sai tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show();
                     }
                 }

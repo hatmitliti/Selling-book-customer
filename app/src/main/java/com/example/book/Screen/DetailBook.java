@@ -59,7 +59,7 @@ public class DetailBook extends AppCompatActivity {
         // Set dữ liệu
         Picasso.get().load(img.toString()).into(imgHinhAnhChiTietSach);
         nameProduct.setText(name);
-        priceProduct.setText("  " + price + " NVD");
+        priceProduct.setText("  " + price + " VND");
         descriptionProduct.setText(description);
         stockProduct.setText("Kho: " + stock);
         categoryProduct.setText("Loại sách:" + category);
