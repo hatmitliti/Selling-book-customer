@@ -1,6 +1,8 @@
 package com.example.book.Object;
 
-public class Product {
+import java.util.Comparator;
+
+public class Product implements Comparable<Product> {
 
     private String hinhAnh;
     private String id;
@@ -29,6 +31,7 @@ public class Product {
         this.description = description;
         this.author = author;
     }
+
 
     public String getHinhAnh() {
         return hinhAnh;
@@ -109,4 +112,75 @@ public class Product {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    @Override
+    public int compareTo(Product product) {
+        if (giaTien > product.getGiaTien()) {
+            return 1;
+        } else return -1;
+    }
+
+    public static Comparator<Product> ProductComparatorGiaTienHightoLow = new Comparator<Product>() {
+        @Override
+        public int compare(Product product1, Product product2) {
+            int giaTien1 = product1.getGiaTien();
+            int giaTien2 = product2.getGiaTien();
+
+            if (giaTien1 > giaTien2) {
+                return -1;
+            } else if (giaTien1 < giaTien2) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    };
+
+    public static Comparator<Product> ProductComparatorGiaTienLowtoHigh = new Comparator<Product>() {
+        @Override
+        public int compare(Product product1, Product product2) {
+            int giaTien1 = product1.getGiaTien();
+            int giaTien2 = product2.getGiaTien();
+
+            if (giaTien1 > giaTien2) {
+                return 1;
+            } else if (giaTien1 < giaTien2) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    };
+
+    public static Comparator<Product> ProductComparatorStarHightoLow = new Comparator<Product>() {
+        @Override
+        public int compare(Product product1, Product product2) {
+            double star1 = product1.getStar();
+            double star2 = product2.getStar();
+
+            if (star1 > star2) {
+                return -1;
+            } else if (star1 < star2) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    };
+
+    public static Comparator<Product> ProductComparatorStarLowtoHigh = new Comparator<Product>() {
+        @Override
+        public int compare(Product product1, Product product2) {
+            double star1 = product1.getStar();
+            double star2 = product2.getStar();
+
+            if (star1 > star2) {
+                return 1;
+            } else if (star1 < star2) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    };
 }

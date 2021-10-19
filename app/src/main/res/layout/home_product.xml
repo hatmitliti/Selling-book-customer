@@ -5,19 +5,20 @@
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/txtSearchProductInHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tìm kiếm..." />
 
     <Spinner
-        android:id="@+id/spLoaiSanPham"
+        android:id="@+id/spLoaiSanPhamLoc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="30dp" />
 
     <Spinner
         android:id="@+id/spLocSauLoai"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="30dp" />
 
 
     <GridView

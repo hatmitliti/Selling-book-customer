@@ -1,5 +1,3 @@
-
-
 package com.example.book.Screen;
 
 import static android.os.Debug.waitForDebugger;
@@ -26,8 +24,6 @@ public class Register extends AppCompatActivity {
 
     Button btnDangKyTaiKhoan;
     TextView txtHoVaTen, txtMail, txtNgaySinh, txtPasswordRegister, txtRePasswordRegister;
-
-    private static String TAG = "RegisterDEbug";
 
 
     @Override
@@ -58,7 +54,6 @@ public class Register extends AppCompatActivity {
 
                 } else {
                     // đăng ký tk vào firebase
-
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     auth.createUserWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -73,12 +68,13 @@ public class Register extends AppCompatActivity {
 //                            }
 //                        });
                                 startActivity(new Intent(getApplicationContext(), Login.class));
-                                auth.signOut();
                             } else {
                                 Toast.makeText(getApplicationContext(), "Đăng kí không thành công!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+
+
                 }
 
                 //  startActivity(new Intent(getApplicationContext(), RegistrationVerification.class));

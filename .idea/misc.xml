@@ -3,26 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <entry key="..\:/Selling-book-customer/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Selling-book-customer/app/src/main/res/layout/dang_ky_tai_khoan.xml" value="0.2" />
-        <entry key="..\:/Selling-book-customer/app/src/main/res/layout/home.xml" value="0.2" />
-        <entry key="..\:/Selling-book-customer/app/src/main/res/layout/home_product.xml" value="0.2" />
-        <entry key="..\:/Selling-book-customer/app/src/main/res/layout/item_product_listview.xml" value="0.2" />
-        <entry key="..\:/Selling-book-customer/app/src/main/res/layout/nguoi_dung.xml" value="0.2" />
-        <entry key="..\:/Selling-book-customer/app/src/main/res/layout/xac_thuc_dang_ky.xml" value="0.2" />
-        <entry key="..\:/Selling-book-customer/app/src/main/res/menu/menu_bottom.xml" value="0.2" />
-=======
         <entry key="..\:/Genymotion/Genymotion/Project/UD2Project/selling_book_customer/Selling-book-customer/app/src/main/res/layout/home.xml" value="0.3625" />
         <entry key="..\:/Genymotion/Genymotion/Project/UD2Project/selling_book_customer/Selling-book-customer/app/src/main/res/layout/home_product.xml" value="0.3625" />
         <entry key="..\:/Genymotion/Genymotion/Project/UD2Project/selling_book_customer/Selling-book-customer/app/src/main/res/layout/item_product_listview.xml" value="0.3625" />
->>>>>>> 29781b126c02478b4f62d728d45b7fe430ed6297
-=======
-        <entry key="..\:/Genymotion/Genymotion/Project/UD2Project/selling_book_customer/Selling-book-customer/app/src/main/res/layout/home.xml" value="0.3625" />
-        <entry key="..\:/Genymotion/Genymotion/Project/UD2Project/selling_book_customer/Selling-book-customer/app/src/main/res/layout/home_product.xml" value="0.3625" />
-        <entry key="..\:/Genymotion/Genymotion/Project/UD2Project/selling_book_customer/Selling-book-customer/app/src/main/res/layout/item_product_listview.xml" value="0.3625" />
->>>>>>> master
         <entry key="..\:/Users/truon/Desktop/Customer/app/src/main/res/drawable/ic_baseline_message_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/truon/Desktop/Customer/app/src/main/res/layout/dang_ky_tai_khoan.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/truon/Desktop/Selling-book-customer/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -30,12 +13,22 @@
         <entry key="..\:/Users/truon/Desktop/Selling-book-customer/app/src/main/res/layout/home_product.xml" value="0.25" />
         <entry key="..\:/Users/truon/Desktop/Selling-book-customer/app/src/main/res/layout/trang_thai_don_hang.xml" value="0.25" />
         <entry key="..\:/Users/truon/Desktop/Selling-book-customer/app/src/main/res/layout/xac_thuc_dang_ky.xml" value="0.25" />
-<<<<<<< HEAD
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/activity_main.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/chi_tiet_sach.xml" value="0.25" />
         <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/dang_ky_tai_khoan.xml" value="0.25" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/danh_gia_sach.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/gio_hang.xml" value="0.2427536231884058" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/home.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/home_product.xml" value="0.25" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/item_product_in_cart.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/item_product_listview.xml" value="0.25" />
-=======
->>>>>>> master
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/item_voucher_listview.xml" value="0.23822463768115942" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/ma_giam_gia.xml" value="0.23822463768115942" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/nguoi_dung.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/nhan_tin.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/trang_thai_don_hang.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/xac_nhan_dat_hang.xml" value="0.24818840579710144" />
+        <entry key="..\:/Users/truon/Desktop/customer/app/src/main/res/layout/xac_thuc_dang_ky.xml" value="0.24818840579710144" />
       </map>
     </option>
   </component>
