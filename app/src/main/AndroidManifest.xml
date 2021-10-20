@@ -22,6 +22,10 @@
         <activity
             android:name=".Screen.MessageUserScreen"
             android:exported="true" />
+        <activity
+            android:name=".Screen.OrderStatus"
+            android:exported="true" />
+
         <activity android:name=".MainActivity">
 
         </activity>

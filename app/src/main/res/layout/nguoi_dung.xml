@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/sontung" />
+            android:src="@drawable/user" />
 
     </LinearLayout>
 
@@ -26,6 +26,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txtNameUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -43,6 +44,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txtRankUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Hạng thành viên: Vàng"
@@ -60,6 +62,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txtAddressUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Địa chỉ: Hà Nội"
@@ -77,6 +80,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txtPhoneUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Số điện thoại: 0987676545"
@@ -94,6 +98,7 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btnTrangThaiDonHangUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#8BC34A"

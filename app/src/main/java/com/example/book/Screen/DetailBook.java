@@ -5,10 +5,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.book.MainActivity;
+import com.example.book.Object.FirebaseConnect;
+import com.example.book.Object.Product;
 import com.example.book.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class DetailBook extends AppCompatActivity {
@@ -21,7 +27,8 @@ public class DetailBook extends AppCompatActivity {
     TextView stockProduct;
     TextView categoryProduct;
     TextView authorProduct;
-
+    String idProduct;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +43,6 @@ public class DetailBook extends AppCompatActivity {
 
 
     private void setData() {
-
         // Lấy dữ liệu
         Intent intent = getIntent();
         String img = intent.getStringExtra("imgProduct");
@@ -46,25 +52,29 @@ public class DetailBook extends AppCompatActivity {
         String stock = intent.getStringExtra("stockProduct");
         String category = intent.getStringExtra("categoryProduct");
         String author = intent.getStringExtra("authorProduct");
+        idProduct = intent.getStringExtra("idProduct");
 
+        product = new Product(img, idProduct, name, Integer.parseInt(price), category, 0, Integer.parseInt(stock), 0, description, author);
 
         // Set dữ liệu
         Picasso.get().load(img.toString()).into(imgHinhAnhChiTietSach);
         nameProduct.setText(name);
-        priceProduct.setText("  " + price + " NVD");
+        priceProduct.setText("  " + price + " VND");
         descriptionProduct.setText(description);
         stockProduct.setText("Kho: " + stock);
         categoryProduct.setText("Loại sách:" + category);
         authorProduct.setText("Tác giả: " + author);
+
     }
 
     private void setAction() {
 
-        // Khi bấm vào giỏ hàng
+        // Khi bấm vào giỏ hàng thêm sản phẩm vào giỏ hàng
         imgAddCartChiTietSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                FirebaseConnect.addProductInCart(MainActivity.usernameApp, product);
+                Toast.makeText(getApplicationContext(), "Đã thểm vào giỏ hàng !", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
+    public static String usernameApp;
     BottomNavigationView bottomNavigationView;
     ViewPager2 viewPager2;
 
