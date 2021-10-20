@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity {
     private void remember() {
         user = auth.getCurrentUser();
         if (user != null) {
+            MainActivity.usernameApp = auth.getUid();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
     }
