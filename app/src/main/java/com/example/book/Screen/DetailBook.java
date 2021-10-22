@@ -54,7 +54,7 @@ public class DetailBook extends AppCompatActivity {
         String author = intent.getStringExtra("authorProduct");
         idProduct = intent.getStringExtra("idProduct");
 
-        product = new Product(img, idProduct, name, Integer.parseInt(price), category, 0, Integer.parseInt(stock), 0, description, author);
+        product = new Product(img, idProduct, name, Integer.parseInt(price), category, 0, Integer.parseInt(stock), 0, description, author,0);
 
         // Set dữ liệu
         Picasso.get().load(img.toString()).into(imgHinhAnhChiTietSach);

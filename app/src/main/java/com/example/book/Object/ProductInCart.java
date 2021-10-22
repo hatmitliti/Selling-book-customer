@@ -1,6 +1,11 @@
 package com.example.book.Object;
 
-public class ProductInCart {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class ProductInCart implements Serializable {
 
     private String hinhAnh;
     private String id;
@@ -69,4 +74,5 @@ public class ProductInCart {
     public void setGiaTien(int giaTien) {
         this.giaTien = giaTien;
     }
+
 }

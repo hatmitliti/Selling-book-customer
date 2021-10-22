@@ -25,6 +25,12 @@
         <activity
             android:name=".Screen.OrderStatus"
             android:exported="true" />
+        <activity
+            android:name=".Screen.OrderConfirmation"
+            android:exported="true" />
+        <activity
+            android:name=".Screen.Evalute"
+            android:exported="true" />
 
         <activity android:name=".MainActivity">
 
