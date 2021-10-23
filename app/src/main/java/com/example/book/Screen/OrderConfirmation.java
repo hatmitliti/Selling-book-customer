@@ -1,6 +1,7 @@
 package com.example.book.Screen;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.book.MainActivity;
@@ -26,7 +28,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -93,6 +100,7 @@ public class OrderConfirmation extends AppCompatActivity {
     private void setAction() {
         // Bấm đặt hàng
         btnDatHangXacNhanDonHang.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
 
@@ -126,7 +134,10 @@ public class OrderConfirmation extends AppCompatActivity {
 
                     String sdt = txtSoDienThoaiXacNhanDonHang.getText().toString();
                     int tong = Integer.parseInt(getIntent().getStringExtra("tongTien"));
-                    Bill bill = new Bill(address, discount, id, id_user, name, 0, tong, sdt, "", new Date(),false);
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    Date date = new Date();
+
+                    Bill bill = new Bill(address, discount, id, id_user, name, 0, tong, sdt, "", dateFormat.format(date), false);
                     FirebaseConnect.createBill(bill, listProduct);
 
                     if (!getIntent().getStringExtra("tienGiam").equals("No voucher")) {
