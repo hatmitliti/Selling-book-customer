@@ -156,7 +156,6 @@ public class Cart extends Fragment {
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-
             }
 
             @Override

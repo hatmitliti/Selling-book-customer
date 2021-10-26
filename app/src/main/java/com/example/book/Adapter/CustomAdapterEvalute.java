@@ -25,7 +25,10 @@ import com.example.book.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,7 +64,12 @@ public class CustomAdapterEvalute extends ArrayAdapter {
             public void onClick(View view) {
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("evalute");
                 int star = Integer.parseInt(txtSoSaoInDanhGia.getSelectedItem().toString());
-                Evalute evalute = new Evalute(UUID.randomUUID().toString(), id, MainActivity.usernameApp, star);
+
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+
+
+                Evalute evalute = new Evalute(UUID.randomUUID().toString(), id, MainActivity.usernameApp, star,dateFormat.format(date));
                 mDatabase.child(evalute.getId()).setValue(evalute);
                 FirebaseConnect.setStarProduct(evalute);
                 Drawable d = context.getResources().getDrawable(ok_black);

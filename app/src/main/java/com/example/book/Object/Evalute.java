@@ -5,15 +5,25 @@ public class Evalute {
     private  String id_product;
     private  String id_user;
     private  int star;
+    private  String date;
 
     public Evalute() {
     }
 
-    public Evalute(String id, String id_product, String id_user, int star) {
+    public Evalute(String id, String id_product, String id_user, int star, String date) {
         this.id = id;
         this.id_product = id_product;
         this.id_user = id_user;
         this.star = star;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getId() {
