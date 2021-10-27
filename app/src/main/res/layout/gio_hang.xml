@@ -18,16 +18,19 @@
         android:layout_width="match_parent"
         android:layout_height="450dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Chọn voucher"
-        android:textColor="@color/black" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chọn voucher"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/spinnerVoucherInCart"

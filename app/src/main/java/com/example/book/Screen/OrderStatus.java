@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.book.Adapter.CustomAdapterBill;
+import com.example.book.MainActivity;
 import com.example.book.Object.Bill;
 import com.example.book.Object.FirebaseConnect;
 import com.example.book.R;
@@ -48,12 +49,13 @@ public class OrderStatus extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Bill bill = snapshot.getValue(Bill.class);
-                if (!bill.isEvalute() == true) {
-                    listBill.add(bill);
-                    customAdapterBill.notifyDataSetChanged();
-                    mKey.add(snapshot.getKey());
+                if (bill.getId_user().equals(MainActivity.usernameApp)) {
+                    if (!bill.isEvalute() == true) {
+                        listBill.add(bill);
+                        customAdapterBill.notifyDataSetChanged();
+                        mKey.add(snapshot.getKey());
+                    }
                 }
-
             }
 
             @Override

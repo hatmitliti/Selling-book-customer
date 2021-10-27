@@ -11,9 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Customer">
         <activity
-            android:name=".Screen.RegistrationVerification"
-            android:exported="true" />
-        <activity
             android:name=".Screen.DetailBook"
             android:exported="true" />
         <activity

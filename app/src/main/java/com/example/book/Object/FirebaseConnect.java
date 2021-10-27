@@ -95,6 +95,11 @@ public class FirebaseConnect {
             mDatabaseCart.child(MainActivity.usernameApp).child(list.get(j).getId()).removeValue();
         }
 
+
+        // cập nhật lại thông tin user:
+        DatabaseReference mDatabaseUser = FirebaseDatabase.getInstance().getReference("users");
+        mDatabaseUser.child(MainActivity.usernameApp).child("address").setValue(bill.getAddress());
+        mDatabaseUser.child(MainActivity.usernameApp).child("phone").setValue(bill.getPhone());
     }
 
     public static class ProductCart {

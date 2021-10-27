@@ -54,7 +54,13 @@ public class Me extends Fragment {
                 txtPhoneUser.setText("Số điện thoại: " + user.getPhone());
                 txtAddressUser.setText("Địa chỉ: " + user.getAddress());
                 txtRankUser.setText("Hạng thành viên: " + user.getRank());
-                Picasso.get().load(user.getImage()).into(imgUser);
+                if (user.getImage().equals("")) {
+
+                } else {
+                    Picasso.get().load(user.getImage()).into(imgUser);
+                }
+
+
             }
 
             @Override
