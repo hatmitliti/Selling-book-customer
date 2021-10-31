@@ -35,7 +35,6 @@ public class DetailBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chi_tiet_sach);
         setControl();
-
         setData();
         setAction();
 
@@ -93,7 +92,6 @@ public class DetailBook extends AppCompatActivity {
         imgMessageInbox = findViewById(R.id.imgMessageInboxChiTietSach);
         imgAddCartChiTietSach = findViewById(R.id.imgAddCartChiTietSach);
         imgHinhAnhChiTietSach = findViewById(R.id.imgHinhAnhChiTietSach);
-
         nameProduct = findViewById(R.id.txtTenSachChiTietSach);
         priceProduct = findViewById(R.id.txtGiaTienChiTietSach);
         descriptionProduct = findViewById(R.id.txtMoTaChiTietSach);

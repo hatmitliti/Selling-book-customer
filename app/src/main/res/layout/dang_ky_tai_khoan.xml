@@ -21,48 +21,53 @@
         <EditText
             android:id="@+id/txtHoVaTen"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/border_listview"
             android:ems="15"
-            android:hint="Nhập họ tên"
+            android:hint="  Nhập họ tên"
             android:textSize="20dp" />
 
         <EditText
             android:id="@+id/txtMail"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/border_listview"
             android:ems="15"
-            android:hint="Địa chỉ mail"
+            android:hint="  Địa chỉ mail"
             android:textSize="20dp" />
 
         <EditText
             android:id="@+id/txtNgaySinh"
             android:inputType="date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/border_listview"
             android:ems="15"
-            android:hint="Ngày sinh"
+            android:hint="  Ngày sinh"
             android:textSize="20dp" />
 
         <EditText
             android:id="@+id/txtPasswordRegister"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/border_listview"
             android:ems="15"
-            android:hint="Password"
+            android:hint="  Password"
             android:inputType="textPassword"
             android:textSize="20dp" />
 
         <EditText
             android:id="@+id/txtRePasswordRegister"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/border_listview"
             android:ems="15"
-            android:hint="Repassword"
+            android:hint="  Repassword"
             android:inputType="textPassword"
             android:textSize="20dp" />
 
