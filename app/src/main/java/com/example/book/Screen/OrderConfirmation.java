@@ -116,9 +116,9 @@ public class OrderConfirmation extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ", Toast.LENGTH_SHORT).show();
                 } else {
 
-                    String address = txtSoNhaTenDuongXacNhanDonHang.getText().toString() +
-                            txtKhuPhoXacNhanDonHang.getText().toString() +
-                            txtXaPhuongXacNhanDonHang.getText().toString() +
+                    String address = txtSoNhaTenDuongXacNhanDonHang.getText().toString() + " " +
+                            txtKhuPhoXacNhanDonHang.getText().toString() + " " +
+                            txtXaPhuongXacNhanDonHang.getText().toString() + " " +
                             txtQuanHuyenXacNhanDonHang.getText().toString();
 
                     int discount = 0;
