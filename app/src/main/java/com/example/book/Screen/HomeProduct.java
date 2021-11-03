@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.book.Adapter.CustomAdapterProduct;
 import com.example.book.Object.Product;
 import com.example.book.R;
+import com.google.android.gms.analytics.ecommerce.Product;
 
 import java.util.ArrayList;
 
