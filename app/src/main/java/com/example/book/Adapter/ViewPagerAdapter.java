@@ -11,10 +11,10 @@ import com.example.book.Screen.Me;
 import com.example.book.Screen.MessageUser;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
+
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
-
     @NonNull
     @Override
     public Fragment createFragment(int position) {

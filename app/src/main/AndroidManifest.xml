@@ -20,6 +20,11 @@
             android:name=".Screen.Register"
             android:exported="true" />
         <activity
+            android:name=".Screen.OrderStatus"
+            android:exported="true" >
+
+        </activity>
+        <activity
             android:name=".Screen.MessageUserScreen"
             android:exported="true" />
         <activity android:name=".MainActivity">
