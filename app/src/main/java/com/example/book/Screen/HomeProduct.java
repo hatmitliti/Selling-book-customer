@@ -17,8 +17,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,11 +51,13 @@ public class HomeProduct extends Fragment {
     ArrayList<String> mKey = new ArrayList<>();
     ArrayList<String> listCateory;
 
+    ViewFlipper view_fillper;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_product, container, false);
-
+        view_fillper = view.findViewById(R.id.view_fillper);
         // Hiển thị danh sách sản phẩm
         dataProduct = FirebaseDatabase.getInstance().getReference();
         adapterProduct = new CustomAdapterProduct(getContext(), R.layout.item_product_listview, listProduct);
@@ -191,7 +195,26 @@ public class HomeProduct extends Fragment {
             }
         });
 
+
+        // Hiển thị slide:
+        int background[] = {R.drawable.book1, R.drawable.book2, R.drawable.book3, R.drawable.book4, R.drawable.book5, R.drawable.book6};
+
+        for (int i = 0; i < background.length; i++) {
+            setViewFlipper(background[i]);
+        }
+
+
         return view;
+    }
+
+    public void setViewFlipper(int background) {
+        ImageView imageView = new ImageView(getActivity());
+        imageView.setBackgroundResource(background);
+        view_fillper.addView(imageView);
+        view_fillper.setFlipInterval(1500);
+        view_fillper.setAutoStart(true);
+        view_fillper.setInAnimation(getActivity(), android.R.anim.slide_in_left);
+        view_fillper.setOutAnimation(getActivity(), android.R.anim.slide_out_right);
     }
 
     private void getDatafirebaseProduct() {

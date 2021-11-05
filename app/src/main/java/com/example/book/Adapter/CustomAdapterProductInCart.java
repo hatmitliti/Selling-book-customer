@@ -54,8 +54,6 @@ public class CustomAdapterProductInCart extends ArrayAdapter {
             viewHolder.btnXoa = convertView.findViewById(R.id.btnXoaProductInCart);
             viewHolder.btnGiam = convertView.findViewById(R.id.btnGiamProductInCart);
             viewHolder.btnTang = convertView.findViewById(R.id.btnTangProductInCart);
-
-
             convertView.setTag(viewHolder);
 
         } else {

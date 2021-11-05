@@ -13,12 +13,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.book.MainActivity;
+import com.example.book.Object.User;
 import com.example.book.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
 
@@ -59,24 +63,19 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-//                        auth.sendSignInLinkToEmail(username,actionCodeSettings).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if(task.isSuccessful()){
-//                                    Toast.makeText(getApplicationContext(), "Đã gửi xác thực đến email của bạn, Vui lòng xác thực!", Toast.LENGTH_LONG).show();
-//                                }
-//                            }
-//                        });
+                                // cập nhật nội dung vào firebase:
+
+                                User user = new User("", ngaySinh, 0, hoVaTen, "", "Đồng", "","");
+                                DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
+                                database.child(auth.getUid()).setValue(user);
+                                MainActivity.usernameApp = auth.getUid();
                                 startActivity(new Intent(getApplicationContext(), Login.class));
                             } else {
                                 Toast.makeText(getApplicationContext(), "Đăng kí không thành công!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-
-
                 }
-
                 //  startActivity(new Intent(getApplicationContext(), RegistrationVerification.class));
             }
         });

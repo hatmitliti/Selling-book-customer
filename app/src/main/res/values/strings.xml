@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">Customer</string>
 
-
     <string name="home">Home</string>
     <string name="message">Message</string>
     <string name="cart">Cart</string>
     <string name="toi">Tôi</string>
+
+
+    <string-array name="evalute">
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+    </string-array>
 </resources>

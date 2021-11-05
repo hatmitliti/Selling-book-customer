@@ -14,12 +14,14 @@ public class Product implements Comparable<Product> {
     private int sold;
     private String description;
     private String author;
+    private int numberEvalute;
+    private  String tenHinhAnh;
 
     public Product() {
 
     }
 
-    public Product(String hinhAnh, String id, String tenSanPham, int giaTien, String category, double star, int stock, int sold, String description, String author) {
+    public Product(String hinhAnh, String id, String tenSanPham, int giaTien, String category, double star, int stock, int sold, String description, String author, int numberEvalute) {
         this.hinhAnh = hinhAnh;
         this.id = id;
         this.tenSanPham = tenSanPham;
@@ -30,8 +32,17 @@ public class Product implements Comparable<Product> {
         this.sold = sold;
         this.description = description;
         this.author = author;
+        this.numberEvalute = numberEvalute;
+        this.tenHinhAnh = "";
     }
 
+    public int getNumberEvalute() {
+        return numberEvalute;
+    }
+
+    public void setNumberEvalute(int numberEvalute) {
+        this.numberEvalute = numberEvalute;
+    }
 
     public String getHinhAnh() {
         return hinhAnh;

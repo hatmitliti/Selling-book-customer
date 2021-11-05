@@ -11,9 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Customer">
         <activity
-            android:name=".Screen.RegistrationVerification"
-            android:exported="true" />
-        <activity
             android:name=".Screen.DetailBook"
             android:exported="true" />
         <activity
@@ -24,6 +21,15 @@
             android:exported="true" />
         <activity
             android:name=".Screen.OrderStatus"
+            android:exported="true" />
+        <activity
+            android:name=".Screen.OrderConfirmation"
+            android:exported="true" />
+        <activity
+            android:name=".Screen.Evalute"
+            android:exported="true" />
+        <activity
+            android:name=".Screen.ChangePassword"
             android:exported="true" />
 
         <activity android:name=".MainActivity">

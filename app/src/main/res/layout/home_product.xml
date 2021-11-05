@@ -4,26 +4,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txtSearchProductInHome"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ViewFlipper
+            android:id="@+id/view_fillper"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tìm kiếm..." />
-
-    <Spinner
-        android:id="@+id/spLoaiSanPhamLoc"
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
-
-    <Spinner
-        android:id="@+id/spLocSauLoai"
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        android:orientation="vertical"
+        android:padding="5dp">
 
 
-    <GridView
-        android:id="@+id/grProduct"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:numColumns="2" />
+        <EditText
+            android:id="@+id/txtSearchProductInHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tìm kiếm..." />
+
+        <Spinner
+            android:id="@+id/spLoaiSanPhamLoc"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <Spinner
+            android:id="@+id/spLocSauLoai"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+
+        <GridView
+            android:id="@+id/grProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="2" />
+    </LinearLayout>
 </LinearLayout>
