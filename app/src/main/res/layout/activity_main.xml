@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+
+    <ViewFlipper
+        android:id="@+id/view_fillper_login"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,11 +20,6 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginBottom="40dp"
-            android:src="@drawable/logo" />
 
         <EditText
             android:id="@+id/edtUsername"
@@ -60,5 +61,38 @@
             android:textColor="#fff"
             android:textSize="16dp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnQuenMK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="Quên mật khẩu ?"
+            android:textColor="@color/red"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/loginWithFacebook"
+            android:layout_marginRight="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_facebook" />
+
+        <ImageView
+            android:id="@+id/loginWithGoogle"
+            android:layout_marginLeft="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_google" />
+
+
     </LinearLayout>
 </LinearLayout>

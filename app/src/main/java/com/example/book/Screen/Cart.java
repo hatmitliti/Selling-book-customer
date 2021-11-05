@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
@@ -40,6 +41,9 @@ public class Cart extends Fragment {
 
     GridView lvProductInCart;
     TextView txtTongTienInCart;
+    TextView txtTienGiamInCart;
+    TextView txtTienTraInCart;
+
     CheckBox chkTatCaInCart;
     Button btnMuaHangInCart;
     CustomAdapterProductInCart adapterProductInCart;
@@ -47,6 +51,10 @@ public class Cart extends Fragment {
     DatabaseReference dataProduct;
     Spinner spinnerVoucherInCart;
     ArrayList<String> mKey = new ArrayList<>();
+    ArrayAdapter adapter;
+    int tongTien;
+    int giamTien;
+    int traTien;
 
     @Nullable
     @Override
@@ -55,10 +63,57 @@ public class Cart extends Fragment {
         setControl(view);
         setAction();
         setTotalMoney();
-
-        //FirebaseConnect.setSpinnerVoucher(spinnerVoucherInCart);
+        checkTickTatCa();
+        clickButtonMuaHang();
 
         return view;
+    }
+
+    private void clickButtonMuaHang() {
+        btnMuaHangInCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tongTien == 0) {
+                    Toast.makeText(getContext(), "Chưa có sản phẩm nào!", Toast.LENGTH_SHORT).show();
+                } else {
+                    ArrayList<ProductInCart> list = new ArrayList<>();
+                    for (int j = 0; j < listProductInCart.size(); j++) {
+                        if (listProductInCart.get(j).isChkbox()) {
+                            list.add(listProductInCart.get(j));
+                        }
+                    }
+                    // truyền dữ liệu qua màn hình xác nhận mua
+                    Intent intent = new Intent(getActivity(), OrderConfirmation.class);
+                    Bundle b = new Bundle();
+                    b.putSerializable("listProductCart", (Serializable) list);
+                    intent.putExtras(b);
+
+                    intent.putExtra("tongTien", tongTien + "");
+                    intent.putExtra("tienGiam", spinnerVoucherInCart.getSelectedItem().toString());
+                    intent.putExtra("tienTra", traTien + "");
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+
+    private void checkTickTatCa() {
+        chkTatCaInCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (chkTatCaInCart.isChecked() == true) {
+                    for (int j = 0; j < listProductInCart.size(); j++) {
+                        listProductInCart.get(j).setChkbox(true);
+                        FirebaseConnect.setCheckedProductInCart(listProductInCart.get(j));
+                    }
+                } else {
+                    for (int j = 0; j < listProductInCart.size(); j++) {
+                        listProductInCart.get(j).setChkbox(false);
+                        FirebaseConnect.setCheckedProductInCart(listProductInCart.get(j));
+                    }
+                }
+            }
+        });
     }
 
     private void setAction() {
@@ -69,15 +124,33 @@ public class Cart extends Fragment {
         lvProductInCart.setAdapter(adapterProductInCart);
 
         // khi chọn voucher:
-        ArrayList<Voucher> listVoucher = new ArrayList<>();
+        ArrayList<String> listVoucher = new ArrayList<>();
+        listVoucher.add("No voucher");
+        getDataVoucher(listVoucher);
+        adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, listVoucher);
+        spinnerVoucherInCart.setAdapter(adapter);
+        spinnerVoucherInCart.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setTotalMoney();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getDataVoucher(ArrayList<String> listVoucher) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("vouchers");
         database.child(MainActivity.usernameApp).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Voucher voucher = snapshot.getValue(Voucher.class);
                 voucher.setId(snapshot.getKey());
-                listVoucher.add(voucher);
-
+                listVoucher.add("Giảm: " + voucher.getMaximum() + " " + "VND" + " - ID: " + voucher.getId());
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -87,7 +160,15 @@ public class Cart extends Fragment {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                String id = snapshot.getKey();
+                for (int j = 0; j < listVoucher.size(); j++) {
+                    if (!listVoucher.get(j).equals("No voucher")) {
+                        if (id == listVoucher.get(j).split(" ")[5]) {
+                            listVoucher.remove(j);
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -100,25 +181,6 @@ public class Cart extends Fragment {
 
             }
         });
-        ArrayList<String> listID = new ArrayList<>();
-        for (int j = 0; j < listVoucher.size(); j++) {
-            listID.add("Giảm " + NumberFormat.getInstance().format(listVoucher.get(j).getMaximum()) + " VND");
-        }
-        // Toast.makeText(spinner.getContext(), listID.size() +"", Toast.LENGTH_SHORT).show();
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, listID);
-        spinnerVoucherInCart.setAdapter(adapter);
-        spinnerVoucherInCart.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
     }
 
     private void setTotalMoney() {
@@ -128,7 +190,34 @@ public class Cart extends Fragment {
                 total += listProductInCart.get(j).getGiaTien() * listProductInCart.get(j).getNumberCart();
             }
         }
-        txtTongTienInCart.setText(NumberFormat.getInstance().format(total));
+        if (total == 0) {
+            spinnerVoucherInCart.setSelection(0);
+            txtTongTienInCart.setText("0");
+            txtTienGiamInCart.setText("0");
+            txtTienTraInCart.setText("0");
+        } else {
+            int giam = 0;
+            if (!spinnerVoucherInCart.getSelectedItem().toString().equals("No voucher")) {
+                String[] arrGiamTien = spinnerVoucherInCart.getSelectedItem().toString().split(" ");
+                giam = Integer.parseInt(arrGiamTien[1]);
+            }
+            txtTongTienInCart.setText(NumberFormat.getInstance().format(total));
+            txtTienGiamInCart.setText(NumberFormat.getInstance().format(giam));
+            txtTienTraInCart.setText(NumberFormat.getInstance().format((total - giam) < 0 ? 0 : (total - giam)));
+        }
+        tongTien = total;
+        if (spinnerVoucherInCart.getSelectedItem().toString().equals("No voucher")) {
+            giamTien = 0;
+        } else {
+            String[] arrGiamTien = spinnerVoucherInCart.getSelectedItem().toString().split(" ");
+            giamTien = Integer.parseInt(arrGiamTien[1]);
+        }
+
+        traTien = (tongTien - giamTien);
+        if (traTien < 0) {
+            traTien = 0;
+        }
+
     }
 
     public void getDataInDatabase() {
@@ -139,7 +228,7 @@ public class Cart extends Fragment {
                 listProductInCart.add(productInCart);
                 mKey.add(snapshot.getKey());
                 adapterProductInCart.notifyDataSetChanged();
-
+                setTotalMoney();
             }
 
             @Override
@@ -173,6 +262,7 @@ public class Cart extends Fragment {
 
             }
         });
+
     }
 
     private void setControl(View view) {
@@ -182,6 +272,8 @@ public class Cart extends Fragment {
         btnMuaHangInCart = view.findViewById(R.id.btnMuaHangInCart);
         dataProduct = FirebaseDatabase.getInstance().getReference();
         spinnerVoucherInCart = view.findViewById(R.id.spinnerVoucherInCart);
+        txtTienGiamInCart = view.findViewById(R.id.txtTienGiamInCart);
+        txtTienTraInCart = view.findViewById(R.id.txtTienTraInCart);
     }
 
 
