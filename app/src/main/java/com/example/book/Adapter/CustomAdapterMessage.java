@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,7 @@ public class CustomAdapterMessage extends ArrayAdapter {
 
             viewHolder = new ViewHolder();
             viewHolder.itemTinNhan = convertView.findViewById(R.id.itemTinNhan);
+            viewHolder.lnItemTinNhan = convertView.findViewById(R.id.lnItemTinNhan);
             convertView.setTag(viewHolder);
 
         } else {
@@ -49,9 +51,9 @@ public class CustomAdapterMessage extends ArrayAdapter {
         }
         viewHolder.itemTinNhan.setText(data.get(position).getContent());
         if (message.getWho().equals("admin")) {
-            viewHolder.itemTinNhan.setGravity(Gravity.LEFT);
+            viewHolder.lnItemTinNhan.setGravity(Gravity.LEFT);
         } else {
-            viewHolder.itemTinNhan.setGravity(Gravity.RIGHT);
+            viewHolder.lnItemTinNhan.setGravity(Gravity.RIGHT);
         }
 
         return convertView;
@@ -64,5 +66,6 @@ public class CustomAdapterMessage extends ArrayAdapter {
 
     public static class ViewHolder {
         TextView itemTinNhan;
+        LinearLayout lnItemTinNhan;
     }
 }

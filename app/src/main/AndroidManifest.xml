@@ -28,6 +28,9 @@
         <activity
             android:name=".Screen.Evalute"
             android:exported="true" />
+        <activity
+            android:name=".Screen.ChangePassword"
+            android:exported="true" />
 
         <activity android:name=".MainActivity">
 

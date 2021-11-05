@@ -3,19 +3,30 @@ package com.example.book.Screen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.book.Adapter.CustomAdapterProduct;
 import com.example.book.MainActivity;
 import com.example.book.Object.FirebaseConnect;
 import com.example.book.Object.Product;
 import com.example.book.R;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class DetailBook extends AppCompatActivity {
     ImageView imgMessageInbox;
@@ -30,15 +41,96 @@ public class DetailBook extends AppCompatActivity {
     String idProduct;
     Product product;
 
+    GridView lvProductDetail;
+    ArrayList<Product> list;
+    CustomAdapterProduct adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chi_tiet_sach);
+        list = new ArrayList<>();
+        adapter = new CustomAdapterProduct(getApplicationContext(), R.layout.item_product_listview, list);
         setControl();
-
+        lvProductDetail.setAdapter(adapter);
         setData();
         setAction();
+        getProductDetail();
 
+
+        // lấy sản phẩm:
+        Intent intent = getIntent();
+        String img = intent.getStringExtra("imgProduct");
+        String name = intent.getStringExtra("nameProduct");
+        String price = intent.getStringExtra("priceProduct");
+        String description = intent.getStringExtra("descriptionProduct");
+        String stock = intent.getStringExtra("stockProduct");
+        String category = intent.getStringExtra("categoryProduct");
+        String author = intent.getStringExtra("authorProduct");
+        idProduct = intent.getStringExtra("idProduct");
+
+        Product pd = new Product(img, idProduct, name, Integer.parseInt(price), category, 0, Integer.parseInt(stock), 0, description, author, 0);
+
+
+        // lưu vào ds sản phẩm đã xem:
+        DatabaseReference data = FirebaseDatabase.getInstance().getReference("product_seens");
+        data.child(MainActivity.usernameApp).child(pd.getId()).setValue(pd);
+
+    }
+
+    // lấy danh sách các sản phẩm liên quan:
+    public void getProductDetail() {
+        DatabaseReference dataProduct = FirebaseDatabase.getInstance().getReference("products");
+        dataProduct.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Product product = snapshot.getValue(Product.class);
+                if (product.getCategory().equals(getIntent().getStringExtra("categoryProduct"))) {
+                    list.add(product);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        // bấm vào 1 sp đó
+        lvProductDetail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), DetailBook.class);
+
+                intent.putExtra("imgProduct", list.get(position).getHinhAnh());
+                intent.putExtra("nameProduct", list.get(position).getTenSanPham());
+                intent.putExtra("priceProduct", list.get(position).getGiaTien() + "");
+                intent.putExtra("descriptionProduct", list.get(position).getDescription());
+                intent.putExtra("stockProduct", list.get(position).getStock() + "");
+                intent.putExtra("categoryProduct", list.get(position).getCategory());
+                intent.putExtra("authorProduct", list.get(position).getAuthor());
+                intent.putExtra("idProduct", list.get(position).getId());
+
+                startActivity(intent);
+
+            }
+        });
     }
 
 
@@ -54,7 +146,7 @@ public class DetailBook extends AppCompatActivity {
         String author = intent.getStringExtra("authorProduct");
         idProduct = intent.getStringExtra("idProduct");
 
-        product = new Product(img, idProduct, name, Integer.parseInt(price), category, 0, Integer.parseInt(stock), 0, description, author,0);
+        product = new Product(img, idProduct, name, Integer.parseInt(price), category, 0, Integer.parseInt(stock), 0, description, author, 0);
 
         // Set dữ liệu
         Picasso.get().load(img.toString()).into(imgHinhAnhChiTietSach);
@@ -100,5 +192,6 @@ public class DetailBook extends AppCompatActivity {
         stockProduct = findViewById(R.id.txtKhoChiTietSach);
         categoryProduct = findViewById(R.id.txtTheLoaiChiTietSach);
         authorProduct = findViewById(R.id.txtTacGiaChiTietSach);
+        lvProductDetail = findViewById(R.id.lvProductDetail);
     }
 }
