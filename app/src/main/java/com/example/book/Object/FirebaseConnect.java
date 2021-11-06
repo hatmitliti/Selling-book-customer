@@ -27,7 +27,7 @@ public class FirebaseConnect {
 
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("carts");
-        //  mDatabase.child(usernameApp).child(product.getId()).setValue(productInCart);
+        //  mDatabase.child(usernameApp).child(product.getId()).setValue(produc tInCart);
 
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
