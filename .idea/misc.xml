@@ -3,14 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/7.Git/Selling-book-customer/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.22552083333333334" />
-        <entry key="..\:/7.Git/Selling-book-customer/app/src/main/res/layout/activity_main.xml" value="0.209375" />
-        <entry key="..\:/7.Git/Selling-book-customer/app/src/main/res/layout/danh_gia.xml" value="0.25" />
-        <entry key="..\:/7.Git/Selling-book-customer/app/src/main/res/layout/home.xml" value="0.1308876811594203" />
-        <entry key="..\:/7.Git/Selling-book-customer/app/src/main/res/layout/nguoi_dung.xml" value="0.18" />
-        <entry key="..\:/7.Git/Selling-book-customer/app/src/main/res/layout/nhan_tin.xml" value="0.22" />
-        <entry key="..\:/7.Git/Selling-book-customer/app/src/main/res/layout/trang_thai_don_hang.xml" value="0.2" />
-        <entry key="..\:/7.Git/Selling-book-customer/app/src/main/res/menu/menu_bottom.xml" value="0.209375" />
+        <entry key="..\:/7.Git/Selling-book-customer/app/src/main/res/layout/trang_thai_don_hang.xml" value="0.11458333333333333" />
         <entry key="..\:/Genymotion/Genymotion/Project/UD2Project/selling_book_customer/Selling-book-customer/app/src/main/res/layout/home.xml" value="0.3625" />
         <entry key="..\:/Genymotion/Genymotion/Project/UD2Project/selling_book_customer/Selling-book-customer/app/src/main/res/layout/home_product.xml" value="0.3625" />
         <entry key="..\:/Genymotion/Genymotion/Project/UD2Project/selling_book_customer/Selling-book-customer/app/src/main/res/layout/item_product_listview.xml" value="0.3625" />
