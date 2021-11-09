@@ -16,7 +16,7 @@ public class ProductInCart implements Serializable {
 
     public ProductInCart() {
     }
-
+    //
     public ProductInCart(String hinhAnh, String id, String tenSanPham, int giaTien, int numberCart) {
         this.hinhAnh = hinhAnh;
         this.id = id;
