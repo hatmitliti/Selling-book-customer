@@ -1,5 +1,7 @@
 package com.example.book.Object;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -66,9 +68,48 @@ public class FirebaseConnect {
     }
 
     public static void setQualytyHigh(ProductInCart productInCart) {
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("carts");
-        mDatabase.child(MainActivity.usernameApp).child(productInCart.
-                getId()).child("numberCart").setValue(productInCart.getNumberCart() + 1);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mDatabase.child("products").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if (snapshot.getKey().equals(productInCart.getId())) {
+                    Product product = snapshot.getValue(Product.class);
+                    int cart = productInCart.getNumberCart();
+                    int pd = product.getStock();
+                    if (cart == pd) {
+
+                    } else {
+                        FirebaseDatabase.getInstance().getReference("carts").child(MainActivity.usernameApp).child(productInCart.
+                                getId()).child("numberCart").setValue(productInCart.getNumberCart() + 1);
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
     public static void deleteProductInCart(ProductInCart productInCart) {

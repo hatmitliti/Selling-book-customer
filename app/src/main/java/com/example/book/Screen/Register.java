@@ -65,7 +65,7 @@ public class Register extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // cập nhật nội dung vào firebase:
 
-                                User user = new User("", ngaySinh, 0, hoVaTen, "", "Đồng", "");
+                                User user = new User("", ngaySinh, 0, hoVaTen, "", "Đồng", "","");
                                 DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
                                 database.child(auth.getUid()).setValue(user);
                                 MainActivity.usernameApp = auth.getUid();
