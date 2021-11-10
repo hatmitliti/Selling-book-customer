@@ -6,8 +6,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,6 +28,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.book.Adapter.CustomAdapterProduct;
@@ -191,7 +196,6 @@ public class Me extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Log.d("AAA", idUserCurrent + "");
                 //
                 LayoutInflater inflater = getLayoutInflater();
                 View alertLayout = inflater.inflate(R.layout.iteam_dialog_image, null);
@@ -201,6 +205,12 @@ public class Me extends Fragment {
                 //
                 imgCamera = alertLayout.findViewById(R.id.ImageViewCameraAnhUserCanThem);
                 imgThuVien = alertLayout.findViewById(R.id.ImageViewChonAnhThuVienUserCanThem);
+                //
+                imgCamera.setEnabled(false);
+                imgThuVien.setEnabled(false);
+
+                imgCamera.setTag(R.drawable.ic_baseline_camera_alt_24);
+                imgThuVien.setTag(R.drawable.ic_baseline_image_24);
                 //
                 rdbcamera.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -252,107 +262,116 @@ public class Me extends Fragment {
                 builder.setView(alertLayout);
                 builder.setCancelable(false);
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-
                     public void onClick(DialogInterface dialog, int which) {
                         if (rdbcamera.isChecked()) {
-                            Calendar calendar = Calendar.getInstance();
-                            String imageName = "image" + calendar.getTimeInMillis() + ".png";
-                            // Create a reference to "mountains.jpg"
-                            StorageReference mountainsRef = storageRef.child("ImagesUsers/" + imageName);
-                            // Get the data from an ImageView as bytes
-                            imgCamera.setDrawingCacheEnabled(true);
-                            imgCamera.buildDrawingCache();
-                            Bitmap bitmap = ((BitmapDrawable) imgCamera.getDrawable()).getBitmap();
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                            byte[] data = baos.toByteArray();
+                            if (!imgCamera.getTag().equals(R.drawable.ic_baseline_camera_alt_24)) {
+                                Calendar calendar = Calendar.getInstance();
+                                String imageName = "image" + calendar.getTimeInMillis() + ".png";
+                                // Create a reference to "mountains.jpg"
+                                StorageReference mountainsRef = storageRef.child("ImagesUsers/" + imageName);
+                                // Get the data from an ImageView as bytes
+                                imgCamera.setDrawingCacheEnabled(true);
+                                imgCamera.buildDrawingCache();
+                                Bitmap bitmap = ((BitmapDrawable) imgCamera.getDrawable()).getBitmap();
+                                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                                byte[] data = baos.toByteArray();
 
-                            UploadTask uploadTask = mountainsRef.putBytes(data);
-                            uploadTask.addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception exception) {
-                                    Toast.makeText(getContext(), "Đã Xảy Ra Lỗi Không Thể Sửa Ảnh", Toast.LENGTH_SHORT).show();
-                                    // Handle unsuccessful uploads
-                                }
-                            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                                    // ...
+                                UploadTask uploadTask = mountainsRef.putBytes(data);
+                                uploadTask.addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception) {
+                                        Toast.makeText(getContext(), "Đã Xảy Ra Lỗi Không Thể Sửa Ảnh", Toast.LENGTH_SHORT).show();
+                                        // Handle unsuccessful uploads
+                                    }
+                                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                                        // ...
 
-                                    if (taskSnapshot.getMetadata() != null) {
-                                        if (taskSnapshot.getMetadata().getReference() != null) {
-                                            Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-                                            result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                @Override
-                                                public void onSuccess(Uri uri) {
-                                                    String imageURL = uri.toString();
-                                                    //tạo đối tượng Product và thêm đối tượng vào firsebase
-                                                    User user1 = new User(user.getAddress(), user.getBirth(), user.getMoneyBuy(), user.getName(), user.getPhone(), user.getRank(), imageURL, imageName);
-                                                    StorageReference desertRef = storageRef.child("ImagesUsers/" + user.getNameImage());
-                                                    desertRef.delete();
-                                                    mDatabase.child(idUserCurrent).setValue(user1).addOnSuccessListener(new OnSuccessListener() {
-                                                        @Override
-                                                        public void onSuccess(Object o) {
-                                                            Picasso.get().load(imageURL).into(imgUser);
-                                                        }
-                                                    });
-                                                }
-                                            });
+                                        if (taskSnapshot.getMetadata() != null) {
+                                            if (taskSnapshot.getMetadata().getReference() != null) {
+                                                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                    @Override
+                                                    public void onSuccess(Uri uri) {
+                                                        String imageURL = uri.toString();
+                                                        //tạo đối tượng Product và thêm đối tượng vào firsebase
+                                                        User user1 = new User(user.getAddress(), user.getBirth(), user.getMoneyBuy(), user.getName(), user.getPhone(), user.getRank(), imageURL, imageName);
+                                                        StorageReference desertRef = storageRef.child("ImagesUsers/" + user.getNameImage());
+                                                        desertRef.delete();
+                                                        mDatabase.child(idUserCurrent).setValue(user1).addOnSuccessListener(new OnSuccessListener() {
+                                                            @Override
+                                                            public void onSuccess(Object o) {
+                                                                Picasso.get().load(imageURL).into(imgUser);
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            }
                                         }
                                     }
-                                }
-                            });
+                                });
+                            } else {
+                                Toast.makeText(context, "Bạn Chưa Chọn Ảnh", Toast.LENGTH_SHORT).show();
+                            }
                         } else if (rdbThuVien.isChecked()) {
-                            Calendar calendar = Calendar.getInstance();
-                            String imageName = "image" + calendar.getTimeInMillis() + ".png";
-                            // Create a reference to "mountains.jpg"
-                            StorageReference mountainsRef = storageRef.child("ImagesUsers/" + imageName);
-                            // Get the data from an ImageView as bytes
-                            imgThuVien.setDrawingCacheEnabled(true);
-                            imgThuVien.buildDrawingCache();
-                            Bitmap bitmap = ((BitmapDrawable) imgThuVien.getDrawable()).getBitmap();
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                            byte[] data = baos.toByteArray();
+                            if (!imgThuVien.getTag().equals(R.drawable.ic_baseline_image_24)) {
+                                Calendar calendar = Calendar.getInstance();
+                                String imageName = "image" + calendar.getTimeInMillis() + ".png";
+                                // Create a reference to "mountains.jpg"
+                                StorageReference mountainsRef = storageRef.child("ImagesUsers/" + imageName);
+                                // Get the data from an ImageView as bytes
+                                imgThuVien.setDrawingCacheEnabled(true);
+                                imgThuVien.buildDrawingCache();
+                                Bitmap bitmap = ((BitmapDrawable) imgThuVien.getDrawable()).getBitmap();
+                                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                                byte[] data = baos.toByteArray();
 
-                            UploadTask uploadTask = mountainsRef.putBytes(data);
-                            uploadTask.addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception exception) {
-                                    Toast.makeText(getContext(), "Đã Xảy Ra Lỗi Không Thể Sửa Ảnh", Toast.LENGTH_SHORT).show();
-                                    // Handle unsuccessful uploads
-                                }
-                            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                                    // ...
+                                UploadTask uploadTask = mountainsRef.putBytes(data);
+                                uploadTask.addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception) {
+                                        Toast.makeText(getContext(), "Đã Xảy Ra Lỗi Không Thể Sửa Ảnh", Toast.LENGTH_SHORT).show();
+                                        // Handle unsuccessful uploads
+                                    }
+                                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                                        // ...
 
-                                    if (taskSnapshot.getMetadata() != null) {
-                                        if (taskSnapshot.getMetadata().getReference() != null) {
-                                            Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-                                            result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                @Override
-                                                public void onSuccess(Uri uri) {
-                                                    String imageURL = uri.toString();
-                                                    //tạo đối tượng Product và thêm đối tượng vào firsebase
-                                                    User user1 = new User(user.getAddress(), user.getBirth(), user.getMoneyBuy(), user.getName(), user.getPhone(), user.getRank(), imageURL, imageName);
-                                                    StorageReference desertRef = storageRef.child("ImagesUsers/" + user.getNameImage());
-                                                    desertRef.delete();
-                                                    mDatabase.child(idUserCurrent).setValue(user1).addOnSuccessListener(new OnSuccessListener() {
-                                                        @Override
-                                                        public void onSuccess(Object o) {
-                                                            Picasso.get().load(imageURL).into(imgUser);
-                                                            Toast.makeText(getContext(), "Sửa Ảnh Thành Công", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
-                                                }
-                                            });
+                                        if (taskSnapshot.getMetadata() != null) {
+                                            if (taskSnapshot.getMetadata().getReference() != null) {
+                                                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                    @Override
+                                                    public void onSuccess(Uri uri) {
+                                                        String imageURL = uri.toString();
+                                                        //tạo đối tượng Product và thêm đối tượng vào firsebase
+                                                        User user1 = new User(user.getAddress(), user.getBirth(), user.getMoneyBuy(), user.getName(), user.getPhone(), user.getRank(), imageURL, imageName);
+                                                        StorageReference desertRef = storageRef.child("ImagesUsers/" + user.getNameImage());
+                                                        desertRef.delete();
+                                                        mDatabase.child(idUserCurrent).setValue(user1).addOnSuccessListener(new OnSuccessListener() {
+                                                            @Override
+                                                            public void onSuccess(Object o) {
+                                                                Picasso.get().load(imageURL).into(imgUser);
+                                                                Toast.makeText(getContext(), "Sửa Ảnh Thành Công", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            }
                                         }
                                     }
-                                }
-                            });
+                                });
+                            } else {
+                                Toast.makeText(context, "Bạn Chưa Chọn Ảnh", Toast.LENGTH_SHORT).show();
+                            }
+                        } else if (!rdbcamera.isChecked() && !rdbThuVien.isChecked()) {
+                            Toast.makeText(context, "Vui Lòng Chọn Phương Thức", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -382,7 +401,6 @@ public class Me extends Fragment {
 
         return view;
     }
-
     /*
      Gọi Hàm Đổ Hình chụp từ camera ra màn hình
      */
@@ -391,11 +409,12 @@ public class Me extends Fragment {
         if (requestCode == REQUEST_CODE_IMAGE && resultCode == RESULT_OK && data != null) {
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             imgCamera.setImageBitmap(bitmap);
+            imgCamera.setTag("");
         }
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null) {
             Uri imageUri = data.getData();
             imgThuVien.setImageURI(imageUri);
-
+            imgThuVien.setTag("");
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

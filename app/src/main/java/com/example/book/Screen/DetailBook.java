@@ -26,7 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class DetailBook extends AppCompatActivity {
     ImageView imgMessageInbox;
@@ -135,6 +137,12 @@ public class DetailBook extends AppCompatActivity {
 
 
     private void setData() {
+
+        //
+        NumberFormat currentLocale = NumberFormat.getInstance();
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+        //
         // Lấy dữ liệu
         Intent intent = getIntent();
         String img = intent.getStringExtra("imgProduct");
@@ -151,8 +159,8 @@ public class DetailBook extends AppCompatActivity {
         // Set dữ liệu
         Picasso.get().load(img.toString()).into(imgHinhAnhChiTietSach);
         nameProduct.setText(name);
-        priceProduct.setText("  " + price + " VND");
-        descriptionProduct.setText(description);
+        priceProduct.setText("  " + en.format(Integer.parseInt(price)) + " VNĐ");
+        descriptionProduct.setText("Mô Tả: \n"+description);
         stockProduct.setText("Kho: " + stock);
         categoryProduct.setText("Loại sách:" + category);
         authorProduct.setText("Tác giả: " + author);

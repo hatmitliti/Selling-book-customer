@@ -15,7 +15,9 @@ import com.example.book.Object.Product;
 import com.example.book.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CustomAdapterProduct extends ArrayAdapter {
 
@@ -39,8 +41,11 @@ public class CustomAdapterProduct extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-
+        //
+        NumberFormat currentLocale = NumberFormat.getInstance();
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+        //
         ViewHolder viewHolder;
 
         if (convertView == null) {
@@ -57,7 +62,7 @@ public class CustomAdapterProduct extends ArrayAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Product pc = data.get(position);
-        viewHolder.giaTien.setText(pc.getGiaTien() + "VNĐ");
+        viewHolder.giaTien.setText(en.format(pc.getGiaTien()) + "VNĐ");
         viewHolder.tenSach.setText(pc.getTenSanPham());
         Picasso.get().load(pc.getHinhAnh().toString()).into(viewHolder.imgHinhAnh);
         return convertView;
