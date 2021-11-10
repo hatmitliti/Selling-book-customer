@@ -56,6 +56,7 @@ public class CustomAdapterProduct extends ArrayAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        
         Product pc = data.get(position);
         viewHolder.giaTien.setText(pc.getGiaTien() + "VNĐ");
         viewHolder.tenSach.setText(pc.getTenSanPham());
