@@ -95,8 +95,7 @@ public class Login extends AppCompatActivity {
         btnQuenMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                sendEmailResetPassword();
             }
         });
 
@@ -117,7 +116,24 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void sendEmailResetPassword() {
+        String email=edtUsername.getText().toString();
+        if(email.isEmpty()){
+            edtUsername.setError("Trường email đang trống!");
+        }else {
+            auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(getApplicationContext(), "Vui lòng kiểm tra email!", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Gửi email đổi mật khẩu không thành công!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     private void login() {
