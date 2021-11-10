@@ -23,6 +23,7 @@ import com.example.book.MainActivity;
 import com.example.book.Object.Product;
 import com.example.book.Object.User;
 import com.example.book.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,7 +40,7 @@ public class Me extends Fragment {
     TextView txtRankUser;
     TextView txtNameUser;
     Button btnTrangThaiDonHangUser;
-    Button btnDoiMatKhau;
+    Button btnDoiMatKhau,btnSignOut;
     User user;
     ImageView imgUser;
 
@@ -59,6 +60,7 @@ public class Me extends Fragment {
         imgUser = view.findViewById(R.id.imgUser);
         gvSpDaXem = view.findViewById(R.id.gvSpDaXem);
         btnDoiMatKhau = view.findViewById(R.id.btnDoiMatKhau);
+        btnSignOut = view.findViewById(R.id.btnSignOut);
 
         // lấy thông tin user:
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
@@ -194,7 +196,15 @@ public class Me extends Fragment {
                 startActivity(new Intent(getActivity(), ChangePassword.class));
             }
         });
-
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth auth=FirebaseAuth.getInstance();
+                auth.signOut();
+                startActivity(new Intent(getActivity(), Login.class));
+                getActivity().finishAffinity();
+            }
+        });
 
         return view;
     }
