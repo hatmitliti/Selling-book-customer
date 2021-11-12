@@ -59,7 +59,7 @@ public class CustomAdapterProduct extends ArrayAdapter {
         Product pc = data.get(position);
         viewHolder.giaTien.setText(pc.getGiaTien());
         viewHolder.tenSach.setText(pc.getTenSanPham());
-        viewHolder.imgHinhAnh.setImageResource(pc.getHinhAnh());
+        viewHolder.imgHinhAnh.setImageResource(Integer.parseInt(pc.getHinhAnh()));
         return convertView;
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,7 +46,11 @@ public class OrderStatus extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (list.get(position).getStatus() == 5 || list.get(position).getStatus() == 6 || list.get(position).getStatus() == 7) {
-
+                    Intent intent = new Intent(getApplicationContext(),Evalute.class);
+                    intent.putExtra("id_billsss",list.get(position).getId());
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getApplicationContext(), "Đơn hàng chưa giao nên chưa thể đánh giá", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -30,21 +30,21 @@ public class HomeProduct extends Fragment {
         View view = inflater.inflate(R.layout.home_product, container, false);
 
 
-        listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
-        listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
-        listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
-
-        adapterProduct = new CustomAdapterProduct(getContext(), R.layout.item_product_listview, listProduct);
-        GridView grProduct = view.findViewById(R.id.grProduct);
-        grProduct.setAdapter(adapterProduct);
-
-        
-        grProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), "123", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
+//        listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
+//        listProduct.add(new Product(R.drawable.toan12, "Lịch sử", "100 000"));
+//
+//        adapterProduct = new CustomAdapterProduct(getContext(), R.layout.item_product_listview, listProduct);
+//        GridView grProduct = view.findViewById(R.id.grProduct);
+//        grProduct.setAdapter(adapterProduct);
+//
+//
+//        grProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(getContext(), "123", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         
         return view;
     }
