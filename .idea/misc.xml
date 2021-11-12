@@ -9,8 +9,12 @@
         <entry key="..\:/Git/Selling-book-customer/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Git/Selling-book-customer/app/src/main/res/layout/chi_tiet_sach.xml" value="0.22" />
         <entry key="..\:/Git/Selling-book-customer/app/src/main/res/layout/dang_ky_tai_khoan.xml" value="0.13949275362318841" />
+        <entry key="..\:/Git/Selling-book-customer/app/src/main/res/layout/home_product.xml" value="0.1" />
         <entry key="..\:/Git/Selling-book-customer/app/src/main/res/layout/item_product_listview.xml" value="0.1" />
         <entry key="..\:/Git/Selling-book-customer/app/src/main/res/layout/nguoi_dung.xml" value="0.1" />
+        <entry key="..\:/Git/Selling-book-customer/app/src/main/res/layout/nhan_tin.xml" value="0.25" />
+        <entry key="..\:/Git/Selling-book-customer/app/src/main/res/layout/trang_thai_don_hang.xml" value="0.1" />
+        <entry key="..\:/Git/Selling-book-customer/app/src/main/res/menu/menu_bottom.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Selling-book-customer/app/src/main/res/drawable/bg_circle_solid_green.xml" value="0.2203125" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Selling-book-customer/app/src/main/res/drawable/bg_circle_solid_grey.xml" value="0.2203125" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/Selling-book-customer/app/src/main/res/drawable/bg_circle_solid_yellow.xml" value="0.2203125" />
@@ -69,12 +73,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.1" />
-      </ProjectState>
-    </option>
   </component>
 </project>
