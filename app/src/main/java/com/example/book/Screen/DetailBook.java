@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.book.Adapter.CustomAdapterProduct;
+import com.example.book.Adapter.CustomAdapterProductSeen;
 import com.example.book.MainActivity;
 import com.example.book.Object.FirebaseConnect;
 import com.example.book.Object.Product;
@@ -45,19 +46,20 @@ public class DetailBook extends AppCompatActivity {
 
     GridView lvProductDetail;
     ArrayList<Product> list;
-    CustomAdapterProduct adapter;
+    CustomAdapterProductSeen adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chi_tiet_sach);
         list = new ArrayList<>();
-        adapter = new CustomAdapterProduct(getApplicationContext(), R.layout.item_product_listview, list);
+        adapter = new CustomAdapterProductSeen(getApplicationContext(), R.layout.item_product_listview_seen, list);
         setControl();
         lvProductDetail.setAdapter(adapter);
         setData();
         setAction();
         getProductDetail();
+
 
 
         // lấy sản phẩm:
@@ -137,7 +139,6 @@ public class DetailBook extends AppCompatActivity {
 
 
     private void setData() {
-
         //
         NumberFormat currentLocale = NumberFormat.getInstance();
         Locale localeEN = new Locale("en", "EN");
@@ -158,9 +159,9 @@ public class DetailBook extends AppCompatActivity {
 
         // Set dữ liệu
         Picasso.get().load(img.toString()).into(imgHinhAnhChiTietSach);
-        nameProduct.setText(name);
-        priceProduct.setText("  " + en.format(Integer.parseInt(price)) + " VNĐ");
-        descriptionProduct.setText("Mô Tả: \n"+description);
+        nameProduct.setText("Tên Sách: "+name);
+        priceProduct.setText("Giá: " + en.format(Integer.parseInt(price)) + " VNĐ");
+        descriptionProduct.setText(description);
         stockProduct.setText("Kho: " + stock);
         categoryProduct.setText("Loại sách:" + category);
         authorProduct.setText("Tác giả: " + author);

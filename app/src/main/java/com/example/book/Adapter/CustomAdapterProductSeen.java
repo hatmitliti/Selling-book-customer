@@ -19,14 +19,14 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class CustomAdapterProduct extends ArrayAdapter {
+public class CustomAdapterProductSeen extends ArrayAdapter {
 
     Context context;
     int resource;
     ArrayList<Product> data;
 
 
-    public CustomAdapterProduct(Context context, int resource, ArrayList<Product> data) {
+    public CustomAdapterProductSeen(Context context, int resource, ArrayList<Product> data) {
         super(context, resource, data);
         this.context = context;
         this.resource = resource;
@@ -52,8 +52,8 @@ public class CustomAdapterProduct extends ArrayAdapter {
             convertView = LayoutInflater.from(context).inflate(resource, null);
 
             viewHolder = new ViewHolder();
-            viewHolder.tenSach = convertView.findViewById(R.id.txtTenSach1);
-            viewHolder.imgHinhAnh = convertView.findViewById(R.id.imgHinhAnhSach1);
+            viewHolder.tenSach = convertView.findViewById(R.id.txtTenSach2);
+            viewHolder.imgHinhAnh = convertView.findViewById(R.id.imgHinhAnhSach2);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

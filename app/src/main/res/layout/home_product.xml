@@ -42,6 +42,8 @@
             android:id="@+id/grProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:numColumns="2" />
+            android:numColumns="2"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"/>
     </LinearLayout>
 </LinearLayout>

@@ -137,7 +137,9 @@
                     android:id="@+id/lvProductDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:numColumns="2" />
+                    android:numColumns="3"
+                    android:verticalSpacing="10dp"
+                    android:horizontalSpacing="10dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -161,7 +163,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="5"
-            android:src="@drawable/cart1" />
+            android:src="@drawable/cart1"
+            />
 
     </LinearLayout>
 

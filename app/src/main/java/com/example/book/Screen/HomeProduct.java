@@ -77,7 +77,7 @@ public class HomeProduct extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String locCategory = spLoaiSanPham.getSelectedItem().toString();
                 for (int j = 0; j < listProduct.size(); j++) {
-                    if (listProduct.get(j).getCategory().equals(locCategory)) {
+                    if (!listProduct.get(j).getCategory().equals(locCategory)) {
                         listProduct.remove(j);
                         adapterProduct.notifyDataSetChanged();
                     }
