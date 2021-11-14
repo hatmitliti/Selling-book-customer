@@ -7,7 +7,27 @@
 
     android:orientation="vertical"
     tools:context=".Screen.InfoUser">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:orientation="vertical">
 
+        <Button
+            android:id="@+id/backInforUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:text="Chỉnh Sửa Thông Tin Cá Nhân"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+    </LinearLayout>
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_image"
         android:layout_width="match_parent"
@@ -16,24 +36,35 @@
         android:src="@drawable/gg3"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp" />
-
-    <EditText
-        android:id="@+id/txtNameUserEdit"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@null"
-        android:gravity="center"
-        android:text="NGUYỄN NGỌC TRƯỜNG"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Họ Và Tên: "
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/txtNameUserEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@null"
+            android:gravity="center"
+            android:text="NGUYỄN NGỌC TRƯỜNG"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginTop="20dp"
-        android:background="#8BC34A"
         android:orientation="horizontal">
 
         <TextView
@@ -55,49 +86,52 @@
     </LinearLayout>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="TỔNG TIỀN BẠN ĐÃ MUA"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txtTotalMoneyUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="10.000.000"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="SỐ ĐIỆN THOẠI CỦA BẠN"
+            android:text="Số Điện Thoại: "
             android:textColor="@color/black"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
         <EditText
             android:id="@+id/txtphoneUser_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
             android:background="@null"
             android:hint="Nhập tại đây"
-            android:inputType="date" />
+            android:inputType="date"
+            />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Địa Chỉ : "
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/tvUpdateAddressUser"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:hint="Nhập tại đây"
+            android:lines="3" />
     </LinearLayout>
 
     <LinearLayout

@@ -27,7 +27,6 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="8dp"
-                    android:scaleType="fitXY"
                     android:src="@drawable/user" />
 
             </LinearLayout>
@@ -68,10 +67,10 @@
                 android:text="Địa chỉ: Hà Nội"
                 android:textColor="@color/black"
                 android:textSize="25dp"
-                android:textStyle="bold">
+                android:textStyle="bold"
+                android:lines="3">
 
             </TextView>
-
 
             <TextView
                 android:id="@+id/txtPhoneUser"
@@ -84,7 +83,24 @@
                 android:textStyle="bold">
 
             </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="TỔNG TIỀN BẠN ĐÃ MUA"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/txtTotalMoneyUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="10.000.000"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,12 +114,14 @@
                 android:layout_height="wrap_content">
 
                 <GridView
+                    android:background="@drawable/backgroundimage"
                     android:id="@+id/gvSpDaXem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:columnWidth="10dp"
-                    android:numColumns="2" />
-
+                    android:numColumns="3"
+                    android:horizontalSpacing="10dp"
+                    android:verticalSpacing="10dp"/>
             </ScrollView>
 
             <Button

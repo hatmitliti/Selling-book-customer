@@ -28,6 +28,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.book.Adapter.CustomAdapterProduct;
+import com.example.book.Adapter.CustomAdapterProductSeen;
 import com.example.book.MainActivity;
 import com.example.book.Object.Product;
 import com.example.book.Object.User;
@@ -47,6 +48,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -68,7 +70,7 @@ public class Me extends Fragment {
 
     GridView gvSpDaXem;
     ArrayList<Product> list;
-    CustomAdapterProduct adapter;
+    CustomAdapterProductSeen adapter;
     RadioButton rdbcamera, rdbThuVien;
     ImageView imgCamera, imgThuVien;
 
@@ -95,6 +97,7 @@ public class Me extends Fragment {
         gvSpDaXem = view.findViewById(R.id.gvSpDaXem);
         btnDoiMatKhau = view.findViewById(R.id.btnDoiMatKhau);
         btnInfo = view.findViewById(R.id.btnInfo);
+        TextView txtTotalMoneyUser = view.findViewById(R.id.txtTotalMoneyUser);
 
 
         // lấy thông tin user:
@@ -108,6 +111,7 @@ public class Me extends Fragment {
                 txtAddressUser.setText("Địa chỉ: " + user.getAddress());
                 txtRankUser.setText("Hạng thành viên: " + user.getRank());
                 idUserCurrent = snapshot.getKey();
+                txtTotalMoneyUser.setText(NumberFormat.getInstance().format(user.getMoneyBuy()));
                 if (user.getImage().equals("")) {
 
                 } else {
@@ -132,7 +136,7 @@ public class Me extends Fragment {
 
 
         list = new ArrayList<>();
-        adapter = new CustomAdapterProduct(getContext(), R.layout.item_product_listview, list);
+        adapter = new CustomAdapterProductSeen(getContext(), R.layout.item_product_listview_seen, list);
         gvSpDaXem.setAdapter(adapter);
 
         // lấy ds các sản phẩm đã xem:

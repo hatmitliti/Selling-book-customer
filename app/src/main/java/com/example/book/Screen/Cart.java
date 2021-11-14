@@ -122,7 +122,6 @@ public class Cart extends Fragment {
         getDataInDatabase();
         adapterProductInCart = new CustomAdapterProductInCart(getContext(), R.layout.item_product_in_cart, listProductInCart);
         lvProductInCart.setAdapter(adapterProductInCart);
-
         // khi chọn voucher:
         ArrayList<String> listVoucher = new ArrayList<>();
         listVoucher.add("No voucher");
@@ -227,6 +226,7 @@ public class Cart extends Fragment {
                 ProductInCart productInCart = snapshot.getValue(ProductInCart.class);
                 listProductInCart.add(productInCart);
                 mKey.add(snapshot.getKey());
+
                 adapterProductInCart.notifyDataSetChanged();
                 setTotalMoney();
             }
