@@ -95,11 +95,9 @@ public class Login extends AppCompatActivity {
         btnQuenMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                startActivity(new Intent(getApplicationContext(), FogotPass.class));
             }
         });
-
 
         // bấm đăng nhập với facebook:
         loginWithFacebook.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +106,6 @@ public class Login extends AppCompatActivity {
 
             }
         });
-
 
         // Bấm đăng nhập với google:
         loginWithGoogle.setOnClickListener(new View.OnClickListener() {

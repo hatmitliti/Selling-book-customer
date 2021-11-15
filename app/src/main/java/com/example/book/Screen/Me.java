@@ -125,6 +125,10 @@ public class Me extends Fragment {
             }
         });
 
+        // gán các layout sản phẩm đã xem
+        list = new ArrayList<>();
+        adapter = new CustomAdapterProductSeen(getContext(), R.layout.item_product_listview_seen, list);
+        gvSpDaXem.setAdapter(adapter);
 
         // set action
         btnTrangThaiDonHangUser.setOnClickListener(new View.OnClickListener() {
@@ -133,42 +137,6 @@ public class Me extends Fragment {
                 startActivity(new Intent(getActivity(), OrderStatus.class));
             }
         });
-
-
-        list = new ArrayList<>();
-        adapter = new CustomAdapterProductSeen(getContext(), R.layout.item_product_listview_seen, list);
-        gvSpDaXem.setAdapter(adapter);
-
-        // lấy ds các sản phẩm đã xem:
-        DatabaseReference data = FirebaseDatabase.getInstance().getReference("product_seens");
-        data.child(MainActivity.usernameApp).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                list.add(snapshot.getValue(Product.class));
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
 
         // Bấm vào ds đã xem đi đến trang chi tiết :
         gvSpDaXem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -188,7 +156,6 @@ public class Me extends Fragment {
                 startActivity(intent);
             }
         });
-
 
         // Bấm vào ảnh đại diện user hiển thị dialog để chụp hình hoặc láy ảnh từ thư viện
         imgUser.setOnClickListener(new View.OnClickListener() {
@@ -387,9 +354,44 @@ public class Me extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        list.clear();
+        // lấy ds các sản phẩm đã xem:
+        DatabaseReference data = FirebaseDatabase.getInstance().getReference("product_seens");
+        data.child(MainActivity.usernameApp).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                list.add(snapshot.getValue(Product.class));
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     /*
-     Gọi Hàm Đổ Hình chụp từ camera ra màn hình
-     */
+         Gọi Hàm Đổ Hình chụp từ camera ra màn hình
+         */
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_CODE_IMAGE && resultCode == RESULT_OK && data != null) {
