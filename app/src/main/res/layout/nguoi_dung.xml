@@ -8,14 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,44 +106,62 @@
                 android:id="@+id/btnTrangThaiDonHangUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
                 android:background="#8BC34A"
                 android:gravity="center"
                 android:text="Trạng thái đơn hàng"
                 android:textColor="#fff"
                 android:textSize="16dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnDoiMatKhau"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:text="Đổi mật khẩu"
-                    android:layout_marginStart="10dp"
                     android:textColor="@color/black" />
+
+                <Button
+                    android:id="@+id/btnForgotPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FFC107"
+                    android:text="Quên mật khẩu"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/btnSignOut"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
                     android:backgroundTint="#FFC107"
                     android:text="Đăng xuất"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"
                     android:textColor="@color/black" />
             </LinearLayout>
-
 
         </LinearLayout>
     </ScrollView>
