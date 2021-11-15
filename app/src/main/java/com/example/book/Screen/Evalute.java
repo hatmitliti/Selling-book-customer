@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.book.Adapter.CustomAdapterEvalute;
 import com.example.book.MainActivity;
@@ -52,6 +53,21 @@ public class Evalute extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
+        // toolbarr
+        Toolbar toolbar = findViewById(R.id.tbChangePassword);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     private void getDataInDatabase() {

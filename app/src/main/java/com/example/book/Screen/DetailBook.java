@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.book.Adapter.CustomAdapterProduct;
 import com.example.book.Adapter.CustomAdapterProductSeen;
@@ -75,10 +76,22 @@ public class DetailBook extends AppCompatActivity {
 
         Product pd = new Product(img, idProduct, name, Integer.parseInt(price), category, 0, Integer.parseInt(stock), 0, description, author, 0);
 
-
         // lưu vào ds sản phẩm đã xem:
         DatabaseReference data = FirebaseDatabase.getInstance().getReference("product_seens");
         data.child(MainActivity.usernameApp).child(pd.getId()).setValue(pd);
+
+
+        // toolbarr
+        Toolbar toolbar = findViewById(R.id.tbChangePassword);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
@@ -174,8 +187,12 @@ public class DetailBook extends AppCompatActivity {
         imgAddCartChiTietSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseConnect.addProductInCart(MainActivity.usernameApp, product);
-                Toast.makeText(getApplicationContext(), "Đã thểm vào giỏ hàng !", Toast.LENGTH_SHORT).show();
+                if (product.getStock() == 0){
+                    Toast.makeText(getApplicationContext(), "Sản phẩm đã hết", Toast.LENGTH_SHORT).show();
+                }else {
+                    FirebaseConnect.addProductInCart(MainActivity.usernameApp, product);
+                    Toast.makeText(getApplicationContext(), "Đã thểm vào giỏ hàng !", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -3,6 +3,7 @@ package com.example.book.Screen;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,7 +42,7 @@ public class InfoUser extends AppCompatActivity {
         EditText edtDiaChi = findViewById(R.id.tvUpdateAddressUser);
         TextView txtphoneUser_ = findViewById(R.id.txtphoneUser_);
         Button btnLuu = findViewById(R.id.btnLuu);
-        Button btnBack = findViewById(R.id.backInforUser);
+       // Button btnBack = findViewById(R.id.backInforUser);
 
         //lấy dữ liệu:
         DatabaseReference data = FirebaseDatabase.getInstance().getReference("users");
@@ -121,11 +122,17 @@ public class InfoUser extends AppCompatActivity {
 
             }
         });
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        // toolbarr
+        Toolbar toolbar = findViewById(R.id.tbChangePassword);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-               onBackPressed();
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
+
     }
 }

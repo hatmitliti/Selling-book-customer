@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbChangePassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="THÔNG TIN ĐẶT HÀNG"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FF5722"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Thông tin đặt hàng" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,6 +27,7 @@
             android:layout_height="120dp" />
 
         <LinearLayout
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:gravity="center"
