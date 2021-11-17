@@ -7,55 +7,51 @@
 
     android:orientation="vertical"
     tools:context=".Screen.InfoUser">
-    <LinearLayout
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbChangePassword"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:orientation="vertical">
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FF5722"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Chỉnh sửa thông tin cá nhân" />
 
-        <Button
-            android:id="@+id/backInforUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back" />
-
-        <TextView
-            android:gravity="center"
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:text="Chỉnh Sửa Thông Tin Cá Nhân"
-            android:textSize="30dp"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
-    </LinearLayout>
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_image"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="150dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/gg3"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:orientation="horizontal">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
             android:text="Họ Và Tên: "
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/txtNameUserEdit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="match_parent"
+            android:layout_weight="3"
             android:background="@null"
-            android:gravity="center"
-            android:text="NGUYỄN NGỌC TRƯỜNG"
+            android:hint="Nhập tại đây"
+            android:paddingLeft="10dp"
             android:textColor="@color/black" />
     </LinearLayout>
 
@@ -69,23 +65,23 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="7"
             android:text="Ngày sinh:"
             android:textColor="@color/black"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtBirthUser"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="3"
             android:background="@null"
             android:hint="Nhập tại đây"
-            android:inputType="date" />
+            android:inputType="date"
+            android:paddingLeft="10dp" />
     </LinearLayout>
-
-
 
 
     <LinearLayout
@@ -96,42 +92,53 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
             android:text="Số Điện Thoại: "
             android:textColor="@color/black"
-            android:textStyle="bold"
-            />
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtphoneUser_"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
             android:background="@null"
             android:hint="Nhập tại đây"
             android:inputType="date"
-            />
+            android:paddingLeft="10dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_margin="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
             android:text="Địa Chỉ : "
             android:textColor="@color/black"
-            android:textStyle="bold"/>
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/tvUpdateAddressUser"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_weight="3"
+            android:background="@null"
+            android:gravity="top"
             android:hint="Nhập tại đây"
-            android:lines="3" />
+            android:lines="5"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -142,9 +149,11 @@
 
         <Button
             android:id="@+id/btnLuu"
-            android:backgroundTint="#FF5722"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#FF5722"
             android:text="LƯU"
             android:textColor="@color/black" />
     </LinearLayout>

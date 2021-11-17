@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Customer">
         <activity
+            android:name=".Screen.FogotPass"
+            android:exported="true" />
+        <activity
             android:name=".Screen.InfoUser"
             android:exported="true" />
         <activity
@@ -35,7 +38,7 @@
         <activity
             android:name=".Screen.ChangePassword"
             android:exported="true" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".Screen.Login"
             android:exported="true">
