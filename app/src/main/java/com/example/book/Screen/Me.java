@@ -61,6 +61,7 @@ public class Me extends Fragment {
     Button btnTrangThaiDonHangUser;
     Button btnInfo;
     Button btnDoiMatKhau;
+    Button btnSignOut;
     User user;
     ImageView imgUser;
     int REQUEST_CODE_IMAGE = 1;
@@ -97,6 +98,7 @@ public class Me extends Fragment {
         gvSpDaXem = view.findViewById(R.id.gvSpDaXem);
         btnDoiMatKhau = view.findViewById(R.id.btnDoiMatKhau);
         btnInfo = view.findViewById(R.id.btnInfo);
+        btnSignOut = view.findViewById(R.id.btnSignOut);
         TextView txtTotalMoneyUser = view.findViewById(R.id.txtTotalMoneyUser);
 
 
