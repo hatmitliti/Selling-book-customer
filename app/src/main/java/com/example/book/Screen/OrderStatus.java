@@ -62,7 +62,7 @@ public class OrderStatus extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Bill bill = snapshot.getValue(Bill.class);
                 if (bill.getId_user().equals(MainActivity.usernameApp)) {
-                    if (!bill.isEvalute() == true) {
+                    if (!(bill.isEvalute() == true)) {
                         listBill.add(bill);
                         customAdapterBill.notifyDataSetChanged();
                         mKey.add(snapshot.getKey());
