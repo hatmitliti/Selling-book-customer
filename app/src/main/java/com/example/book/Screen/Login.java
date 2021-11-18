@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,7 @@ public class Login extends AppCompatActivity {
     EditText edtUsername, edtPassword;
     FirebaseAuth auth;
     FirebaseUser user;
+    ViewFlipper view_fillper_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,12 @@ public class Login extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         // remember();
         setAction();
+
+        int background[] = {R.drawable.user1, R.drawable.user2, R.drawable.user3, R.drawable.user4};
+
+        for (int i = 0; i < background.length; i++) {
+            setViewFlipper(background[i]);
+        }
     }
 
     private void remember() {
@@ -43,6 +52,15 @@ public class Login extends AppCompatActivity {
             MainActivity.usernameApp = auth.getUid();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
+    }
+    public void setViewFlipper(int background) {
+        ImageView imageView = new ImageView(getApplicationContext());
+        imageView.setBackgroundResource(background);
+        view_fillper_login.addView(imageView);
+        view_fillper_login.setFlipInterval(3000);
+        view_fillper_login.setAutoStart(true);
+        view_fillper_login.setInAnimation(getApplicationContext(), android.R.anim.slide_in_left);
+        view_fillper_login.setOutAnimation(getApplicationContext(), android.R.anim.slide_out_right);
     }
 
     private void setAction() {
@@ -88,6 +106,7 @@ public class Login extends AppCompatActivity {
         btnDangKyTaiKhoanLogin = findViewById(R.id.btnDangKyTaiKhoanLogin);
         btnDangNhap = findViewById(R.id.btnDangNhap);
         edtUsername = findViewById(R.id.edtUsername);
+        view_fillper_login = findViewById(R.id.view_fillper_login);
         edtPassword = findViewById(R.id.edtPassword);
     }
 
