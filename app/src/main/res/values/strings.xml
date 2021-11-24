@@ -5,6 +5,11 @@
     <string name="message">Message</string>
     <string name="cart">Cart</string>
     <string name="toi">Tôi</string>
+    <string name="hint_Username">Tài khoản</string>
+    <string name="hint_password">Mật khẩu</string>
+    <string name="text_sign_in">Đăng nhập</string>
+    <string name="text_sign_out">Đăng ký</string>
+    <string name="text_forgot_password">Quên mật khẩu?</string>
 
 
     <string-array name="evalute">
