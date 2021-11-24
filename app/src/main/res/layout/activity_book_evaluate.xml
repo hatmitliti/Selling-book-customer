@@ -16,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/sach1"></ImageView>
 
     </LinearLayout>
@@ -29,16 +31,21 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Còn chút gi để nhớ"
+            android:text="@string/book_name"
             android:textColor="@color/black"
-            android:textSize="20dp"></TextView>
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="25sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="99 000 VND"
+            android:text="@string/money"
             android:textColor="@color/red"
-            android:textSize="20dp"></TextView>
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
@@ -46,6 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
@@ -92,10 +100,12 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nhập đánh giá..."
+            android:layout_height="match_parent"
+            android:hint="@string/hint_enter_evaluate"
+            android:paddingStart="10dp"
+            android:imeOptions="actionDone"
+            android:inputType="text"
             android:lines="7">
-
         </EditText>
 
     </LinearLayout>
@@ -108,15 +118,14 @@
         android:orientation="vertical">
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:background="#8BC34A"
-            android:text="Gửi"
-            android:textColor="#fff"
-            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_button"
+            android:layout_marginEnd="100dp"
+            android:layout_marginStart="100dp"
+            android:text="@string/text_save"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             android:textStyle="bold" />
-
     </LinearLayout>
-
-
 </LinearLayout>

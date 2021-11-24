@@ -9,16 +9,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.book.Object.FirebaseConnect;
-import com.example.book.Object.Product;
 import com.example.book.Object.ProductInCart;
 import com.example.book.R;
-import com.example.book.Screen.Cart;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;

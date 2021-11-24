@@ -37,6 +37,30 @@
     <string name="warehouse">Kho:200 cuốn</string>
     <string name="author">Tác giả: Nguyễn Ngọc Ánh</string>
     <string name="product_detail">Chi tiết sản phẩm</string>
+    <string name="code">Mã: gaga-sad-fsdf-gh</string>
+    <string name="hint_enter_evaluate">Nhập đánh giá...</string>
+    <string name="hint_new_password">Nhập mật khẩu mới</string>
+    <string name="hint_add_new_re_password">Nhập lại mật khẩu mới</string>
+    <string name="search">Tìm kiếm...</string>
+    <string name="district">Quận/Huyện:</string>
+    <string name="ward">Xã/Phường:</string>
+    <string name="town">Khu Phố:</string>
+    <string name="street">Số nhà, tên đường:</string>
+    <string name="order">Đặt hàng</string>
+    <string name="test_num">Số lượng sản phẩm: 10</string>
+    <string name="test_total">Tổng tiền: 100 000 VND</string>
+    <string name="test_discount">Giảm giá: 20 000 VND</string>
+    <string name="test_total_">Tiền trả: 80 000 VND</string>
+    <string name="contact">Thông tin liên hệ</string>
+    <string name="enter_text">Nhập tin nhắn...</string>
+    <string name="order_code">Mã đơn hàng: </string>
+    <string name="text_name">Tên người nhận: </string>
+    <string name="status_in_transit">Đang giao</string>
+    <string name="pay">Tiền trả: </string>
+    <string name="sub">-</string>
+    <string name="test_book">Giải tích 12</string>
+    <string name="delete">Xóa</string>
+    <string name="add">+</string>
 
 
     <string-array name="evalute">

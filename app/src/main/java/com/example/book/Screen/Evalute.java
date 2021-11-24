@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.book.Adapter.CustomAdapterEvalute;
-import com.example.book.MainActivity;
 import com.example.book.Object.FirebaseConnect;
 import com.example.book.R;
 import com.google.firebase.database.ChildEventListener;
@@ -38,7 +35,7 @@ public class Evalute extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.danh_gia);
+        setContentView(R.layout.activity_evaluate);
         setControl();
         setText();
         getDataInDatabase();

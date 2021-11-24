@@ -17,7 +17,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.book.Adapter.CustomAdapterProductSeen;
-import com.example.book.MainActivity;
 import com.example.book.Object.Product;
 import com.example.book.Object.User;
 import com.example.book.R;
@@ -36,7 +35,7 @@ import com.squareup.picasso.Picasso;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class ProfileActivity extends Fragment {
+public class ProfileFragment extends Fragment {
     TextView txtPhoneUser,txtAddressUser,txtRankUser,txtNameUser;
     Button btnTrangThaiDonHangUser,btnInfo,btnDoiMatKhau,btnSignOut,btnForgotPassword;
     User user;
@@ -114,7 +113,7 @@ public class ProfileActivity extends Fragment {
         gvSpDaXem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), DetailBook.class);
+                Intent intent = new Intent(getActivity(), BookDetailActivity.class);
 
                 intent.putExtra("imgProduct", list.get(position).getHinhAnh());
                 intent.putExtra("idProduct", list.get(position).getId());

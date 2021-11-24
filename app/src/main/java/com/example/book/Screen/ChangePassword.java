@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,7 +30,7 @@ public class ChangePassword extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.doi_mat_khau);
+        setContentView(R.layout.activity_change_password);
 
         edtCurrentPassword = findViewById(R.id.txtNhapMatKhau);
         edtNewPassword = findViewById(R.id.txtNhapMatKhauMoi);

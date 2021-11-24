@@ -41,7 +41,6 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.text.NumberFormat;
 import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -140,7 +139,7 @@ public class InfoUser extends AppCompatActivity {
                 Log.d("AAA", idUserCurrent + "");
                 //
                 LayoutInflater inflater = getLayoutInflater();
-                View alertLayout = inflater.inflate(R.layout.iteam_dialog_image, null);
+                View alertLayout = inflater.inflate(R.layout.item_dialog_image, null);
                 //
                 rdbcamera = alertLayout.findViewById(R.id.rdbChonAnhTuCamera);
                 rdbThuVien = alertLayout.findViewById(R.id.rdbChonAnhTuThuVien);

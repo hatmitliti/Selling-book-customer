@@ -28,12 +28,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class MessageUser extends Fragment {
+public class MessageFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.nhan_tin, container, false);
+        View view = inflater.inflate(R.layout.activity_messages, container, false);
         ArrayList<Message> list = new ArrayList<>();
 
         ListView lvTinNhan = view.findViewById(R.id.lvTinNhan);

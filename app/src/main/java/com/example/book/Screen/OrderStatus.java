@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,7 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.book.Adapter.CustomAdapterBill;
 import com.example.book.MainActivity;
 import com.example.book.Object.Bill;
-import com.example.book.Object.FirebaseConnect;
 import com.example.book.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +34,7 @@ public class OrderStatus extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.trang_thai_don_hang);
+        setContentView(R.layout.activity_order_status);
         setControl();
         getDataBill();
         setAction();

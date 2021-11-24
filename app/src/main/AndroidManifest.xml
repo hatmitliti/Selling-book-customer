@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Customer">
         <activity
-            android:name=".Screen.FogotPass"
+            android:name=".Screen.ForgotPasswordActivity"
             android:exported="true" />
         <activity
             android:name=".Screen.InfoUser"
             android:exported="true" />
         <activity
-            android:name=".Screen.DetailBook"
+            android:name=".Screen.BookDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.Register"
+            android:name=".Screen.SignUpActivity"
             android:exported="true" />
         <activity
             android:name=".Screen.MessageUserScreen"

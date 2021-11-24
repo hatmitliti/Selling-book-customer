@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,11 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.book.Adapter.CustomAdapterProduct;
 import com.example.book.Adapter.CustomAdapterProductInCart;
-import com.example.book.MainActivity;
 import com.example.book.Object.FirebaseConnect;
-import com.example.book.Object.Product;
 import com.example.book.Object.ProductInCart;
 import com.example.book.Object.Voucher;
 import com.example.book.R;
@@ -39,12 +35,9 @@ import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class Cart extends Fragment {
+public class CartActivity extends Fragment {
     GridView lvProductInCart;
-    TextView txtTongTienInCart;
-    TextView txtTienGiamInCart;
-    TextView txtTienTraInCart;
-
+    TextView txtTongTienInCart,txtTienGiamInCart,txtTienTraInCart;
     CheckBox chkTatCaInCart;
     Button btnMuaHangInCart;
     CustomAdapterProductInCart adapterProductInCart;
@@ -61,7 +54,7 @@ public class Cart extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.gio_hang, container, false);
+        View view = inflater.inflate(R.layout.activity_cart, container, false);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         setControl(view);
         setAction();

@@ -15,7 +15,7 @@ public class Home extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.nhan_tin, container, false);
+        View view = inflater.inflate(R.layout.activity_messages, container, false);
 
 
 

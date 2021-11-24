@@ -49,9 +49,17 @@
                 android:layout_marginStart="10dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:textStyle="bold">
-
-            </TextView>
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/txtPhoneUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Số điện thoại: 0987676545"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/txtAddressUser"
                 android:layout_width="match_parent"
@@ -62,27 +70,14 @@
                 android:layout_marginStart="10dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:textStyle="bold"></TextView>
-
-            <TextView
-                android:id="@+id/txtPhoneUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Số điện thoại: 0987676545"
-                android:layout_marginStart="10dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold">
-
-            </TextView>
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="TỔNG TIỀN BẠN ĐÃ MUA"
+                android:paddingStart="10dp"
+                android:text="Tổng tiền đã mua:"
                 android:textColor="@color/red"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -91,8 +86,9 @@
                 android:id="@+id/txtTotalMoneyUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="10.000.000"
+                android:paddingEnd="20dp"
                 android:textColor="@color/red"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -100,9 +96,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:text="Các sản phẩm bạn đã xem:"
+                android:layout_marginBottom="10dp"
                 android:layout_marginStart="10dp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 

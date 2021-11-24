@@ -27,7 +27,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.book.Adapter.CustomAdapterProduct;
-import com.example.book.Object.FirebaseConnect;
 import com.example.book.Object.Product;
 import com.example.book.R;
 import com.google.firebase.database.ChildEventListener;
@@ -35,15 +34,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.security.cert.PKIXRevocationChecker;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 
-public class HomeProduct extends Fragment {
+public class HomePageFragment extends Fragment {
 
     ArrayList<Product> listProduct = new ArrayList<>();
     CustomAdapterProduct adapterProduct;
@@ -56,7 +51,7 @@ public class HomeProduct extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.home_product, container, false);
+        View view = inflater.inflate(R.layout.activity_home_page, container, false);
         view_fillper = view.findViewById(R.id.view_fillper);
         // Hiển thị danh sách sản phẩm
         dataProduct = FirebaseDatabase.getInstance().getReference();
@@ -177,7 +172,7 @@ public class HomeProduct extends Fragment {
         grProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), DetailBook.class);
+                Intent intent = new Intent(getActivity(), BookDetailActivity.class);
 
                 intent.putExtra("imgProduct", listProduct.get(i).getHinhAnh());
                 intent.putExtra("idProduct", listProduct.get(i).getId());

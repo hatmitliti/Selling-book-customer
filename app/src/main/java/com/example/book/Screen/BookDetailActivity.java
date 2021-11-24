@@ -30,7 +30,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class DetailBook extends AppCompatActivity {
+public class BookDetailActivity extends AppCompatActivity {
     ImageView imgMessageInbox;
     ImageView imgAddCartChiTietSach;
     ImageView imgHinhAnhChiTietSach;
@@ -131,7 +131,7 @@ public class DetailBook extends AppCompatActivity {
         lvProductDetail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), DetailBook.class);
+                Intent intent = new Intent(getApplicationContext(), BookDetailActivity.class);
 
                 intent.putExtra("imgProduct", list.get(position).getHinhAnh());
                 intent.putExtra("nameProduct", list.get(position).getTenSanPham());
