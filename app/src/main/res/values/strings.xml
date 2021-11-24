@@ -21,6 +21,14 @@
     <string name="hint_add_password">Nhập mật khẩu</string>
     <string name="hint_add_re_password">Nhập lại mật khẩu</string>
     <string name="text_send">Gửi</string>
+    <string name="text_edit_infor_user">Chỉnh sửa thông tin tài khoản</string>
+    <string name="text_add_phone">Nhập số điện thoại</string>
+    <string name="text_add_address">Nhập địa chỉ</string>
+    <string name="text_full_name">Họ Và Tên: </string>
+    <string name="text_birthday">Ngày sinh:</string>
+    <string name="text_phone">Số Điện Thoại:</string>
+    <string name="text_address">Địa Chỉ:</string>
+    <string name="text_save">Lưu thay đổi</string>
 
 
     <string-array name="evalute">
