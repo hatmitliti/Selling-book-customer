@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.book.Adapter.CustomAdapterProduct;
 import com.example.book.Adapter.CustomAdapterProductSeen;
 import com.example.book.MainActivity;
 import com.example.book.Object.FirebaseConnect;
@@ -52,7 +50,7 @@ public class DetailBook extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chi_tiet_sach);
+        setContentView(R.layout.activity_book_detail);
         list = new ArrayList<>();
         adapter = new CustomAdapterProductSeen(getApplicationContext(), R.layout.item_product_listview_seen, list);
         setControl();

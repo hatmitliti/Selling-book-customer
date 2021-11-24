@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9AFF9E"
     android:orientation="vertical">
 
     <ScrollView
@@ -20,17 +19,18 @@
                 android:id="@+id/tbChangePassword"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#FF5722"
+                android:background="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:title="Chi tiết sản phẩm" />
+                app:title="@string/product_detail" />
 
             <ImageView
                 android:id="@+id/imgHinhAnhChiTietSach"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:src="@drawable/sach1" />
 
             <TextView
@@ -38,19 +38,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="Còn chút gi để nhớ"
+                android:gravity="center"
+                android:text="@string/book_name"
                 android:textColor="@color/black"
-                android:textSize="24dp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtGiaTienChiTietSach"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="99 000 VND"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="@string/money"
                 android:textColor="@color/red"
-                android:textSize="24dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -58,42 +60,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:text="Chi tiết sách"
+                android:paddingStart="10dp"
+                android:text="@string/text_detail_book"
+                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtKhoChiTietSach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Kho:200 cuốn"
+                android:layout_marginStart="20dp"
+                android:text="@string/warehouse"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtTheLoaiChiTietSach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Thể loại: Tiểu thuyết"
+                android:layout_marginStart="20dp"
+                android:text="@string/category"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/txtTacGiaChiTietSach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Tác giả: Nguyễn Ngọc Ánh"
+                android:layout_marginStart="20dp"
+                android:text="@string/author"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Các loại sách liên quan:"
+                android:text="@string/text_related_books"
                 android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:paddingStart="10dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <GridView
@@ -118,7 +128,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="5"
-            android:src="@drawable/mess" />
+            android:src="@drawable/mess"/>
 
         <ImageView
             android:id="@+id/imgAddCartChiTietSach"

@@ -29,6 +29,14 @@
     <string name="text_phone">Số Điện Thoại:</string>
     <string name="text_address">Địa Chỉ:</string>
     <string name="text_save">Lưu thay đổi</string>
+    <string name="text_related_books">Các loại sách liên quan:</string>
+    <string name="text_detail_book">Chi tiết sách:</string>
+    <string name="book_name">Còn chút gi để nhớ</string>
+    <string name="money">99 000 VND</string>
+    <string name="category">Thể loại: Tiểu thuyết</string>
+    <string name="warehouse">Kho:200 cuốn</string>
+    <string name="author">Tác giả: Nguyễn Ngọc Ánh</string>
+    <string name="product_detail">Chi tiết sản phẩm</string>
 
 
     <string-array name="evalute">
