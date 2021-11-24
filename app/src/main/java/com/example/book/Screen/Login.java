@@ -34,15 +34,12 @@ public class Login extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
     TextView btnQuenMK;
-    ImageView loginWithFacebook;
-    ImageView loginWithGoogle;
-
     ViewFlipper view_fillper_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sign_in);
         setControl();
         auth = FirebaseAuth.getInstance();
         remember();
@@ -132,23 +129,6 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), FogotPass.class));
             }
         });
-
-        // bấm đăng nhập với facebook:
-        loginWithFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        // Bấm đăng nhập với google:
-        loginWithGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
     }
 
     private void login() {
@@ -180,8 +160,6 @@ public class Login extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPassword);
         btnQuenMK = findViewById(R.id.btnQuenMK);
         view_fillper_login = findViewById(R.id.view_fillper_login);
-        loginWithFacebook = findViewById(R.id.loginWithFacebook);
-        loginWithGoogle = findViewById(R.id.loginWithGoogle);
     }
 
 }

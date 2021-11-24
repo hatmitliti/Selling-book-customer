@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.book.Screen.Cart;
 import com.example.book.Screen.HomeProduct;
-import com.example.book.Screen.Me;
+import com.example.book.Screen.ProfileActivity;
 import com.example.book.Screen.MessageUser;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
@@ -26,7 +26,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
             case 2:
                 return new Cart();
             case 3:
-                return new Me();
+                return new ProfileActivity();
             default:
                 return new HomeProduct();
         }

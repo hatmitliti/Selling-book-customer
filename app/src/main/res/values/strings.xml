@@ -8,8 +8,13 @@
     <string name="hint_Username">Tài khoản</string>
     <string name="hint_password">Mật khẩu</string>
     <string name="text_sign_in">Đăng nhập</string>
-    <string name="text_sign_out">Đăng ký</string>
+    <string name="text_sign_up">Đăng ký</string>
+    <string name="text_sign_out">Đăng xuất</string>
     <string name="text_forgot_password">Quên mật khẩu?</string>
+    <string name="text_change_password">Đổi mật khẩu</string>
+    <string name="text_information_user">Thông tin tài khoản</string>
+    <string name="text_order_status">Trạng thái đơn hàng</string>
+    <string name="text_forgot_password_">Quên mật khẩu</string>
 
 
     <string-array name="evalute">

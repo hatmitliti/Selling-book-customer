@@ -12,13 +12,13 @@
         android:id="@+id/view_fillper_login"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2" />
+        android:layout_weight="3" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_centerInParent="true"
-        android:layout_weight="8"
+        android:layout_weight="7"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:gravity="bottom"
+            android:gravity="center"
             android:orientation="vertical">
 
             <EditText
@@ -36,6 +36,7 @@
                 android:layout_marginBottom="10dp"
                 android:ems="15"
                 android:minHeight="48dp"
+                android:imeOptions="actionNext"
                 android:layout_gravity="center"
                 android:hint="@string/hint_Username"
                 android:focusable="true"
@@ -49,6 +50,7 @@
                 android:layout_gravity="center"
                 android:ems="15"
                 android:minHeight="48dp"
+                android:imeOptions="actionDone"
                 android:layout_marginTop="10dp"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
@@ -81,7 +83,7 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="100dp"
                 android:background="@drawable/bg_corner_button"
-                android:text="@string/text_sign_out"
+                android:text="@string/text_sign_up"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -90,7 +92,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2">
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/btnQuenMK"

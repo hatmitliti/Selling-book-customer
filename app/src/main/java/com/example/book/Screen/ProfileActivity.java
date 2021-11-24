@@ -1,17 +1,8 @@
 package com.example.book.Screen;
 
-import static android.app.Activity.RESULT_OK;
-
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,45 +17,34 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.book.Adapter.CustomAdapterProduct;
 import com.example.book.Adapter.CustomAdapterProductSeen;
 import com.example.book.MainActivity;
 import com.example.book.Object.Product;
 import com.example.book.Object.User;
 import com.example.book.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 
-public class Me extends Fragment {
-    TextView txtPhoneUser;
-    TextView txtAddressUser;
-    TextView txtRankUser;
-    TextView txtNameUser;
-    Button btnTrangThaiDonHangUser;
-    Button btnInfo;
-    Button btnDoiMatKhau;
-    Button btnSignOut;
+public class ProfileActivity extends Fragment {
+    TextView txtPhoneUser,txtAddressUser,txtRankUser,txtNameUser;
+    Button btnTrangThaiDonHangUser,btnInfo,btnDoiMatKhau,btnSignOut,btnForgotPassword;
     User user;
     ImageView imgUser;
     String idUserCurrent;
     Context context;
+    FirebaseAuth mAuth;
 
     GridView gvSpDaXem;
     ArrayList<Product> list;
@@ -73,9 +52,11 @@ public class Me extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.nguoi_dung, container, false);
+        View view = inflater.inflate(R.layout.activity_profile, container, false);
         context = view.getContext();
         // set control
+        mAuth = FirebaseAuth.getInstance();
+
         btnTrangThaiDonHangUser = view.findViewById(R.id.btnTrangThaiDonHangUser);
         txtAddressUser = view.findViewById(R.id.txtAddressUser);
         txtPhoneUser = view.findViewById(R.id.txtPhoneUser);
@@ -86,6 +67,7 @@ public class Me extends Fragment {
         btnDoiMatKhau = view.findViewById(R.id.btnDoiMatKhau);
         btnInfo = view.findViewById(R.id.btnInfo);
         btnSignOut = view.findViewById(R.id.btnSignOut);
+        btnForgotPassword = view.findViewById(R.id.btnForgotPassword);
         TextView txtTotalMoneyUser = view.findViewById(R.id.txtTotalMoneyUser);
 
 
@@ -160,8 +142,30 @@ public class Me extends Fragment {
                 startActivity(new Intent(getActivity(), InfoUser.class));
             }
         });
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                startActivity(new Intent(getActivity(),Login.class));
+                getActivity().finishAffinity();
+            }
+        });
+        btnForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser mUser = mAuth.getCurrentUser();
+                mAuth.sendPasswordResetEmail(mUser.getEmail()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
 
+                        } else {
 
+                        }
+                    }
+                });
+            }
+        });
         return view;
     }
 
