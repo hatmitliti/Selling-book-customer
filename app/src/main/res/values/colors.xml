@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="colorYellow">#FFC107</color>
+    <color name="bg_toolbar">#FF5722</color>
 </resources>

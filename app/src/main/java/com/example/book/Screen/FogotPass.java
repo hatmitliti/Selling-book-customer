@@ -20,7 +20,7 @@ public class FogotPass extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fogot_pass);
+        setContentView(R.layout.activity_forgot_password);
 
         EditText txtmailFogotPass = findViewById(R.id.txtmailFogotPass);
         Button btnGuiMail = findViewById(R.id.btnGuiMail);

@@ -40,8 +40,10 @@
             android:exported="true" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".Screen.Login"
+            android:name=".Screen.SignInActivity"
             android:exported="true">
+        </activity>
+        <activity android:name=".Screen.SplashActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,10 +1,7 @@
 package com.example.book.Screen;
 
-import static android.os.Debug.waitForDebugger;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,7 +15,6 @@ import com.example.book.MainActivity;
 import com.example.book.Object.User;
 import com.example.book.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,7 +30,7 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dang_ky_tai_khoan);
+        setContentView(R.layout.acticity_sign_up);
         setControl();
         setAction();
         // toolbarr
@@ -82,7 +78,7 @@ public class Register extends AppCompatActivity {
                                 DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
                                 database.child(auth.getUid()).setValue(user);
                                 MainActivity.usernameApp = auth.getUid();
-                                startActivity(new Intent(getApplicationContext(), Login.class));
+                                startActivity(new Intent(getApplicationContext(), SignInActivity.class));
                             } else {
                                 Toast.makeText(getApplicationContext(), "Đăng kí không thành công!", Toast.LENGTH_SHORT).show();
                             }

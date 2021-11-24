@@ -15,6 +15,12 @@
     <string name="text_information_user">Thông tin tài khoản</string>
     <string name="text_order_status">Trạng thái đơn hàng</string>
     <string name="text_forgot_password_">Quên mật khẩu</string>
+    <string name="text_add_full_name">Nhập họ tên</string>
+    <string name="text_add_email">Nhập địa chỉ mail</string>
+    <string name="text_add_birthday">Nhập ngày sinh</string>
+    <string name="hint_add_password">Nhập mật khẩu</string>
+    <string name="hint_add_re_password">Nhập lại mật khẩu</string>
+    <string name="text_send">Gửi</string>
 
 
     <string-array name="evalute">

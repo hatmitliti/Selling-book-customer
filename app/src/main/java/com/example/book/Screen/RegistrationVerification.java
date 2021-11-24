@@ -25,7 +25,7 @@ public class RegistrationVerification extends AppCompatActivity {
         btnGuiOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Login.class));
+                startActivity(new Intent(getApplicationContext(), SignInActivity.class));
             }
         });
     }

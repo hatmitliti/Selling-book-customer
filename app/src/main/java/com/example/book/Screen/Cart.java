@@ -27,6 +27,8 @@ import com.example.book.Object.Product;
 import com.example.book.Object.ProductInCart;
 import com.example.book.Object.Voucher;
 import com.example.book.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,7 +40,6 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class Cart extends Fragment {
-
     GridView lvProductInCart;
     TextView txtTongTienInCart;
     TextView txtTienGiamInCart;
@@ -50,6 +51,7 @@ public class Cart extends Fragment {
     ArrayList<ProductInCart> listProductInCart;
     DatabaseReference dataProduct;
     Spinner spinnerVoucherInCart;
+    FirebaseUser mUser;
    // ArrayList<String> mKey = new ArrayList<>();
     ArrayAdapter adapter;
     int tongTien;
@@ -60,6 +62,7 @@ public class Cart extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.gio_hang, container, false);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
         setControl(view);
         setAction();
         setTotalMoney();
@@ -149,7 +152,7 @@ public class Cart extends Fragment {
 
     public void getDataVoucher(ArrayList<String> listVoucher) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("vouchers");
-        database.child(MainActivity.usernameApp).addChildEventListener(new ChildEventListener() {
+        database.child(mUser.getUid()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Voucher voucher = snapshot.getValue(Voucher.class);
@@ -226,7 +229,7 @@ public class Cart extends Fragment {
     }
 
     public void getDataInDatabase() {
-        dataProduct.child("carts").child(MainActivity.usernameApp).addChildEventListener(new ChildEventListener() {
+        dataProduct.child("carts").child(mUser.getUid()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 ProductInCart productInCart = snapshot.getValue(ProductInCart.class);

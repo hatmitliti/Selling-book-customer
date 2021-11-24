@@ -17,6 +17,8 @@ import com.example.book.Adapter.CustomAdapterMessage;
 import com.example.book.MainActivity;
 import com.example.book.Object.Message;
 import com.example.book.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,12 +39,13 @@ public class MessageUser extends Fragment {
         ListView lvTinNhan = view.findViewById(R.id.lvTinNhan);
         EditText txtNoiDungTinNhan = view.findViewById(R.id.txtNoiDungTinNhan);
         Button btnGuiTinNhan = view.findViewById(R.id.btnGuiTinNhan);
+        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 
 // lấy tin nhắn về
         CustomAdapterMessage customAdapterMessage = new CustomAdapterMessage(getContext(), R.layout.item_nhan_tin, list);
         lvTinNhan.setAdapter(customAdapterMessage);
         DatabaseReference mDatabaseUser = FirebaseDatabase.getInstance().getReference("messages");
-        mDatabaseUser.child(MainActivity.usernameApp).addChildEventListener(new ChildEventListener() {
+        mDatabaseUser.child(mUser.getUid()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Message message = snapshot.getValue(Message.class);

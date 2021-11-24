@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +44,7 @@ public class ProfileActivity extends Fragment {
     String idUserCurrent;
     Context context;
     FirebaseAuth mAuth;
+    FirebaseUser mUser;
 
     GridView gvSpDaXem;
     ArrayList<Product> list;
@@ -56,6 +56,7 @@ public class ProfileActivity extends Fragment {
         context = view.getContext();
         // set control
         mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         btnTrangThaiDonHangUser = view.findViewById(R.id.btnTrangThaiDonHangUser);
         txtAddressUser = view.findViewById(R.id.txtAddressUser);
@@ -73,7 +74,7 @@ public class ProfileActivity extends Fragment {
 
         // lấy thông tin user:
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
-        mDatabase.child(MainActivity.usernameApp).addValueEventListener(new ValueEventListener() {
+        mDatabase.child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user = snapshot.getValue(User.class);
@@ -146,7 +147,7 @@ public class ProfileActivity extends Fragment {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
-                startActivity(new Intent(getActivity(),Login.class));
+                startActivity(new Intent(getActivity(), SignInActivity.class));
                 getActivity().finishAffinity();
             }
         });
@@ -175,7 +176,7 @@ public class ProfileActivity extends Fragment {
         list.clear();
         // lấy ds các sản phẩm đã xem:
         DatabaseReference data = FirebaseDatabase.getInstance().getReference("product_seens");
-        data.child(MainActivity.usernameApp).addChildEventListener(new ChildEventListener() {
+        data.child(mUser.getUid()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 list.add(snapshot.getValue(Product.class));

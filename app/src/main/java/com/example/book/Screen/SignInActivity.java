@@ -28,7 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class Login extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
     Button btnDangKyTaiKhoanLogin, btnDangNhap;
     EditText edtUsername, edtPassword;
     FirebaseAuth auth;
@@ -42,10 +42,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         setControl();
         auth = FirebaseAuth.getInstance();
-        remember();
         setAction();
-
-
         // slides:
         // Hiển thị slide:
         int background[] = {R.drawable.user1, R.drawable.user2, R.drawable.user3, R.drawable.user4};
@@ -53,8 +50,6 @@ public class Login extends AppCompatActivity {
         for (int i = 0; i < background.length; i++) {
             setViewFlipper(background[i]);
         }
-
-
     }
 
     public void setViewFlipper(int background) {
@@ -65,44 +60,6 @@ public class Login extends AppCompatActivity {
         view_fillper_login.setAutoStart(true);
         view_fillper_login.setInAnimation(getApplicationContext(), android.R.anim.slide_in_left);
         view_fillper_login.setOutAnimation(getApplicationContext(), android.R.anim.slide_out_right);
-    }
-
-    private void remember() {
-        user = auth.getCurrentUser();
-        if (user != null) {
-            DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
-            database.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    if (snapshot.getKey().equals(auth.getUid())){
-                        MainActivity.usernameApp = auth.getUid();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    }
-                }
-
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-
-        }
     }
 
     private void setAction() {
