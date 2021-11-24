@@ -11,6 +11,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.book.MainActivity;
@@ -20,6 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Login extends AppCompatActivity {
@@ -36,7 +42,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dang_nhap);
+        setContentView(R.layout.activity_main);
         setControl();
         auth = FirebaseAuth.getInstance();
         remember();
@@ -67,8 +73,38 @@ public class Login extends AppCompatActivity {
     private void remember() {
         user = auth.getCurrentUser();
         if (user != null) {
-            MainActivity.usernameApp = auth.getUid();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
+            database.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    if (snapshot.getKey().equals(auth.getUid())){
+                        MainActivity.usernameApp = auth.getUid();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
         }
     }
 
@@ -93,10 +129,9 @@ public class Login extends AppCompatActivity {
         btnQuenMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendEmailResetPassword();
+                startActivity(new Intent(getApplicationContext(), FogotPass.class));
             }
         });
-
 
         // bấm đăng nhập với facebook:
         loginWithFacebook.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +141,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
         // Bấm đăng nhập với google:
         loginWithGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,24 +148,7 @@ public class Login extends AppCompatActivity {
 
             }
         });
-    }
 
-    private void sendEmailResetPassword() {
-        String email=edtUsername.getText().toString();
-        if(email.isEmpty()){
-            edtUsername.setError("Trường email đang trống!");
-        }else {
-            auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(getApplicationContext(), "Vui lòng kiểm tra email!", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(getApplicationContext(), "Gửi email đổi mật khẩu không thành công!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
     }
 
     private void login() {

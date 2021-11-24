@@ -20,19 +20,35 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class ChangePassword extends AppCompatActivity {
-    private Toolbar toolbar;
-    private EditText edtNhapMatKhau, edtNhapMatKhauMoi, edtNhapLaiMatKhauMoi;
-    private Button btnDoiMK;
+
     FirebaseUser user;
     FirebaseAuth auth;
+    EditText edtCurrentPassword;
+    EditText edtNewPassword;
+    EditText edtRePassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doi_mat_khau);
-        mapping();
+
+        edtCurrentPassword = findViewById(R.id.txtNhapMatKhau);
+        edtNewPassword = findViewById(R.id.txtNhapMatKhauMoi);
+        edtRePassword = findViewById(R.id.txtNhapLaiMatKhauMoi);
+        Button btnDoiMK = findViewById(R.id.btnDoiMK);
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+        btnDoiMK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reAuthenticationPassword();
+            }
+        });
+        // toolbarr
+        Toolbar toolbar = findViewById(R.id.tbChangePassword);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(getResources().getString(R.string.chang_password));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -41,24 +57,16 @@ public class ChangePassword extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        btnDoiMK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reAuthenticationPassword();
-            }
-        });
     }
 
     private void reAuthenticationPassword() {
-        user = auth.getCurrentUser();
         String email = user.getEmail();
-        String password = edtNhapMatKhau.getText().toString().trim();
+        String password = edtCurrentPassword.getText().toString().trim();
 
         if (password.isEmpty()) {
-            edtNhapMatKhau.setError("Trường mật khẩu trống!");
+            edtCurrentPassword.setError("Trường mật khẩu trống!");
         } else {
-            AuthCredential credential = EmailAuthProvider
-                    .getCredential(email, password);
+            AuthCredential credential = EmailAuthProvider.getCredential(email, password);
             user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -74,14 +82,14 @@ public class ChangePassword extends AppCompatActivity {
 
     private void changePassword() {
         user = auth.getCurrentUser();
-        String password = edtNhapMatKhauMoi.getText().toString().trim();
-        String repassword = edtNhapLaiMatKhauMoi.getText().toString().trim();
+        String password = edtNewPassword.getText().toString().trim();
+        String repassword = edtRePassword.getText().toString().trim();
         if (password.isEmpty()) {
-            edtNhapMatKhauMoi.setError("Trường mật khẩu trống!");
+            edtNewPassword.setError("Trường mật khẩu trống!");
         } else if (repassword.isEmpty()) {
-            edtNhapLaiMatKhauMoi.setError("Trường nhập lại mật khẩu trống!");
+            edtRePassword.setError("Trường nhập lại mật khẩu trống!");
         } else if (!repassword.equalsIgnoreCase(password)) {
-            edtNhapLaiMatKhauMoi.setError("Nhập lại mật khẩu không khớp!");
+            edtRePassword.setError("Nhập lại mật khẩu không khớp!");
         } else {
             user.updatePassword(password).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -96,12 +104,4 @@ public class ChangePassword extends AppCompatActivity {
         }
     }
 
-    private void mapping() {
-        auth = FirebaseAuth.getInstance();
-        edtNhapMatKhau = findViewById(R.id.txtNhapMatKhau);
-        edtNhapMatKhauMoi = findViewById(R.id.txtNhapMatKhauMoi);
-        edtNhapLaiMatKhauMoi = findViewById(R.id.txtNhapLaiMatKhauMoi);
-        btnDoiMK = findViewById(R.id.btnDoiMK);
-        toolbar = findViewById(R.id.toolbar_ChangePassword);
-    }
 }

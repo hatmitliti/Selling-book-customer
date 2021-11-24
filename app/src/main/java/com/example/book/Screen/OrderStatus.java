@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.book.Adapter.CustomAdapterBill;
 import com.example.book.MainActivity;
@@ -39,6 +40,17 @@ public class OrderStatus extends AppCompatActivity {
         setControl();
         getDataBill();
         setAction();
+        // toolbarr
+        Toolbar toolbar = findViewById(R.id.tbChangePassword);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
@@ -50,7 +62,7 @@ public class OrderStatus extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Bill bill = snapshot.getValue(Bill.class);
                 if (bill.getId_user().equals(MainActivity.usernameApp)) {
-                    if (!bill.isEvalute() == true) {
+                    if (!(bill.isEvalute() == true)) {
                         listBill.add(bill);
                         customAdapterBill.notifyDataSetChanged();
                         mKey.add(snapshot.getKey());

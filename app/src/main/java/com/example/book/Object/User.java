@@ -8,11 +8,11 @@ public class User {
     private String phone;
     private String rank;
     private String image;
-
+    private String nameImage;
     public User() {
     }
 
-    public User(String address, String birth, int moneyBuy, String name, String phone, String rank, String image) {
+    public User(String address, String birth, int moneyBuy, String name, String phone, String rank, String image,String nameImage) {
         this.address = address;
         this.birth = birth;
         this.moneyBuy = moneyBuy;
@@ -20,6 +20,15 @@ public class User {
         this.phone = phone;
         this.rank = rank;
         this.image = image;
+        this.nameImage = nameImage;
+    }
+
+    public String getNameImage() {
+        return nameImage;
+    }
+
+    public void setNameImage(String nameImage) {
+        this.nameImage = nameImage;
     }
 
     public String getImage() {

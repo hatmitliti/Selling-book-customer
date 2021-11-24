@@ -2,150 +2,114 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="#9AFF9E"
     android:layout_height="match_parent"
+    android:background="#9AFF9E"
     android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9">
+        android:layout_height="match_parent"
+        android:layout_weight="0.8">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tbChangePassword"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#FF5722"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="Chi tiết sản phẩm" />
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imgHinhAnhChiTietSach"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/sach1" />
+
+            <TextView
+                android:id="@+id/txtTenSachChiTietSach"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:paddingLeft="10dp"
+                android:text="Còn chút gi để nhớ"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/tb"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/black"
-                    app:title="Chi tiết sản phẩm"
-                    app:titleTextColor="@color/white" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imgHinhAnhChiTietSach"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:src="@drawable/sach1" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txtTenSachChiTietSach"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:text="Còn chút gi để nhớ"
-                        android:textColor="@color/black"
-                        android:textSize="24dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtGiaTienChiTietSach"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:text="99 000 VND"
-                        android:textColor="@color/red"
-                        android:textSize="24dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-
-                <TextView
-                    android:layout_marginBottom="20dp"
-                    android:id="@+id/txtMoTaChiTietSach"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Chi tiết sách"
-                    android:textColor="@color/black"
-                    android:textSize="15dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txtKhoChiTietSach"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Kho:200 cuốn"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/txtTheLoaiChiTietSach"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Thể loại: Tiểu thuyết"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/txtTacGiaChiTietSach"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="Tác giả: Nguyễn Ngọc Ánh"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/txtGiaTienChiTietSach"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:paddingLeft="10dp"
+                android:text="99 000 VND"
+                android:textColor="@color/red"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Các loại sách liên quan:"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txtMoTaChiTietSach"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Chi tiết sách"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
-                <GridView
-                    android:id="@+id/lvProductDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:numColumns="2" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/txtKhoChiTietSach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Kho:200 cuốn"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/txtTheLoaiChiTietSach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Thể loại: Tiểu thuyết"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/txtTacGiaChiTietSach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Tác giả: Nguyễn Ngọc Ánh"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Các loại sách liên quan:"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <GridView
+                android:id="@+id/lvProductDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="10dp"
+                android:numColumns="3"
+                android:verticalSpacing="10dp" />
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_weight="9.2"
         android:gravity="center"
         android:orientation="horizontal">
 

@@ -14,6 +14,14 @@
             android:layout_height="100dp" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TRANG CHỦ"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,6 +50,8 @@
             android:id="@+id/grProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:numColumns="2" />
+            android:horizontalSpacing="10dp"
+            android:numColumns="2"
+            android:verticalSpacing="10dp" />
     </LinearLayout>
 </LinearLayout>

@@ -50,7 +50,7 @@ public class Cart extends Fragment {
     ArrayList<ProductInCart> listProductInCart;
     DatabaseReference dataProduct;
     Spinner spinnerVoucherInCart;
-    ArrayList<String> mKey = new ArrayList<>();
+   // ArrayList<String> mKey = new ArrayList<>();
     ArrayAdapter adapter;
     int tongTien;
     int giamTien;
@@ -67,6 +67,12 @@ public class Cart extends Fragment {
         clickButtonMuaHang();
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDataInDatabase();
     }
 
     private void clickButtonMuaHang() {
@@ -122,7 +128,6 @@ public class Cart extends Fragment {
         getDataInDatabase();
         adapterProductInCart = new CustomAdapterProductInCart(getContext(), R.layout.item_product_in_cart, listProductInCart);
         lvProductInCart.setAdapter(adapterProductInCart);
-
         // khi chọn voucher:
         ArrayList<String> listVoucher = new ArrayList<>();
         listVoucher.add("No voucher");
@@ -225,29 +230,43 @@ public class Cart extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 ProductInCart productInCart = snapshot.getValue(ProductInCart.class);
-                listProductInCart.add(productInCart);
-                mKey.add(snapshot.getKey());
-                adapterProductInCart.notifyDataSetChanged();
+                boolean check = false;
+                for (int i = 0; i < listProductInCart.size(); i++) {
+                    if (listProductInCart.get(i).getId().equals(productInCart.getId())) {
+                        check = true;
+                    }
+                }
+                if (check == false) {
+                    listProductInCart.add(productInCart);
+                //    mKey.add(snapshot.getKey());
+                    adapterProductInCart.notifyDataSetChanged();
+                }
+
+
                 setTotalMoney();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                // lấy địa chỉ id của đối tượng vừa bị thay đổi bên trong mảng mkey
-                String key = snapshot.getKey();
-                int index = mKey.indexOf(key);
-                // thay đổi dữ liệu trong gridview giống với dữ liệu trên firebase
-                listProductInCart.set(index, snapshot.getValue(ProductInCart.class));
+                ProductInCart product = snapshot.getValue(ProductInCart.class);
+                for (int i=0;i<listProductInCart.size();i++){
+                    if (listProductInCart.get(i).getId().equals(product.getId())){
+                        listProductInCart.set(i, product);
+                    }
+                }
                 adapterProductInCart.notifyDataSetChanged();
                 setTotalMoney();
+
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                String key = snapshot.getKey();
-                int index = mKey.indexOf(key);
-                listProductInCart.remove(index);
-                mKey.remove(index);
+                ProductInCart product = snapshot.getValue(ProductInCart.class);
+                for (int i=0;i<listProductInCart.size();i++){
+                    if (listProductInCart.get(i).getId().equals(product.getId())){
+                        listProductInCart.remove(i);
+                    }
+                }
                 adapterProductInCart.notifyDataSetChanged();
                 setTotalMoney();
             }
@@ -275,6 +294,5 @@ public class Cart extends Fragment {
         txtTienGiamInCart = view.findViewById(R.id.txtTienGiamInCart);
         txtTienTraInCart = view.findViewById(R.id.txtTienTraInCart);
     }
-
 
 }

@@ -76,17 +76,15 @@ public class HomeProduct extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String locCategory = spLoaiSanPham.getSelectedItem().toString();
-                for (int j = 0; j < listProduct.size(); j++) {
-                    if (listProduct.get(j).getCategory().equals(locCategory)) {
-                        listProduct.remove(j);
-                        adapterProduct.notifyDataSetChanged();
-                    }
-                }
+                listProduct.clear();
+                mKey.clear();
+                getDatafirebaseProduct(locCategory);
                 if (locCategory.equals("Tất cả")) {
                     listProduct.clear();
-                    getDatafirebaseProduct();
+                    mKey.clear();
+                    getDatafirebaseProduct("Tất cả");
                 }
-
+                adapterProduct.notifyDataSetChanged();
             }
 
             @Override
@@ -157,12 +155,11 @@ public class HomeProduct extends Fragment {
                 String text = txtSearchProductInHome.getText().toString();
                 if (text.equals("")) {
                     listProduct.clear();
-                    getDatafirebaseProduct();
+                    getDatafirebaseProduct("Tất cả");
                 } else {
                     for (int j = 0; j < listProduct.size(); j++) {
                         if (!listProduct.get(j).getTenSanPham().equals(text)) {
                             listProduct.remove(j);
-
                         }
                     }
                 }
@@ -217,25 +214,61 @@ public class HomeProduct extends Fragment {
         view_fillper.setOutAnimation(getActivity(), android.R.anim.slide_out_right);
     }
 
-    private void getDatafirebaseProduct() {
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDatafirebaseProduct("Tất cả");
+    }
+
+    private void getDatafirebaseProduct(String category) {
         // lấy dữ liệu product từ firebase
         dataProduct.child("products").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Product pd = snapshot.getValue(Product.class);
-                pd.setId(snapshot.getKey());
-                listProduct.add(pd);
+                if (category.equals("Tất cả")) {
+                    Product pd = snapshot.getValue(Product.class);
+                    pd.setId(snapshot.getKey());
+                    boolean check = false;
+                    for (int i = 0; i < listProduct.size(); i++) {
+                        if (listProduct.get(i).getId().equals(pd.getId())) {
+                            check = true;
+                        }
+                    }
+                    if (check == false) {
+                        listProduct.add(pd);
+                        // Lấy loại sp bỏ vào list spinner lọc
+                        if (!listCateory.contains(pd.getCategory())) {
+                            listCateory.add(pd.getCategory());
+                        }
+                        adapterProduct.notifyDataSetChanged();
+                        // lấy id của các sản phẩm
+                        String key = snapshot.getKey();
+                        mKey.add(key);
+                    }
 
-                // Lấy loại sp bỏ vào list spinner lọc
-                if (!listCateory.contains(pd.getCategory())) {
-                    listCateory.add(pd.getCategory());
+                } else {
+                    Product pd = snapshot.getValue(Product.class);
+                    pd.setId(snapshot.getKey());
+                    if (pd.getCategory().equals(category)) {
+                        boolean check = false;
+                        for (int i = 0; i < listProduct.size(); i++) {
+                            if (listProduct.get(i).getId().equals(pd.getId())) {
+                                check = true;
+                            }
+                        }
+                        if (check == false) {
+                            listProduct.add(pd);
+                            // Lấy loại sp bỏ vào list spinner lọc
+                            if (!listCateory.contains(pd.getCategory())) {
+                                listCateory.add(pd.getCategory());
+                            }
+                            adapterProduct.notifyDataSetChanged();
+                            // lấy id của các sản phẩm
+                            String key = snapshot.getKey();
+                            mKey.add(key);
+                        }
+                    }
                 }
-
-                adapterProduct.notifyDataSetChanged();
-                // lấy id của các sản phẩm
-                String key = snapshot.getKey();
-                mKey.add(key);
-
             }
 
             @Override
@@ -253,6 +286,7 @@ public class HomeProduct extends Fragment {
                 String key = snapshot.getKey();
                 int index = mKey.indexOf(key);
                 listProduct.remove(index);
+                mKey.remove(index);
                 adapterProduct.notifyDataSetChanged();
             }
 
