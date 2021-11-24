@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.book.Adapter.CustomAdapterBill;
+import com.example.book.Dialog.NotificationDialog;
 import com.example.book.MainActivity;
 import com.example.book.Object.Bill;
 import com.example.book.R;
@@ -24,17 +24,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class OrderStatus extends AppCompatActivity {
+public class OrderStatusActivity extends AppCompatActivity {
 
     ListView lvDonHangCanGiao;
     ArrayList<Bill> listBill;
     CustomAdapterBill customAdapterBill;
     ArrayList<String> mKey = new ArrayList<>();
+    private NotificationDialog notificationDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_status);
+        notificationDialog = new NotificationDialog(this);
         setControl();
         getDataBill();
         setAction();
@@ -106,12 +108,12 @@ public class OrderStatus extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (listBill.get(i).getStatus() == 5 || listBill.get(i).getStatus() == 6 || listBill.get(i).getStatus() == 7) {
-                    Intent intent = new Intent(getApplicationContext(), Evalute.class);
+                    Intent intent = new Intent(getApplicationContext(), EvaluateActivity.class);
                     intent.putExtra("id_billsss", listBill.get(i).getId());
                     startActivity(intent);
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "Đơn hàng chưa giao nên chưa thể đánh giá ", Toast.LENGTH_SHORT).show();
+                    notificationDialog.startErrorDialog(getResources().getString(R.string.order_evaluate_failed));
                 }
             }
         });

@@ -85,7 +85,7 @@ public class CartActivity extends Fragment {
                         }
                     }
                     // truyền dữ liệu qua màn hình xác nhận mua
-                    Intent intent = new Intent(getActivity(), OrderConfirmation.class);
+                    Intent intent = new Intent(getActivity(), OrderConfirmationActivity.class);
                     Bundle b = new Bundle();
                     b.putSerializable("listProductCart", (Serializable) list);
                     intent.putExtras(b);

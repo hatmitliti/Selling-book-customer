@@ -15,7 +15,7 @@
             android:name=".Screen.ForgotPasswordActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.InfoUser"
+            android:name=".Screen.UserInformationActivity"
             android:exported="true" />
         <activity
             android:name=".Screen.BookDetailActivity"
@@ -27,16 +27,16 @@
             android:name=".Screen.MessageUserScreen"
             android:exported="true" />
         <activity
-            android:name=".Screen.OrderStatus"
+            android:name=".Screen.OrderStatusActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.OrderConfirmation"
+            android:name=".Screen.OrderConfirmationActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.Evalute"
+            android:name=".Screen.EvaluateActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.ChangePassword"
+            android:name=".Screen.ChangePasswordActivity"
             android:exported="true" />
         <activity android:name=".MainActivity" />
         <activity

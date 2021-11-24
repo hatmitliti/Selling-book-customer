@@ -51,7 +51,7 @@ public class HomePageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_home_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         view_fillper = view.findViewById(R.id.view_fillper);
         // Hiển thị danh sách sản phẩm
         dataProduct = FirebaseDatabase.getInstance().getReference();

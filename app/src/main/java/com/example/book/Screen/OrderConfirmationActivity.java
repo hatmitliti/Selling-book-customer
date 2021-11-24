@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.book.Dialog.NotificationDialog;
 import com.example.book.MainActivity;
 import com.example.book.Object.Bill;
 import com.example.book.Object.FirebaseConnect;
@@ -33,28 +34,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class OrderConfirmation extends AppCompatActivity {
+public class OrderConfirmationActivity extends AppCompatActivity {
 
     ImageView imgIconDeliver;
-    TextView txtSoLuongSanPhamXacNhanDonHang;
-    TextView txtTongTienXacNhanDonHang;
-    TextView txtGiamGiaXacNhanDonHang;
-    TextView txtTienTraXacNhanDonHang;
-
-    EditText txtQuanHuyenXacNhanDonHang;
-    EditText txtSoDienThoaiXacNhanDonHang;
-    EditText txtXaPhuongXacNhanDonHang;
-    EditText txtKhuPhoXacNhanDonHang;
-    EditText txtSoNhaTenDuongXacNhanDonHang;
+    TextView txtSoLuongSanPhamXacNhanDonHang,txtTongTienXacNhanDonHang,txtGiamGiaXacNhanDonHang,txtTienTraXacNhanDonHang;
+    EditText edtQuanHuyenXacNhanDonHang,edtSoDienThoaiXacNhanDonHang,
+            edtXaPhuongXacNhanDonHang,edtKhuPhoXacNhanDonHang,edtSoNhaTenDuongXacNhanDonHang;
 
     Button btnDatHangXacNhanDonHang;
     ArrayList<ProductInCart> listProduct;
     String name = "";
+    private NotificationDialog notificationDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirm);
+        notificationDialog = new NotificationDialog(this);
         setControl();
         setText();
         setAction();
@@ -110,22 +106,22 @@ public class OrderConfirmation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (txtQuanHuyenXacNhanDonHang.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ", Toast.LENGTH_SHORT).show();
-                } else if (txtSoDienThoaiXacNhanDonHang.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ", Toast.LENGTH_SHORT).show();
-                } else if (txtXaPhuongXacNhanDonHang.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ", Toast.LENGTH_SHORT).show();
-                } else if (txtKhuPhoXacNhanDonHang.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ", Toast.LENGTH_SHORT).show();
-                } else if (txtSoNhaTenDuongXacNhanDonHang.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ", Toast.LENGTH_SHORT).show();
+                if (edtQuanHuyenXacNhanDonHang.getText().toString().isEmpty()) {
+                    edtQuanHuyenXacNhanDonHang.setError(getResources().getString(R.string.field_empty));
+                } else if (edtSoDienThoaiXacNhanDonHang.getText().toString().isEmpty()) {
+                    edtSoDienThoaiXacNhanDonHang.setError(getResources().getString(R.string.field_empty));
+                } else if (edtXaPhuongXacNhanDonHang.getText().toString().isEmpty()) {
+                    edtXaPhuongXacNhanDonHang.setError(getResources().getString(R.string.field_empty));
+                } else if (edtKhuPhoXacNhanDonHang.getText().toString().isEmpty()) {
+                    edtKhuPhoXacNhanDonHang.setError(getResources().getString(R.string.field_empty));
+                } else if (edtSoNhaTenDuongXacNhanDonHang.getText().toString().isEmpty()) {
+                    edtSoNhaTenDuongXacNhanDonHang.setError(getResources().getString(R.string.field_empty));
                 } else {
 
-                    String address = txtSoNhaTenDuongXacNhanDonHang.getText().toString() + " " +
-                            txtKhuPhoXacNhanDonHang.getText().toString() + " " +
-                            txtXaPhuongXacNhanDonHang.getText().toString() + " " +
-                            txtQuanHuyenXacNhanDonHang.getText().toString();
+                    String address = edtSoNhaTenDuongXacNhanDonHang.getText().toString() + " - " +
+                            edtKhuPhoXacNhanDonHang.getText().toString() + " - " +
+                            edtXaPhuongXacNhanDonHang.getText().toString() + " - " +
+                            edtQuanHuyenXacNhanDonHang.getText().toString();
 
                     int discount = 0;
                     if (getIntent().getStringExtra("tienGiam").equals("No voucher")) {
@@ -138,7 +134,7 @@ public class OrderConfirmation extends AppCompatActivity {
                     String id = UUID.randomUUID().toString();
                     String id_user = MainActivity.usernameApp;
 
-                    String sdt = txtSoDienThoaiXacNhanDonHang.getText().toString();
+                    String sdt = edtSoDienThoaiXacNhanDonHang.getText().toString();
                     int tong = Integer.parseInt(getIntent().getStringExtra("tongTien"));
                     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                     Date date = new Date();
@@ -152,7 +148,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
                         mDatabase.child(MainActivity.usernameApp).child(id_voucher).removeValue();
                     }
-                    Toast.makeText(getApplicationContext(), "Đơn hàng đã được đặt", Toast.LENGTH_SHORT).show();
+                    notificationDialog.startSuccessfulDialog(getResources().getString(R.string.order_success));
                     onBackPressed();
                 }
             }
@@ -167,11 +163,11 @@ public class OrderConfirmation extends AppCompatActivity {
         txtTongTienXacNhanDonHang = findViewById(R.id.txtTongTienXacNhanDonHang);
         txtGiamGiaXacNhanDonHang = findViewById(R.id.txtGiamGiaXacNhanDonHang);
         txtTienTraXacNhanDonHang = findViewById(R.id.txtTienTraXacNhanDonHang);
-        txtQuanHuyenXacNhanDonHang = findViewById(R.id.txtQuanHuyenXacNhanDonHang);
-        txtXaPhuongXacNhanDonHang = findViewById(R.id.txtXaPhuongXacNhanDonHang);
-        txtKhuPhoXacNhanDonHang = findViewById(R.id.txtKhuPhoXacNhanDonHang);
-        txtSoNhaTenDuongXacNhanDonHang = findViewById(R.id.txtSoNhaTenDuongXacNhanDonHang);
+        edtQuanHuyenXacNhanDonHang = findViewById(R.id.txtQuanHuyenXacNhanDonHang);
+        edtXaPhuongXacNhanDonHang = findViewById(R.id.txtXaPhuongXacNhanDonHang);
+        edtKhuPhoXacNhanDonHang = findViewById(R.id.txtKhuPhoXacNhanDonHang);
+        edtSoNhaTenDuongXacNhanDonHang = findViewById(R.id.txtSoNhaTenDuongXacNhanDonHang);
         btnDatHangXacNhanDonHang = findViewById(R.id.btnDatHangXacNhanDonHang);
-        txtSoDienThoaiXacNhanDonHang = findViewById(R.id.txtSoDienThoaiXacNhanDonHang);
+        edtSoDienThoaiXacNhanDonHang = findViewById(R.id.txtSoDienThoaiXacNhanDonHang);
     }
 }

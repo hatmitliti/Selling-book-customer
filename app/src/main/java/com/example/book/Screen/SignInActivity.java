@@ -13,6 +13,7 @@ import android.widget.ViewFlipper;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.book.Dialog.NotificationDialog;
 import com.example.book.MainActivity;
 import com.example.book.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,7 @@ public class SignInActivity extends AppCompatActivity {
     FirebaseUser user;
     TextView btnQuenMK;
     ViewFlipper view_fillper_login;
+    private NotificationDialog notificationDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         setControl();
         auth = FirebaseAuth.getInstance();
+        //init dialog
+        notificationDialog = new NotificationDialog(this);
         setAction();
         // slides:
         // Hiển thị slide:
@@ -86,18 +90,22 @@ public class SignInActivity extends AppCompatActivity {
         String username = edtUsername.getText().toString();
         String password = edtPassword.getText().toString();
         if (username.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Vui lòng nhập tài khoản!", Toast.LENGTH_SHORT).show();
+            edtUsername.setError(getResources().getString(R.string.field_empty));
         } else if (password.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Vui lòng nhập mật khẩu!", Toast.LENGTH_SHORT).show();
+            edtPassword.setError(getResources().getString(R.string.field_empty));
         } else {
+            notificationDialog.startLoadingDialog();
             auth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        notificationDialog.endLoadingDialog();
                         MainActivity.usernameApp = auth.getUid();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Sai tài khoản hoặc mật khẩu!", Toast.LENGTH_SHORT).show();
+                        notificationDialog.endLoadingDialog();
+                        notificationDialog.startErrorDialog(getResources().getString(R.string.singin_failed));
                     }
                 }
             });

@@ -45,7 +45,7 @@ import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class InfoUser extends AppCompatActivity {
+public class UserInformationActivity extends AppCompatActivity {
     User user;
     int REQUEST_CODE_IMAGE = 1;
     int RESULT_LOAD_IMAGE = 2;
@@ -76,7 +76,7 @@ public class InfoUser extends AppCompatActivity {
         // Create a storage reference from our app
         StorageReference storageRef = storage.getReference();
         //
-        context = InfoUser.this;
+        context = UserInformationActivity.this;
         //
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
 

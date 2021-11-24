@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.book.Adapter.CustomAdapterProductSeen;
+import com.example.book.Dialog.NotificationDialog;
 import com.example.book.Object.Product;
 import com.example.book.Object.User;
 import com.example.book.R;
@@ -36,18 +37,18 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
-    TextView txtPhoneUser,txtAddressUser,txtRankUser,txtNameUser;
-    Button btnTrangThaiDonHangUser,btnInfo,btnDoiMatKhau,btnSignOut,btnForgotPassword;
+    TextView txtPhoneUser, txtAddressUser, txtRankUser, txtNameUser;
+    Button btnTrangThaiDonHangUser, btnInfo, btnDoiMatKhau, btnSignOut, btnForgotPassword;
     User user;
     ImageView imgUser;
     String idUserCurrent;
     Context context;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-
     GridView gvSpDaXem;
     ArrayList<Product> list;
     CustomAdapterProductSeen adapter;
+    private NotificationDialog notificationDialog;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class ProfileFragment extends Fragment {
         // set control
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        notificationDialog = new NotificationDialog(getActivity());
 
         btnTrangThaiDonHangUser = view.findViewById(R.id.btnTrangThaiDonHangUser);
         txtAddressUser = view.findViewById(R.id.txtAddressUser);
@@ -105,7 +107,7 @@ public class ProfileFragment extends Fragment {
         btnTrangThaiDonHangUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), OrderStatus.class));
+                startActivity(new Intent(getActivity(), OrderStatusActivity.class));
             }
         });
 
@@ -131,7 +133,7 @@ public class ProfileFragment extends Fragment {
         btnDoiMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ChangePassword.class));
+                startActivity(new Intent(getActivity(), ChangePasswordActivity.class));
             }
         });
 
@@ -139,7 +141,7 @@ public class ProfileFragment extends Fragment {
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), InfoUser.class));
+                startActivity(new Intent(getActivity(), UserInformationActivity.class));
             }
         });
         btnSignOut.setOnClickListener(new View.OnClickListener() {
@@ -158,9 +160,9 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-
+                            notificationDialog.startSuccessfulDialog(getResources().getString(R.string.send_success));
                         } else {
-
+                            notificationDialog.startSuccessfulDialog(getResources().getString(R.string.send_failed));
                         }
                     }
                 });

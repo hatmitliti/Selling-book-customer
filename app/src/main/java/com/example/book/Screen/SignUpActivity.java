@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.book.Dialog.NotificationDialog;
 import com.example.book.MainActivity;
 import com.example.book.Object.User;
 import com.example.book.R;
@@ -25,12 +26,13 @@ public class SignUpActivity extends AppCompatActivity {
 
     Button btnDangKyTaiKhoan;
     TextView txtHoVaTen, txtMail, txtNgaySinh, txtPasswordRegister, txtRePasswordRegister;
-
+    private NotificationDialog notificationDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acticity_sign_up);
+        notificationDialog = new NotificationDialog(this);
         setControl();
         setAction();
         // toolbarr
@@ -61,11 +63,11 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (!password.equals(rePassword)) {
                     Toast.makeText(getApplicationContext(), "Xác nhận mật khẩu không đúng!", Toast.LENGTH_SHORT).show();
-
                 } else if (hoVaTen.isEmpty() || mail.isEmpty() || ngaySinh.isEmpty() || password.isEmpty() || rePassword.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
 
                 } else {
+                    notificationDialog.startLoadingDialog();
                     // đăng ký tk vào firebase
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     auth.createUserWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -73,19 +75,19 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // cập nhật nội dung vào firebase:
-
-                                User user = new User("", ngaySinh, 0, hoVaTen, "", "Đồng", "","");
+                                notificationDialog.endLoadingDialog();
+                                User user = new User("", ngaySinh, 0, hoVaTen, "", "Đồng", "", "");
                                 DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
                                 database.child(auth.getUid()).setValue(user);
                                 MainActivity.usernameApp = auth.getUid();
                                 startActivity(new Intent(getApplicationContext(), SignInActivity.class));
                             } else {
-                                Toast.makeText(getApplicationContext(), "Đăng kí không thành công!", Toast.LENGTH_SHORT).show();
+                                notificationDialog.endLoadingDialog();
+                                notificationDialog.startErrorDialog(getResources().getString(R.string.sign_up_failed));
                             }
                         }
                     });
                 }
-                //  startActivity(new Intent(getApplicationContext(), RegistrationVerification.class));
             }
         });
     }

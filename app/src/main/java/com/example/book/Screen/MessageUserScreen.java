@@ -31,9 +31,6 @@ public class MessageUserScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
 
-
-
-
         ArrayList<Message> list = new ArrayList<>();
 
         ListView lvTinNhan = findViewById(R.id.lvTinNhan);

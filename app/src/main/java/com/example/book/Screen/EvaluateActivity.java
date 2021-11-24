@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class Evalute extends AppCompatActivity {
+public class EvaluateActivity extends AppCompatActivity {
 
     TextView txtMaBill;
     GridView lvDanhGia;

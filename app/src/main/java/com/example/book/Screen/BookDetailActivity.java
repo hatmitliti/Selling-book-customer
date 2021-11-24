@@ -19,6 +19,8 @@ import com.example.book.MainActivity;
 import com.example.book.Object.FirebaseConnect;
 import com.example.book.Object.Product;
 import com.example.book.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +31,7 @@ import com.squareup.picasso.Picasso;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class BookDetailActivity extends AppCompatActivity {
     ImageView imgMessageInbox;
@@ -46,10 +49,12 @@ public class BookDetailActivity extends AppCompatActivity {
     GridView lvProductDetail;
     ArrayList<Product> list;
     CustomAdapterProductSeen adapter;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
         setContentView(R.layout.activity_book_detail);
         list = new ArrayList<>();
         adapter = new CustomAdapterProductSeen(getApplicationContext(), R.layout.item_product_listview_seen, list);
@@ -76,7 +81,8 @@ public class BookDetailActivity extends AppCompatActivity {
 
         // lưu vào ds sản phẩm đã xem:
         DatabaseReference data = FirebaseDatabase.getInstance().getReference("product_seens");
-        data.child(MainActivity.usernameApp).child(pd.getId()).setValue(pd);
+
+        data.child(mUser.getUid()).child(pd.getId()).setValue(pd);
 
 
         // toolbarr
