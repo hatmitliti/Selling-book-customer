@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.book.Adapter.CustomAdapterProductInCart;
+import com.example.book.Dialog.NotificationDialog;
 import com.example.book.Object.FirebaseConnect;
 import com.example.book.Object.ProductInCart;
 import com.example.book.Object.Voucher;
@@ -45,6 +46,7 @@ public class CartActivity extends Fragment {
     DatabaseReference dataProduct;
     Spinner spinnerVoucherInCart;
     FirebaseUser mUser;
+    private NotificationDialog notificationDialog;
    // ArrayList<String> mKey = new ArrayList<>();
     ArrayAdapter adapter;
     int tongTien;
@@ -56,6 +58,7 @@ public class CartActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_cart, container, false);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
+        notificationDialog = new NotificationDialog(getActivity());
         setControl(view);
         setAction();
         setTotalMoney();
@@ -76,7 +79,7 @@ public class CartActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 if (tongTien == 0) {
-                    Toast.makeText(getContext(), "Chưa có sản phẩm nào!", Toast.LENGTH_SHORT).show();
+                    notificationDialog.startErrorDialog(getResources().getString(R.string.no_products));
                 } else {
                     ArrayList<ProductInCart> list = new ArrayList<>();
                     for (int j = 0; j < listProductInCart.size(); j++) {

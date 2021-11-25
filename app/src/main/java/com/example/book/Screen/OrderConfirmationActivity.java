@@ -148,7 +148,8 @@ public class OrderConfirmationActivity extends AppCompatActivity {
 
                         mDatabase.child(MainActivity.usernameApp).child(id_voucher).removeValue();
                     }
-                    notificationDialog.startSuccessfulDialog(getResources().getString(R.string.order_success));
+                    notificationDialog.startLoadingDialog();
+                    notificationDialog.endLoadingDialog();
                     onBackPressed();
                 }
             }

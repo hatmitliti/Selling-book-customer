@@ -74,6 +74,9 @@
     <string name="change_password_success">ổi mật khẩu thành công!</string>
     <string name="change_password_failed">Đổi mật khẩu không thành công!</string>
     <string name="authen_password_failed">Mật khẩu hiện tại không đúng!</string>
+    <string name="stock">Sản phẩm đã hết hàng, vui lòng quay lại sau!</string>
+    <string name="add_cart_success">Thêm vào giỏ hàng thành công!</string>
+    <string name="no_products">Bạn chưa chọn sản phẩm nào!</string>
 
 
     <string-array name="evalute">

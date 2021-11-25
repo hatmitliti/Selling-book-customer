@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.book.Adapter.CustomAdapterProductSeen;
+import com.example.book.Dialog.NotificationDialog;
 import com.example.book.MainActivity;
 import com.example.book.Object.FirebaseConnect;
 import com.example.book.Object.Product;
@@ -34,15 +35,8 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class BookDetailActivity extends AppCompatActivity {
-    ImageView imgMessageInbox;
-    ImageView imgAddCartChiTietSach;
-    ImageView imgHinhAnhChiTietSach;
-    TextView nameProduct;
-    TextView priceProduct;
-    TextView descriptionProduct;
-    TextView stockProduct;
-    TextView categoryProduct;
-    TextView authorProduct;
+    ImageView imgMessageInbox,imgAddCartChiTietSach,imgHinhAnhChiTietSach;
+    TextView nameProduct,priceProduct,descriptionProduct,stockProduct,categoryProduct,authorProduct;
     String idProduct;
     Product product;
 
@@ -50,12 +44,14 @@ public class BookDetailActivity extends AppCompatActivity {
     ArrayList<Product> list;
     CustomAdapterProductSeen adapter;
     private FirebaseUser mUser;
+    private NotificationDialog notificationDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         setContentView(R.layout.activity_book_detail);
+        notificationDialog = new NotificationDialog(this);
         list = new ArrayList<>();
         adapter = new CustomAdapterProductSeen(getApplicationContext(), R.layout.item_product_listview_seen, list);
         setControl();
@@ -149,7 +145,6 @@ public class BookDetailActivity extends AppCompatActivity {
                 intent.putExtra("idProduct", list.get(position).getId());
 
                 startActivity(intent);
-
             }
         });
     }
@@ -192,10 +187,10 @@ public class BookDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (product.getStock() == 0){
-                    Toast.makeText(getApplicationContext(), "Sản phẩm đã hết", Toast.LENGTH_SHORT).show();
+                    notificationDialog.startErrorDialog(getResources().getString(R.string.stock));
                 }else {
                     FirebaseConnect.addProductInCart(MainActivity.usernameApp, product);
-                    Toast.makeText(getApplicationContext(), "Đã thểm vào giỏ hàng !", Toast.LENGTH_SHORT).show();
+                    notificationDialog.startSuccessfulDialog(getResources().getString(R.string.add_cart_success));
                 }
             }
         });
