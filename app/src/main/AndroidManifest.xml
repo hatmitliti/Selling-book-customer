@@ -12,36 +12,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Customer">
         <activity
-            android:name=".Screen.FogotPass"
+            android:name=".Screen.ForgotPasswordActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.InfoUser"
+            android:name=".Screen.UserInformationActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.DetailBook"
+            android:name=".Screen.BookDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.Register"
+            android:name=".Screen.SignUpActivity"
             android:exported="true" />
         <activity
             android:name=".Screen.MessageUserScreen"
             android:exported="true" />
         <activity
-            android:name=".Screen.OrderStatus"
+            android:name=".Screen.OrderStatusActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.OrderConfirmation"
+            android:name=".Screen.OrderConfirmationActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.Evalute"
+            android:name=".Screen.EvaluateActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.ChangePassword"
+            android:name=".Screen.ChangePasswordActivity"
             android:exported="true" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".Screen.Login"
+            android:name=".Screen.SignInActivity"
             android:exported="true">
+        </activity>
+        <activity android:name=".Screen.SplashActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

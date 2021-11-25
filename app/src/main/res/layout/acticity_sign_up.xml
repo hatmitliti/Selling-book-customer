@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FF5722"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Đăng ký tài khoản" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="60dp"
+            android:src="@drawable/logo" />
+
+        <EditText
+            android:id="@+id/txtHoVaTen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="15"
+            android:hint="@string/text_add_full_name"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/txtMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="15"
+            android:hint="@string/text_add_email"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/txtNgaySinh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="15"
+            android:hint="@string/text_add_birthday"
+            android:imeOptions="actionNext"
+            android:inputType="date"
+            android:minHeight="48dp"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/txtPasswordRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="15"
+            android:hint="@string/hint_add_password"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/txtRePasswordRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="15"
+            android:hint="@string/hint_add_re_password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textSize="20sp"
+            android:importantForAutofill="no" />
+
+        <Button
+            android:id="@+id/btnDangKyTaiKhoan"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/bg_corner_button"
+            android:text="@string/text_sign_up"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

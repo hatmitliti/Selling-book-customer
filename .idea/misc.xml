@@ -3,6 +3,50 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/drawable/bg_circle_solid_product.xml" value="0.17735042735042736" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/drawable/bg_corner_button_error_dialog.xml" value="0.17735042735042736" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/drawable/bg_corner_button_successful_dialog.xml" value="0.17735042735042736" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/drawable/bg_corner_dialog_error.xml" value="0.17735042735042736" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/drawable/bg_corner_edt.xml" value="0.17735042735042736" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/drawable/bg_title_error_dialog.xml" value="0.17735042735042736" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/drawable/bg_title_successful_dialog.xml" value="0.17735042735042736" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/activity_book_detail.xml" value="0.2" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/activity_cart.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/activity_fogot_pass.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/activity_forgot_password.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/activity_info_user.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/activity_main.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/activity_order_confirm.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/activity_profile.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/activity_sign_in.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/activity_splash.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/chi_tiet_sach.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/dang_ky_tai_khoan.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/dang_nhap.xml" value="0.2" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/danh_gia.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/danh_gia_sach.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/dialog_error.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/dialog_loading.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/dialog_successful.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/doi_mat_khau.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/fragment_home_page.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/gio_hang.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/home.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/home_product.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/iteam_dialog_image.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/item_danh_gia_sach.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/item_dialog_image.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/item_listview_don_hang_cho.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/item_nhan_tin.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/item_product_in_cart.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/item_product_listview.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/item_product_listview_seen.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/nguoi_dung.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/nhan_tin.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/trang_thai_don_hang.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/xac_nhan_dat_hang.xml" value="0.18" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/layout/xac_thuc_dang_ky.xml" value="0.1641025641025641" />
+        <entry key="..\:/Android Project with Team/Selling-book-customer/app/src/main/res/menu/menu_bottom.xml" value="0.1641025641025641" />
         <entry key="..\:/Genymotion/Genymotion/Project/DoAnNhom6/master/Selling-book-customer/app/src/main/res/drawable-v24/backgroundimage.xml" value="0.2838541666666667" />
         <entry key="..\:/Genymotion/Genymotion/Project/DoAnNhom6/master/Selling-book-customer/app/src/main/res/layout/activity_info_user.xml" value="0.20260416666666667" />
         <entry key="..\:/Genymotion/Genymotion/Project/DoAnNhom6/master/Selling-book-customer/app/src/main/res/layout/chi_tiet_sach.xml" value="0.2171875" />

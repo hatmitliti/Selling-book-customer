@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/lvTinNhan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:keyboardNavigationCluster="true"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/txtNoiDungTinNhan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="7"
+            android:background="@drawable/bg_corner_edt"
+            android:hint="@string/enter_text"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="5dp"
+            android:textSize="18sp">
+
+        </EditText>
+
+        <Button
+            android:id="@+id/btnGuiTinNhan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="3"
+            android:padding="10dp"
+            android:text="@string/text_send"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+</LinearLayout>

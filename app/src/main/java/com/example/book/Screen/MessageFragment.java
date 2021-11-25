@@ -1,7 +1,9 @@
 package com.example.book.Screen;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -9,12 +11,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.book.Adapter.CustomAdapterMessage;
 import com.example.book.MainActivity;
 import com.example.book.Object.Message;
 import com.example.book.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,24 +28,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class MessageUserScreen extends AppCompatActivity {
+public class MessageFragment extends Fragment {
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_messages);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_messages, container, false);
         ArrayList<Message> list = new ArrayList<>();
 
-        ListView lvTinNhan = findViewById(R.id.lvTinNhan);
-        EditText txtNoiDungTinNhan = findViewById(R.id.txtNoiDungTinNhan);
-        Button btnGuiTinNhan = findViewById(R.id.btnGuiTinNhan);
+        ListView lvTinNhan = view.findViewById(R.id.lvTinNhan);
+        EditText txtNoiDungTinNhan = view.findViewById(R.id.txtNoiDungTinNhan);
+        Button btnGuiTinNhan = view.findViewById(R.id.btnGuiTinNhan);
+        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 
 // lấy tin nhắn về
-        CustomAdapterMessage customAdapterMessage = new CustomAdapterMessage(getApplicationContext(), R.layout.item_nhan_tin, list);
+        CustomAdapterMessage customAdapterMessage = new CustomAdapterMessage(getContext(), R.layout.item_nhan_tin, list);
         lvTinNhan.setAdapter(customAdapterMessage);
         DatabaseReference mDatabaseUser = FirebaseDatabase.getInstance().getReference("messages");
-        mDatabaseUser.child(MainActivity.usernameApp).addChildEventListener(new ChildEventListener() {
+        mDatabaseUser.child(mUser.getUid()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Message message = snapshot.getValue(Message.class);
@@ -75,7 +79,7 @@ public class MessageUserScreen extends AppCompatActivity {
             public void onClick(View v) {
                 String content = txtNoiDungTinNhan.getText().toString();
                 if (content.equals("")) {
-                    Toast.makeText(getApplicationContext(), "Bạn chưa nhập", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Bạn chưa nhập", Toast.LENGTH_SHORT).show();
                 } else {
                     Message message = new Message(content, "user");
                     DatabaseReference mDatabaseUser = FirebaseDatabase.getInstance().getReference("messages");
@@ -85,17 +89,6 @@ public class MessageUserScreen extends AppCompatActivity {
             }
         });
 
-
-
+        return view;
     }
-
-    private void setAction() {
-
-    }
-
-    private void setControl() {
-
-    }
-
-
 }

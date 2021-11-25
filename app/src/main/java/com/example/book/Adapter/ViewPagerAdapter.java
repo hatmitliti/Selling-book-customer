@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.book.Screen.Cart;
-import com.example.book.Screen.HomeProduct;
-import com.example.book.Screen.Me;
-import com.example.book.Screen.MessageUser;
+import com.example.book.Screen.CartActivity;
+import com.example.book.Screen.HomePageFragment;
+import com.example.book.Screen.ProfileFragment;
+import com.example.book.Screen.MessageFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -20,15 +20,15 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new HomeProduct();
+                return new HomePageFragment();
             case 1:
-                return new MessageUser();
+                return new MessageFragment();
             case 2:
-                return new Cart();
+                return new CartActivity();
             case 3:
-                return new Me();
+                return new ProfileFragment();
             default:
-                return new HomeProduct();
+                return new HomePageFragment();
         }
     }
 
