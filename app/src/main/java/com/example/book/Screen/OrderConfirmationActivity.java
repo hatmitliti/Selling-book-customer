@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,7 +21,9 @@ import com.example.book.MainActivity;
 import com.example.book.Object.Bill;
 import com.example.book.Object.FirebaseConnect;
 import com.example.book.Object.ProductInCart;
+import com.example.book.Object.User;
 import com.example.book.R;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,9 +40,10 @@ import java.util.UUID;
 public class OrderConfirmationActivity extends AppCompatActivity {
 
     ImageView imgIconDeliver;
-    TextView txtSoLuongSanPhamXacNhanDonHang,txtTongTienXacNhanDonHang,txtGiamGiaXacNhanDonHang,txtTienTraXacNhanDonHang;
-    EditText edtQuanHuyenXacNhanDonHang,edtSoDienThoaiXacNhanDonHang,
-            edtXaPhuongXacNhanDonHang,edtKhuPhoXacNhanDonHang,edtSoNhaTenDuongXacNhanDonHang;
+    TextView txtSoLuongSanPhamXacNhanDonHang,
+            txtTongTienXacNhanDonHang, txtGiamGiaXacNhanDonHang, txtTienTraXacNhanDonHang;
+    EditText edtQuanHuyenXacNhanDonHang, edtSoDienThoaiXacNhanDonHang,
+            edtXaPhuongXacNhanDonHang, edtKhuPhoXacNhanDonHang, edtSoNhaTenDuongXacNhanDonHang;
 
     Button btnDatHangXacNhanDonHang;
     ArrayList<ProductInCart> listProduct;
@@ -65,7 +69,6 @@ public class OrderConfirmationActivity extends AppCompatActivity {
         txtSoLuongSanPhamXacNhanDonHang.setText("Tổng số lượng sản phẩm: " + listProduct.size() + "");
         txtTongTienXacNhanDonHang.setText("Tổng tiền: " + NumberFormat.getInstance().format(Integer.parseInt(intent.getStringExtra("tongTien"))));
 
-
         if (getIntent().getStringExtra("tienGiam").equals("No voucher")) {
             txtGiamGiaXacNhanDonHang.setText("Tiền giảm: " + 0);
         } else {
@@ -73,18 +76,51 @@ public class OrderConfirmationActivity extends AppCompatActivity {
             txtGiamGiaXacNhanDonHang.setText("Tiền giảm: " + NumberFormat.getInstance().format(Integer.parseInt(giam[1])));
         }
         txtTienTraXacNhanDonHang.setText("Tiền trả: " + NumberFormat.getInstance().format(Integer.parseInt(intent.getStringExtra("tienTra"))));
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
-        mDatabase.child(MainActivity.usernameApp).child("name").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                name = snapshot.getValue(String.class);
-            }
+        // Hiển thị sẵn thông tin đặt hàng:
+        FirebaseDatabase.getInstance().getReference("users")
+                .addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                        if (snapshot.getKey().equals(MainActivity.usernameApp)) {
+                            User user = snapshot.getValue(User.class);
+                            name = user.getName();
+                            edtSoDienThoaiXacNhanDonHang.setText(user.getPhone());
+                            try {
+                                String[] arr = user.getAddress().split(" - ");
+                                edtSoNhaTenDuongXacNhanDonHang.setText(arr[0]);
+                                edtQuanHuyenXacNhanDonHang.setText(arr[3]);
+                                edtXaPhuongXacNhanDonHang.setText(arr[2]);
+                                edtKhuPhoXacNhanDonHang.setText(arr[1]);
+                            } catch (Exception e) {
+                                edtSoNhaTenDuongXacNhanDonHang.setText("");
+                                edtQuanHuyenXacNhanDonHang.setText("");
+                                edtXaPhuongXacNhanDonHang.setText("");
+                                edtKhuPhoXacNhanDonHang.setText("");
+                                e.printStackTrace();
+                            }
+                        }
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-            }
-        });
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
         // toolbarr
         Toolbar toolbar = findViewById(R.id.tbChangePassword);
         setSupportActionBar(toolbar);
@@ -96,7 +132,6 @@ public class OrderConfirmationActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
     }
 
     private void setAction() {
@@ -105,7 +140,6 @@ public class OrderConfirmationActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-
                 if (edtQuanHuyenXacNhanDonHang.getText().toString().isEmpty()) {
                     edtQuanHuyenXacNhanDonHang.setError(getResources().getString(R.string.field_empty));
                 } else if (edtSoDienThoaiXacNhanDonHang.getText().toString().isEmpty()) {
@@ -117,12 +151,10 @@ public class OrderConfirmationActivity extends AppCompatActivity {
                 } else if (edtSoNhaTenDuongXacNhanDonHang.getText().toString().isEmpty()) {
                     edtSoNhaTenDuongXacNhanDonHang.setError(getResources().getString(R.string.field_empty));
                 } else {
-
                     String address = edtSoNhaTenDuongXacNhanDonHang.getText().toString() + " - " +
                             edtKhuPhoXacNhanDonHang.getText().toString() + " - " +
                             edtXaPhuongXacNhanDonHang.getText().toString() + " - " +
                             edtQuanHuyenXacNhanDonHang.getText().toString();
-
                     int discount = 0;
                     if (getIntent().getStringExtra("tienGiam").equals("No voucher")) {
                         discount = 0;
@@ -153,8 +185,6 @@ public class OrderConfirmationActivity extends AppCompatActivity {
                     onBackPressed();
                 }
             }
-
-
         });
     }
 
