@@ -64,7 +64,7 @@
     <string name="loading">Loading...</string>
     <string name="close">Đóng</string>
     <string name="singin_failed">Sai tài khoản hoặc mật khẩu!</string>
-    <string name="field_empty"><![CDATA[<item name=\"fielKhông được để trống trường này!]]></string>
+    <string name="field_empty">Không được để trống trường này!</string>
     <string name="sign_up_failed">Đăng kí không thành công!</string>
     <string name="send_success">Gửi email đặt lại mật khẩu thành công!</string>
     <string name="send_failed">Gửi email đặt lại mật khẩu không thành công!</string>
@@ -77,7 +77,6 @@
     <string name="stock">Sản phẩm đã hết hàng, vui lòng quay lại sau!</string>
     <string name="add_cart_success">Thêm vào giỏ hàng thành công!</string>
     <string name="no_products">Bạn chưa chọn sản phẩm nào!</string>
-
 
     <string-array name="evalute">
         <item>5</item>
