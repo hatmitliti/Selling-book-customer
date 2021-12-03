@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -110,6 +111,18 @@ public class ProfileFragment extends Fragment {
                 startActivity(new Intent(getActivity(), OrderStatusActivity.class));
             }
         });
+
+
+        gvSpDaXem.setOnTouchListener(new View.OnTouchListener() {
+            // Setting on Touch Listener for handling the touch inside ScrollView
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Disallow the touch request for parent scroll on touch of child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
 
         // Bấm vào ds đã xem đi đến trang chi tiết :
         gvSpDaXem.setOnItemClickListener(new AdapterView.OnItemClickListener() {

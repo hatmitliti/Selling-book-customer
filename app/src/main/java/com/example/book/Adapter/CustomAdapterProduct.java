@@ -54,19 +54,21 @@ public class CustomAdapterProduct extends ArrayAdapter {
             viewHolder = new ViewHolder();
             viewHolder.tenSach = convertView.findViewById(R.id.txtTenSach1);
             viewHolder.imgHinhAnh = convertView.findViewById(R.id.imgHinhAnhSach1);
+            viewHolder.txtGiaSach1 = convertView.findViewById(R.id.txtGiaSach1);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Product pc = data.get(position);
         viewHolder.tenSach.setText(pc.getTenSanPham());
+        viewHolder.txtGiaSach1.setText(NumberFormat.getInstance().format(pc.getGiaTien()) + " VND");
         Picasso.get().load(pc.getHinhAnh().toString()).into(viewHolder.imgHinhAnh);
         return convertView;
     }
 
     // viewholder
     private static class ViewHolder {
-        TextView tenSach;
+        TextView tenSach, txtGiaSach1;
         ImageView imgHinhAnh;
     }
 }
