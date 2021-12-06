@@ -24,6 +24,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.book.Dialog.NotificationDialog;
 import com.example.book.MainActivity;
 import com.example.book.Object.User;
 import com.example.book.R;
@@ -54,12 +55,13 @@ public class UserInformationActivity extends AppCompatActivity {
 
     RadioButton rdbcamera, rdbThuVien;
     ImageView imgCamera, imgThuVien;
+    private NotificationDialog notificationDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_user);
-
+        notificationDialog = new NotificationDialog(this);
         CircleImageView profile_image = findViewById(R.id.profile_image);
         EditText txtNameUserEdit = findViewById(R.id.txtNameUserEdit);
         EditText txtBirthUser = findViewById(R.id.txtBirthUser);
@@ -174,7 +176,7 @@ public class UserInformationActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         startActivityForResult(intent, REQUEST_CODE_IMAGE);
-                        Toast.makeText(context, "Lấy Ảnh Từ Camera", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "Lấy Ảnh Từ Camera", Toast.LENGTH_SHORT).show();
                     }
                 });
                 imgThuVien.setOnClickListener(new View.OnClickListener() {
@@ -192,7 +194,7 @@ public class UserInformationActivity extends AppCompatActivity {
                         intent.putExtra("return-data", true);
                         startActivityForResult(intent, RESULT_LOAD_IMAGE);
 
-                        Toast.makeText(context, "Lấy Ảnh Từ Thư Viện", Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(context, "Lấy Ảnh Từ Thư Viện", Toast.LENGTH_SHORT).show();
                     }
                 });
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -203,8 +205,7 @@ public class UserInformationActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         if (rdbcamera.isChecked()) {
                             if (!user.getImage().equals("") && !user.getNameImage().equals("")) {
-                                if(!imgCamera.getTag().equals(R.drawable.ic_baseline_camera_alt_24))
-                                {
+                                if (!imgCamera.getTag().equals(R.drawable.ic_baseline_camera_alt_24)) {
                                     Calendar calendar = Calendar.getInstance();
                                     String imageName = "image" + calendar.getTimeInMillis() + ".png";
                                     // Create a reference to "mountains.jpg"
@@ -221,8 +222,11 @@ public class UserInformationActivity extends AppCompatActivity {
                                     uploadTask.addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception exception) {
-                                            Toast.makeText(context, "Đã Xảy Ra Lỗi Không Thể Sửa Ảnh", Toast.LENGTH_SHORT).show();
+                                            //  Toast.makeText(context, "Đã Xảy Ra Lỗi Không Thể Sửa Ảnh", Toast.LENGTH_SHORT).show();
                                             // Handle unsuccessful uploads
+
+                                            notificationDialog.startErrorDialog("Đã Xảy Ra Lỗi Không Thể Sửa Ảnh");
+
                                         }
                                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
@@ -253,13 +257,15 @@ public class UserInformationActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-                                }else
-                                {
-                                    Toast.makeText(context, "Bạn Chưa Chọn Ảnh", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //   Toast.makeText(context, "Bạn Chưa Chọn Ảnh", Toast.LENGTH_SHORT).show();
+
+                                    notificationDialog.startErrorDialog("Bạn Chưa Chọn Ảnh");
+
                                 }
 
                             } else {
-                                if(!imgCamera.getTag().equals(R.drawable.ic_baseline_camera_alt_24)) {
+                                if (!imgCamera.getTag().equals(R.drawable.ic_baseline_camera_alt_24)) {
                                     Calendar calendar = Calendar.getInstance();
                                     String imageName = "image" + calendar.getTimeInMillis() + ".png";
                                     // Create a reference to "mountains.jpg"
@@ -276,8 +282,13 @@ public class UserInformationActivity extends AppCompatActivity {
                                     uploadTask.addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception exception) {
-                                            Toast.makeText(context, "Đã Xảy Ra Lỗi Không Thể Sửa Ảnh", Toast.LENGTH_SHORT).show();
+                                            //  Toast.makeText(context, "Đã Xảy Ra Lỗi Không Thể Sửa Ảnh", Toast.LENGTH_SHORT).show();
                                             // Handle unsuccessful uploads
+
+
+                                            notificationDialog.startErrorDialog("Đã Xảy Ra Lỗi Không Thể Sửa Ảnh");
+
+
                                         }
                                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
@@ -306,17 +317,18 @@ public class UserInformationActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-                                }
-                                else
-                                {
-                                    Toast.makeText(context, "Bạn Chưa Chọn Ảnh", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //  Toast.makeText(context, "Bạn Chưa Chọn Ảnh", Toast.LENGTH_SHORT).show();
+
+                                    notificationDialog.startErrorDialog("Bạn chưa chọn ảnh");
+
+
                                 }
                             }
 
                         } else if (rdbThuVien.isChecked()) {
                             if (!user.getImage().equals("") && !user.getNameImage().equals("")) {
-                                if(!imgThuVien.getTag().equals(R.drawable.ic_baseline_image_24))
-                                {
+                                if (!imgThuVien.getTag().equals(R.drawable.ic_baseline_image_24)) {
                                     Calendar calendar = Calendar.getInstance();
                                     String imageName = "image" + calendar.getTimeInMillis() + ".png";
                                     // Create a reference to "mountains.jpg"
@@ -335,6 +347,9 @@ public class UserInformationActivity extends AppCompatActivity {
                                         public void onFailure(@NonNull Exception exception) {
                                             Toast.makeText(context, "Đã Xảy Ra Lỗi Không Thể Sửa Ảnh", Toast.LENGTH_SHORT).show();
                                             // Handle unsuccessful uploads
+                                            notificationDialog.startErrorDialog("Đã xảy ra lỗi không thể sửa ảnh");
+
+
                                         }
                                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
@@ -357,7 +372,8 @@ public class UserInformationActivity extends AppCompatActivity {
                                                                 @Override
                                                                 public void onSuccess(Object o) {
                                                                     Picasso.get().load(imageURL).into(profile_image);
-                                                                    Toast.makeText(context, "Sửa Ảnh Thành Công", Toast.LENGTH_SHORT).show();
+                                                                    //  Toast.makeText(context, "Sửa Ảnh Thành Công", Toast.LENGTH_SHORT).show();
+                                                                    notificationDialog.startSuccessfulDialog("Sửa ảnh thành công");
                                                                 }
                                                             });
                                                         }
@@ -366,8 +382,11 @@ public class UserInformationActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-                                }else {
-                                    Toast.makeText(context, "Bạn Chưa Chọn Ảnh", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //  Toast.makeText(context, "Bạn Chưa Chọn Ảnh", Toast.LENGTH_SHORT).show();
+
+                                    notificationDialog.startErrorDialog("Bạn chưa chọn ảnh");
+
                                 }
 
                             } else {
@@ -388,8 +407,11 @@ public class UserInformationActivity extends AppCompatActivity {
                                     uploadTask.addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception exception) {
-                                            Toast.makeText(context, "Đã Xảy Ra Lỗi Không Thể Sửa Ảnh", Toast.LENGTH_SHORT).show();
+                                            //  Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
                                             // Handle unsuccessful uploads
+
+                                            notificationDialog.startErrorDialog("Đã Xảy Ra Lỗi Không Thể Sửa Ảnh");
+
                                         }
                                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
@@ -410,7 +432,9 @@ public class UserInformationActivity extends AppCompatActivity {
                                                                 @Override
                                                                 public void onSuccess(Object o) {
                                                                     Picasso.get().load(imageURL).into(profile_image);
-                                                                    Toast.makeText(context, "Sửa Ảnh Thành Công", Toast.LENGTH_SHORT).show();
+                                                                    //   Toast.makeText(context, "Sửa Ảnh Thành Công", Toast.LENGTH_SHORT).show();
+
+                                                                    notificationDialog.startErrorDialog("Sửa ảnh thành công");
                                                                 }
                                                             });
                                                         }
@@ -419,10 +443,10 @@ public class UserInformationActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-                                }
-                                else
-                                {
-                                    Toast.makeText(context, "Bạn Chưa Chọn Ảnh", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    //Toast.makeText(context, "Bạn Chưa Chọn Ảnh", Toast.LENGTH_SHORT).show();
+
+                                    notificationDialog.startErrorDialog("Bạn chưa chọn ảnh");
                                 }
                             }
                         }
@@ -440,23 +464,22 @@ public class UserInformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (txtNameUserEdit.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(getApplicationContext(), "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
+                    notificationDialog.startErrorDialog("Không được để trống dữ liệu");
                     return;
-                }
-                else if (txtBirthUser.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
+                } else if (txtBirthUser.getText().toString().isEmpty()) {
+                    // Toast.makeText(getApplicationContext(), "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
+                    notificationDialog.startErrorDialog("Không được để trống dữ liệu");
                     return;
-                }
-                else if (txtphoneUser_.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
+                } else if (txtphoneUser_.getText().toString().isEmpty()) {
+                    // Toast.makeText(getApplicationContext(), "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
+                    notificationDialog.startErrorDialog("Không được để trống dữ liệu");
                     return;
-                }
-                else if(edtDiaChi.getText().toString().isEmpty())
-                {
-                    Toast.makeText(getApplicationContext(), "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
+                } else if (edtDiaChi.getText().toString().isEmpty()) {
+                    // Toast.makeText(getApplicationContext(), "Không được để trống dữ liệu", Toast.LENGTH_SHORT).show();
+                    notificationDialog.startErrorDialog("Không được để trống dữ liệu");
                     return;
-                }
-                else{
+                } else {
                     user.setBirth(txtBirthUser.getText().toString());
                     user.setName(txtNameUserEdit.getText().toString());
                     user.setPhone(txtphoneUser_.getText().toString());
@@ -466,7 +489,8 @@ public class UserInformationActivity extends AppCompatActivity {
                             .child(MainActivity.usernameApp).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Toast.makeText(getApplicationContext(), "Cập Nhật Thành Công", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getApplicationContext(), "Cập Nhật Thành Công", Toast.LENGTH_SHORT).show();
+                            notificationDialog.startErrorDialog("Cập nhật thành công");
                             onBackPressed();
                         }
                     });
@@ -487,6 +511,7 @@ public class UserInformationActivity extends AppCompatActivity {
         });
 
     }
+
     /*
          Gọi Hàm Đổ Hình chụp từ camera ra màn hình
          */

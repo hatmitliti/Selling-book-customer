@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.book.Adapter.CustomAdapterMessage;
+import com.example.book.Dialog.NotificationDialog;
 import com.example.book.MainActivity;
 import com.example.book.Object.Message;
 import com.example.book.R;
@@ -76,6 +77,9 @@ public class MessageUserScreen extends AppCompatActivity {
                 String content = txtNoiDungTinNhan.getText().toString();
                 if (content.equals("")) {
                     Toast.makeText(getApplicationContext(), "Bạn chưa nhập", Toast.LENGTH_SHORT).show();
+                    NotificationDialog notificationDialog = new NotificationDialog(MessageUserScreen.this);
+                    new NotificationDialog(MessageUserScreen.this).startErrorDialog("Bạn chưa nhập nội dung");
+
                 } else {
                     Message message = new Message(content, "user");
                     DatabaseReference mDatabaseUser = FirebaseDatabase.getInstance().getReference("messages");
@@ -84,7 +88,6 @@ public class MessageUserScreen extends AppCompatActivity {
                 }
             }
         });
-
 
 
     }

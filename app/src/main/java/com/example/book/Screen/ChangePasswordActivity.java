@@ -75,7 +75,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         changePassword();
                     } else {
                         notificationDialog.endLoadingDialog();
-                        notificationDialog.startSuccessfulDialog(getResources().getString(R.string.authen_password_failed));
+                        notificationDialog.startErrorDialog(getResources().getString(R.string.authen_password_failed));
                     }
                 }
             });
@@ -88,20 +88,24 @@ public class ChangePasswordActivity extends AppCompatActivity {
         String repassword = edtRePassword.getText().toString().trim();
         if (password.isEmpty()) {
             edtNewPassword.setError(getResources().getString(R.string.field_empty));
+            notificationDialog.endLoadingDialog();
         } else if (repassword.isEmpty()) {
             edtRePassword.setError(getResources().getString(R.string.field_empty));
+            notificationDialog.endLoadingDialog();
         } else if (!repassword.equalsIgnoreCase(password)) {
             edtRePassword.setError(getResources().getString(R.string.authen_failed));
+            notificationDialog.endLoadingDialog();
         } else {
             user.updatePassword(password).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         notificationDialog.endLoadingDialog();
-                        notificationDialog.startSuccessfulDialog(getResources().getString(R.string.change_password_success));
+                        notificationDialog.startSuccessfulDialog("Đổi mật khẩu thành công");
+                        onBackPressed();
                     } else {
                         notificationDialog.endLoadingDialog();
-                        notificationDialog.startSuccessfulDialog(getResources().getString(R.string.change_password_failed));
+                        notificationDialog.startErrorDialog(getResources().getString(R.string.change_password_failed));
                     }
                 }
             });

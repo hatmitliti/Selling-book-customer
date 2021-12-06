@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.book.Adapter.CustomAdapterMessage;
+import com.example.book.Dialog.NotificationDialog;
 import com.example.book.MainActivity;
 import com.example.book.Object.Message;
 import com.example.book.R;
@@ -29,13 +30,13 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class MessageFragment extends Fragment {
-
+    private NotificationDialog notificationDialog;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_messages, container, false);
         ArrayList<Message> list = new ArrayList<>();
-
+notificationDialog = new NotificationDialog(getActivity());
         ListView lvTinNhan = view.findViewById(R.id.lvTinNhan);
         EditText txtNoiDungTinNhan = view.findViewById(R.id.txtNoiDungTinNhan);
         Button btnGuiTinNhan = view.findViewById(R.id.btnGuiTinNhan);
@@ -79,7 +80,10 @@ public class MessageFragment extends Fragment {
             public void onClick(View v) {
                 String content = txtNoiDungTinNhan.getText().toString();
                 if (content.equals("")) {
-                    Toast.makeText(getContext(), "Bạn chưa nhập", Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(getContext(), "Bạn chưa nhập", Toast.LENGTH_SHORT).show();
+
+                    notificationDialog.startErrorDialog("Bạn chưa nhập nội dung");
+
                 } else {
                     Message message = new Message(content, "user");
                     DatabaseReference mDatabaseUser = FirebaseDatabase.getInstance().getReference("messages");

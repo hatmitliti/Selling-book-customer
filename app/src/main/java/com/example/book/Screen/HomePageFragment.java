@@ -85,7 +85,7 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 String locCategory = spLoaiSanPham.getSelectedItem().toString();
-                Toast.makeText(getContext(), locCategory, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), locCategory, Toast.LENGTH_SHORT).show();
             }
         });
 
