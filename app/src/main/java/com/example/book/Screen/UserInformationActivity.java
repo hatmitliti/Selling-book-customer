@@ -490,7 +490,7 @@ public class UserInformationActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void unused) {
                           //  Toast.makeText(getApplicationContext(), "Cập Nhật Thành Công", Toast.LENGTH_SHORT).show();
-                            notificationDialog.startErrorDialog("Cập nhật thành công");
+                            notificationDialog.startSuccessfulDialog("Cập nhật thành công");
                             onBackPressed();
                         }
                     });
